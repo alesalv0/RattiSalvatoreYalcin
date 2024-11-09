@@ -173,11 +173,18 @@ All the starred words will be defined in section 1.3 to avoid any ambiguity.
         \item \textbf{R27} The system must allow universities to follow internship process, handle complaints raised by students, and interrupt an internship if necessary, but only if the relevant student's university is signed in.
         \end{itemize}
 \subsection{User characteristics}
+     A User can be one of three types: Student, University, Company. Each role has access to distinct functionalities and is driven by different motivations.
+     \begin{itemize}
+        \item Students: They are students of some university; they want to apply for internships, either helped by the recommendations from the platform or by looking for internship themselves. If they have something to say about their on-going internship, they can make observations in the platform.
+        \item Companies: They want to recruit students for their internship projects. They are aided in the selection process from the platform. They might want to make observations or complaints about the hired student.
+        \item Universities: They want to manage their students' on-going internship, handling their complaints or the ones coming from the company of the internship.     
+     \end{itemize}
 \subsection{Assumptions, dependencies and constraints}
+This section serves as a comprehensive overview of critical factors which must be considered during the implementation of the platform. It consolidates the foundational assumptions made during project planning and highlights eventual dependencies.
 \subsubsection{Domain Assumptions}
     \begin{itemize}
-        D1 The User must have a working Internet connection.
-        D2 Students are enrolled in universities as student of any kind.
+        \item D1 The User must have a working Internet connection.
+        \item D2 Students are enrolled in universities as student of any kind.
     \end{itemize}
 \subsubsection{Dependencies}
 An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.\\ \\The system also wants to have some connection with the universities, so a service for that is needed.
