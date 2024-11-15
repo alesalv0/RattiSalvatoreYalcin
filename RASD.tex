@@ -147,6 +147,20 @@ The UML Class Diagram shown below provides a conceptual, high-level representati
     \centering
 \end{figure}
 \subsubsection{State Charts}
+The following section outlines the key component (Internship) of the Student\&Company (S\&C) system and its evolution across different phases. To illustrate this, the UML State Chart is presented.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.30]{figures/StateCharts.drawio.png}
+    \centering
+\end{figure}
+The diagram in question outlines the potential phases of an Internship. Posted by a Company, the Internship promptly enters the "Application" state, allowing Students to apply and Companies/Students to accept recommendations. 
+\\Following the closure of the application window, the system transitions the Internship to the "Selection" state, in which the Candidates are interviewed, selected and confirmed. 
+\\In case no Candidate is confirmed, the Internship is archived and transitioned to the "Ended" state. Otherwise, the selected Candidate starts the interning period and the Internship is changed into the "Ongoing" state. 
+\\While the Internship is "Ongoing" and the University responsible for the Student receives complaints, it may decide to terminate the Internship. In such cases, the Internship is moved to the "Interrupted" state and archived as is.
+\\If the Internship ends without interruptions, before being archived, it waits for both the selected Candidate and the host Company to provide a feedback about the interning experience. The Internship is therefore placed in its "Feedback" state.
+\\Only afterwards, the system closes the Internship, transitioning it in the "Ended" state and archiving it.
+
+
 \subsection{Product Functions}
 \subsubsection{Requirements}
     \begin{itemize}
@@ -259,9 +273,9 @@ An EmailService is needed, because in the registration process a verifcation ema
 \subsubsection{Portability}
 
 \section{Formal Analysis Using Alloy}
+This section presents the formal modeling activity conducted using Alloy notation. The primary objective of this work is to provide a rigorous description of the system's domain and its properties.
 \subsection{Objectives of the Analysis}
 \subsection{Alloy Code}
-
 \section{Effort Spent}
 \subsection{Effort Spent per Unit}
 
