@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{float} 
+\usepackage{array}
 
 \begin{document}
 
@@ -206,6 +207,9 @@ This section serves as a comprehensive overview of critical factors which must b
     \begin{itemize}
         \item D1 The User must have a working Internet connection.
         \item D2 Students are enrolled in universities as student of any kind.
+        \item D3 The User registering is either a student, a university or a company.
+        \item D4 Students can't access to the functionalities offered by the platform if they haven't uploaded their CV and linked their university mail.
+        \item D5 
     \end{itemize}
 \subsubsection{Dependencies}
 An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.\\ \\The system also wants to have some connection with the universities, so a service for that is needed.
@@ -260,8 +264,19 @@ An EmailService is needed, because in the registration process a verifcation ema
     \caption{Internship}
     \centering
 \end{figure}
-\subsubsection{Use cases}
-\subsubsection{mapping}
+\subsubsection{Use cases}z
+\subsubsection{Mapping}
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{|m{1cm}|m{4cm}|m{1cm}|m{4cm}|} % Prima colonna piccola, seconda larga
+    \hline
+    \multicolumn{4}{|c|}{G1:  Allows registered companies to post and advertise the available internships that they offer.} \\ \hline
+    R1 & Questa è una descrizione molto lunga che occupa gran parte dello spazio disponibile. & D1 & adam \\ \hline
+    R2 & Un altro testo molto lungo con più dettagli. & D2 & adams \\ \hline
+    \end{tabular}
+    \label{tab:colonne-dimensioni}
+    \end{table}
+
 \subsection{Performance Requirements}
 \subsection{Design Constraints}
 \subsubsection{Standards compliance}
