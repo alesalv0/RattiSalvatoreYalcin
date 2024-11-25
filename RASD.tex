@@ -1,9 +1,41 @@
+% CONFIGURATIONS
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{float} 
 \usepackage{array}
+\usepackage{parskip} % For paragraph layout
+\usepackage{setspace} % For using single or double spacing
+\usepackage{emptypage} % To insert empty pages
 \renewcommand{\arraystretch}{1.5} % Spazio extra per centratura verticale
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{multicol} % To write in multiple columns (executive summary)
+\setlength\columnsep{15pt} % Column separation in executive summary
+\setlength\parindent{0pt} % Indentation
+\raggedbottom  
+
+% PACKAGES FOR IMAGES
+\usepackage{graphicx}
+\usepackage{transparent} % Enables transparent images
+\usepackage{eso-pic} % For the background picture on the title page
+\usepackage{subfig} % Numbered and caption subfigures using \subfloat.
+\usepackage{tikz} % A package for high-quality hand-made figures.
+\usetikzlibrary{}
+\graphicspath{{./Images/}} % Directory of the images
+\usepackage{caption} % Coloured captions
+\usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
+\usepackage{float}
+
+% PACKAGES FOR TABLES
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{booktabs}
+\usepackage{longtable} % Tables that can span several pages
+\usepackage{colortbl}
+
+% OTHER PACKAGES
+\usepackage{pdfpages} % To include a pdf file
+\usepackage{afterpage}
+\usepackage{lipsum} % DUMMY PACKAGE
+\usepackage{fancyhdr} % For the headers
+\fancyhf{}
 
 \begin{document}
 
@@ -306,6 +338,12 @@ An EmailService is needed, because in the registration process a verifcation ema
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.45]{figures/use_case_1-StudentLogin.drawio.png}
+    \caption{StudentSignUp}
+    \centering
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/use_case_1-StudentLogin.drawio.png}
     \caption{StudentLogin}
     \centering
 \end{figure}
@@ -333,9 +371,110 @@ An EmailService is needed, because in the registration process a verifcation ema
     \caption{Internship}
     \centering
 \end{figure}
-\subsubsection{Use cases}z
-\subsubsection{Mapping}
+\newpage
+\subsubsection{Use cases}
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentsSignUp}\\
+\toprule
+Participating Actors & Student, EmailService, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & True\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Student opens the “Sign up” page
+		      \item 2. Students\&Companies shows the page to sign up
+		      \item 3. The Student fills the required informations and clicks “Sign Up” button
+		      \item 4. Students\&Companies checks the information provided by the Student
+		      \item 5. Students\&Companies registers the Student
+                \item 6. Students\&Companies sends confirmation of signup and inform the Student to verify the account
+                \item 7. Students\&Companies sends a notification to verify the account through the EmailService
+                \item 8. The Student verifies the account
+                \item 9. Students\&Companies activates the Student’s account
+                \item 10. Students\&Companies sends to the home page 
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Student successfully signed up and activated his account\\ [1ex]
+\hline
+Exceptions & The Student was already registered\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSignUpSeqDiagram.png}\\
+\end{figure}
 
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanySignUp}\\
+\toprule
+Participating Actors & Company, EmailService, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & True\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Company opens the “Sign up” page
+		      \item 2. Students\&Companies shows the page to sign up
+		      \item 3. The Company fills the required informations and clicks “Require a Company Account” button
+		      \item 4. Students\&Companies shows the form to require an Company account
+		      \item 5. Students\&Companies registers the Company
+                \item 6. Students\&Companies sends confirmation of signup and inform the Company to verify the account
+                \item 7. Students\&Companies sends a notification to verify the account through the EmailService
+                \item 8. The Company verifies the account
+                \item 9. Students\&Companies activates the Company’s account
+                \item 10. Students\&Companies sends to the home page 
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Company successfully signed up and obtained an Company account\\ [1ex]
+\hline
+Exceptions & The Company was already registered\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanySignUp.drawio.png}\\
+\end{figure}
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{UniversitySignUp}\\
+\toprule
+Participating Actors & University, EmailService, National education dictionary
+API (NED-API), Students\&Companies\\ [1ex]
+\hline
+Entry Condition & True\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The University opens the “Sign up” page
+		      \item 2. Students\&Companies shows the page to sign up
+		      \item 3. The Company fills the required information and clicks “Require a University Account” button
+		      \item 4. Students\&Companies shows the form to require an University account
+                \item 5. Students\&Companies check the University existence through he NED-API
+		      \item 6. Students\&Companies registers the University
+                \item 7. Students\&Companies sends confirmation of sign up and inform the University to verify the account
+                \item 8. Students\&Companies sends a notification to verify the account through the EmailService
+                \item 9. The University verifies the account
+                \item 10. Students\&Companies activates the University’s account
+                \item 11. Students\&Companies sends to the home page 
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The University successfully signed up and obtained an University account\\ [1ex]
+\hline
+Exceptions & \begin{itemize}
+                \item The University was already registered
+                \item The University does not exist
+                \end{itemize} \\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UniversitySignUp.drawio.png}\\
+\end{figure}
+
+
+\newpage
+\subsubsection{Mapping}
 \begin{center}
     \begin{tabular}{|C{3cm}|p{10cm}|}
     \hline
