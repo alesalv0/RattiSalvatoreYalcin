@@ -580,27 +580,95 @@ Exceptions & The University cannot interrupt an internship already completed\\ [
 
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
-\multicolumn{2}{|c|}{NEEDS TO BE CHANGED UserSubmitsFeedback}\\
+\multicolumn{2}{|c|}{StudentSubmitsInitialFeedback}\\
 \toprule
-Participating Actors & User (Student or Company), Students\&Companies\\ [1ex]
+Participating Actors & Student, Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The User is logged into the platform and the internship is completed\\ [1ex]
+Entry Condition & The Student is logged into the platform and hasn't sent feedback yet\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The User navigates to the “Submit Feedback” section
-                \item 2. Students \&Companies displays a list of the completed internships without feedback yet.
-                \item 3. The User chooses one of the internships.
-		      \item 4. Students\&Companies displays the feedback input form
-		      \item 5. The User fills out and submits the feedback form
-		      \item 6. Students\&Companies saves the feedback.
+		      \item 1. The Student goes to a recommended internship
+                \item 2. Students \&Companies displays all the information about the internship, including a pop-up for reviewing.
+                \item 3. The Student clicks the "thumbs-up" or "thumbs-down" button
+		      \item 4. Students\&Companies saves the information about the feedback
+		      \item 5. Students\&Companies hides the pop-up after some seconds
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The feedback is successfully saved, and the internship is marked as completed for the submitting User\\ [1ex]
+Exit Condition & The pop-up isn't in the page anymore\\ [1ex]
 \hline
-Exceptions & Feedback submission fails due to invalid inputs\\ [1ex]
+Exceptions & Feedback submission fails\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
+
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanySubmitsInitialFeedback}\\
+\toprule
+Participating Actors &  Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & Company is logged into the platform\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Company selects an internship in open state
+                \item 2. Students \&Companies displays all the information about the internship
+                \item 3. The Company clicks the "thumbs-up" or "thumbs-down" button near a recommended student
+		      \item 4. Students\&Companies saves the information about the feedback
+		      \item 5. Students\&Companies highlights the pressed button and hides the other one after some seconds
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & Feedback has been saved by the platform\\ [1ex]
+\hline
+Exceptions & Feedback submission fails\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
+
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentSubmitsFinalFeedback}\\
+\toprule
+Participating Actors &  Student, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & Student is logged into the platform and enters home page, last internship finished hasn't got feedback yet\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. Students \&Companies loads up a pop-up, showing a 5 star form to complete.
+                \item 2. The Student chooses the stars for the internship and presses submit.
+		      \item 4. Students\&Companies saves the information about the feedback
+		      \item 5. Students\&Companies hides the pop-up and normal home page is shown again
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & Feedback has been submitted by the student\\ [1ex]
+\hline
+Exceptions & None\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
+
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanySubmitsFinalFeedback}\\
+\toprule
+Participating Actors &  Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & Company is logged into the platform and enters home page, there are finished internships without feedback \\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. Students \&Companies loads up a page with all the finished internships without feedback, showing a 5 star form to complete for everyone.
+                \item 2. The Company chooses the stars to review every student and presses submit.
+		      \item 4. Students\&Companies saves the information about the feedbacks.
+                \item 5. Students\&Companies sends the company back to home page.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & Feedback has been submitted by the company\\ [1ex]
+\hline
+Exceptions & None\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
+
+
 
 
 \begin{xltabular}{\textwidth}{| l | X |}
