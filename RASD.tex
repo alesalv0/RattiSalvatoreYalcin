@@ -130,7 +130,7 @@ The goals specify what the platform will allow users to achieve in the real worl
         \item Feedback: Refers to the comments and questionary that both parties are asked to fill in at the end of the internship contract, in order to improve the platform.
         \item Observation: Is anything written in the dedicated Observations section. Serves the student or the company currently engaged, to highlight something about the experience with each other. If that's a complaint from either, the University of the student will manage the situation.
         \item Complaint: It's a specific type of Observation, where the University of the student is called to act and manage the situation between the parties.
-        \item Contact: The mutual acceptance between student and company.
+        \item Contact: The mutual acceptance of recommendation between student and company on the same internship.
     \end{itemize}
 \subsubsection{Acronyms}
     \begin{itemize}
@@ -470,6 +470,7 @@ Exceptions & The Company was already registered\\ [1ex]
     \centering
     \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanySignUp.drawio.png}\\
 \end{figure}
+
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -494,7 +495,7 @@ Flow of Events & \begin{itemize}
                 \item 11. Students\&Companies sends to the home page 
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The University successfully signed up and obtained an University account\\ [1ex]
+Exit Condition & The University successfully signed up and obtained a University account\\ [1ex]
 \hline
 Exceptions & \begin{itemize}
                 \item The University was already registered
@@ -518,7 +519,8 @@ Participating Actors & User (Student, Company, or University), Students\&Compani
 Entry Condition & The User is logged into the platform\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The User navigates to the “View Comments” section
+		      \item 1. The User navigates to the internship page
+                \item 1. The User navigets to the "View Comments" section
 		      \item 2. Students\&Companies retrieves the comments associated with the relevant internship
 		      \item 3. Students\&Companies displays the comments to the User
                 \end{itemize} \\ [1ex]
@@ -535,7 +537,7 @@ Exceptions & No comments are available for the internship\\ [1ex]
 \toprule
 \multicolumn{2}{|c|}{UserWritesComment}\\
 \toprule
-Participating Actors & User (Student or Company), Students\&Companies\\ [1ex]
+Participating Actors & User (Student or Company), NotificationService, Students\&Companies\\ [1ex]
 \hline
 Entry Condition & The User is logged into the platform\\ [1ex]
 \hline
@@ -558,14 +560,14 @@ Exceptions & The comment is invalid (e.g., empty or contains restricted content)
 \toprule
 \multicolumn{2}{|c|}{UniversityInterruptsInternship}\\
 \toprule
-Participating Actors & University, Students\&Companies\\ [1ex]
+Participating Actors & University, NotificationService,  Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The University is logged into the platform and identifies an issue with the internship\\ [1ex]
+Entry Condition & The University has logged in \\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The University navigates to the “Interrupt Internship” section
+		      \item 1. The University navigates to the on-going internship section
 		      \item 2. Students\&Companies displays a list of ongoing internships
-		      \item 3. The University selects the internship to be interrupted and provides a justification
+		      \item 3. The University selects the internship that has received complaints and clicks the button to interrupt it
 		      \item 4. Students\&Companies interrupts the internship and notifies the Student and the Company
                 \end{itemize} \\ [1ex]
 \hline
@@ -578,49 +580,28 @@ Exceptions & The University cannot interrupt an internship already completed\\ [
 
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
-\multicolumn{2}{|c|}{UserSubmitsFeedback}\\
+\multicolumn{2}{|c|}{NEEDS TO BE CHANGED UserSubmitsFeedback}\\
 \toprule
 Participating Actors & User (Student or Company), Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The User is logged into the platform and the internship is near completion\\ [1ex]
+Entry Condition & The User is logged into the platform and the internship is completed\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The User navigates to the “Submit Feedback” section
-		      \item 2. Students\&Companies displays the feedback input form
-		      \item 3. The User fills out and submits the feedback form
-		      \item 4. Students\&Companies saves the feedback and marks the internship as completed for the submitting User
-		      \item 5. If both parties have submitted feedback, Students\&Companies marks the internship as fully completed
+                \item 2. Students \&Companies displays a list of the completed internships without feedback yet.
+                \item 3. The User chooses one of the internships.
+		      \item 4. Students\&Companies displays the feedback input form
+		      \item 5. The User fills out and submits the feedback form
+		      \item 6. Students\&Companies saves the feedback.
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The feedback is successfully saved, and the internship is marked as completed for the submitting User\\ [1ex]
 \hline
-Exceptions & Feedback submission fails due to invalid input or technical issues\\ [1ex]
+Exceptions & Feedback submission fails due to invalid inputs\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
 
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{UserLogsIn}\\
-\toprule
-Participating Actors & User (Student, Company, or University), Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The User has an account on the platform\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The User opens the login page
-		      \item 2. Students\&Companies displays the login form
-		      \item 3. The User enters their credentials and submits the form
-		      \item 4. Students\&Companies validates the credentials
-		      \item 5. If valid, Students\&Companies grants access and redirects the User to their dashboard
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The User successfully logs in and accesses their dashboard\\ [1ex]
-\hline
-Exceptions & Invalid credentials or account locked due to too many failed attempts\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
 
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -632,31 +613,32 @@ Entry Condition & The Student is logged in and has an active account\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The Student navigates to the “Profile” section
-		      \item 2. Students\&Companies displays the current university information
-		      \item 3. The Student selects the option to change the university and provides the new details
+		      \item 2. Students\&Companies displays information about the Student
+		      \item 3. The Student selects the mail field and overwrites the email with the one from the new from the other University
 		      \item 4. Students\&Companies validates and updates the university information
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The Student's university information is successfully updated\\ [1ex]
 \hline
-Exceptions & Invalid or incomplete university information provided\\ [1ex]
+Exceptions & Invalid e-mail provided\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
 
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
-\multicolumn{2}{|c|}{StudentUpdatesCV}\\
+\multicolumn{2}{|c|}{StudentUploadsCV}\\
 \toprule
 Participating Actors & Student, Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The Student is logged in and has uploaded a CV in the past\\ [1ex]
+Entry Condition & The Student is logged in\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Student navigates to the “Update CV” section
-		      \item 2. Students\&Companies displays the current CV and an option to upload a new one
-		      \item 3. The Student uploads a new CV file
-		      \item 4. Students\&Companies validates the file format and replaces the old CV
+		      \item 1. The Student navigates to the profide section
+		      \item 2. Students\&Companies displays information about the Student
+		      \item 3. The Student uploads a CV file in the provided field.
+		      \item 4. Students\&Companies validates the file format and shows the CV file.
+                \item 5. The NotificationService might recommend the student of some internships based on the (new) CV.
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The Student's CV is successfully updated\\ [1ex]
@@ -670,7 +652,7 @@ Exceptions & File upload fails due to incorrect format or size\\ [1ex]
 \toprule
 \multicolumn{2}{|c|}{CompanyPostsInternship}\\
 \toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
+Participating Actors & Company, NotificationService, Student, Students\&Companies\\ [1ex]
 \hline
 Entry Condition & The Company is logged in\\ [1ex]
 \hline
@@ -679,6 +661,7 @@ Flow of Events & \begin{itemize}
 		      \item 2. Students\&Companies displays the internship creation form
 		      \item 3. The Company fills out the form with internship details and submits it
 		      \item 4. Students\&Companies validates the information and publishes the internship
+                \item 5. the NotificationService may notify certain students of this new internship through recommendation
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The internship is successfully posted and visible to Students\\ [1ex]
@@ -714,20 +697,18 @@ Exceptions & No internships match the search criteria\\ [1ex]
 \toprule
 \multicolumn{2}{|c|}{StudentAppliesToInternship}\\
 \toprule
-Participating Actors & Student, Students\&Companies\\ [1ex]
+Participating Actors & Student, Notification Service, Company, Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The Student is logged in and has found an internship\\ [1ex]
+Entry Condition & The Student is logged in and has searched for an internship\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Student selects an internship to apply for
-		      \item 2. Students\&Companies displays the application form
-		      \item 3. The Student completes and submits the form
-		      \item 4. Students\&Companies saves the application and notifies the Company
+		      \item 1. The Student presses the "Apply" button
+		      \item 2. Students\&Companies saves the application and notifies the Company
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The application is successfully submitted and the Company is notified\\ [1ex]
 \hline
-Exceptions & The internship application deadline has passed\\ [1ex]
+Exceptions & The internship application deadline has passed (old page)\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
@@ -741,15 +722,15 @@ Participating Actors & User (Student, Company, or University), Students\&Compani
 Entry Condition & The User is logged in\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The User navigates to a list of internships
-		      \item 2. Students\&Companies displays internship details
+		      \item 1. The User navigates to the "Internships" page
+		      \item 2. Students\&Companies displays on-going internships and completed ones.
 		      \item 3. The User selects an internship from the list
-		      \item 4. Students\&Companies highlights or saves the selected internship for the User
+		      \item 4. Students\&Companies displays all the information about the selected internship.
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The User successfully selects an internship\\ [1ex]
+Exit Condition & The user visualizes the current information about the internship\\ [1ex]
 \hline
-Exceptions & The internship is no longer available\\ [1ex]
+Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
@@ -766,10 +747,10 @@ Flow of Events & \begin{itemize}
 		      \item 1. The User navigates to the “Recommendations” section
 		      \item 2. Students\&Companies displays recommended internships or candidates
 		      \item 3. The User reviews and accepts a recommendation
-		      \item 4. Students\&Companies saves the acceptance and notifies the other party
+		      \item 4. Students\&Companies saves the acceptance.
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The recommendation is accepted and the other party is notified\\ [1ex]
+Exit Condition & The recommendation is accepted\\ [1ex]
 \hline
 Exceptions & The recommended internship or candidate is no longer available\\ [1ex]
 \hline
@@ -780,20 +761,20 @@ Exceptions & The recommended internship or candidate is no longer available\\ [1
 \toprule
 \multicolumn{2}{|c|}{CompanyAcceptsApplication}\\
 \toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
+Participating Actors & Company, NotificationService, Students\&Companies\\ [1ex]
 \hline
 Entry Condition & The Company has received applications from Students\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Company reviews the applications
-		      \item 2. Students\&Companies displays a list of applicants
-		      \item 3. The Company selects a Student and accepts the application
-		      \item 4. Students\&Companies updates the status and notifies the Student
+		      \item 1. The Company opens the internship page
+		      \item 2. Students\&Companies displays all the candidates, both recommended and not.
+		      \item 3. The Company selects a Student from the not recommended and accepts the application
+		      \item 4. The NotificationService notifies the Student about the accepted application
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The application is accepted, and the Student is notified\\ [1ex]
 \hline
-Exceptions & The Company has already filled the internship position\\ [1ex]
+Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
 \newpage
