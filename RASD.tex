@@ -37,6 +37,25 @@
 \usepackage{fancyhdr} % For the headers
 \fancyhf{}
 
+% ALLOY
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  frame=single,
+  captionpos=b,
+  escapeinside={(*@}{@*)},
+  tabsize=2
+}
+
 \begin{document}
 
 % Title Page
@@ -1119,9 +1138,133 @@ Exceptions & No available candidates or interview slots\\ [1ex]
 \subsubsection{Portability}
 
 \section{Formal Analysis Using Alloy}
-This section presents the formal modeling activity conducted using Alloy notation. The primary objective of this work is to provide a rigorous description of the system's domain and its properties.
 \subsection{Objectives of the Analysis}
+This section presents the formal modeling activity conducted using Alloy notation. The primary objective of this work is to provide a rigorous description of the system's domain and its properties.
+The main objective of the formal modeling activity is to ensure the correctness, consistency, and efficiency of the platform. By formally modeling key aspects of the system using Alloy, we aim to verify that the system behaves as intended under various conditions and check complex relationships and constraints between entities.
+
+The main aspects that can be proven are:
+\begin{itemize}
+    \item Mutual Recommendation and Acceptance
+    \item Concurrency Constraints
+    \item Internship State Transitions
+    \item Correctness of Feedback Submission
+    \item Correctness of Comment Submission
+\end{itemize}
+\subsection{Description of the Model}
+The model captures the following key features:
+\begin{itemize}
+    \item Users and Roles:
+    The model distinguishes between three types of users: Student, University, and Company. These users interact with internships in different ways, with students applying to internships, accepting recommendations, and leaving feedback. While, universities manage student data and can interrupt internships.
+    \item Internships:
+    Internships are the central object in the system, with states that reflect their progression from Application to Ended. Each internship has a status, an applicationDeadline, a startingDate, an endingDate, comments and feedbacks.
+    \item Relationships and Constraints.
+    Several constraints govern the interactions between users and internships.
+\end{itemize}
+\subsection{Relevance}
+Modeling the platform in this way is important for two main reasons. Consistency and scalability.
+
+Consistency is ensured by verifying constraints on internship transitions and user interactions. This guarantees that the platform behaves predictably, reducing the risk of system malfunctions and avoids conflicting actions.
+
+On the other hand, facilitating scalability is equally important. The model ensures that the system remains robust even in scenarios with multiple internships and users interactions. In this way, we can avoid performance bottlenecks and ensure that the platform can scale efficiently without introducing errors.
 \subsection{Alloy Code}
+// --- Definition of actors, components and auxiliar entities --- //
+
+\begin{lstlisting}
+// Abstract signature representing a generic user in the system
+abstract sig User {}
+
+// A student is a type of user with relationships to internships
+sig Student extends User {
+    reccomended: some Internship, // Internships recommended to the student
+    appliesTo: set Internship,   // Internships the student has applied to
+    accepts: set Internship      // Internships the student has accepted
+} {
+    accepts in reccomended        // Students can only accept recommended internships
+    appliesTo & accepts = none    // Applied and accepted internships must not overlap
+}
+
+// A university is a user that manages students
+sig University extends User {
+    students: some Student         // Students associated with the university
+}
+
+// A company is a user that manages internships
+sig Company extends User {}
+
+// Represents the current moment in time
+one sig CurrentDate {
+    time: one Int                 // Current time as an integer value
+}
+
+// Represents a specific point in time (e.g., deadlines, start dates)
+sig Date {
+    time: one Int                 // Time as an integer value
+}
+
+// Enumeration of possible internship statuses
+enum InternshipStatus {Application, Selection, Ongoing, Feedback, Ended, Interrupted}
+
+// Represents an internship with various attributes and constraints
+sig Internship {
+    status: one InternshipStatus,  // Current status of the internship
+    managedBy: one Company,        // The company managing the internship
+    reccomended: some Student,     // Students recommended for the internship
+    accepted: set Student,         // Students whose recommendation was accepted
+    candidates: set Student,       // Students mutually accepted for selection
+    selected: lone Student,        // Selected student (if any)
+    applicationDeadline: one Date, // Application deadline
+    startingDate: one Date,        // Internship start date
+    endingDate: one Date,          // Internship end date
+    comments: set Comment,         // Comments on the internship
+    feedbacks: set Feed,           // Feedback associated with the internship
+    interruptedBy: lone University // University that interrupted the internship (if any)
+} {
+    applicationDeadline.time < startingDate.time      // Valid time constraints
+    startingDate.time < endingDate.time
+    accepted in reccomended                          // Accepted students must be recommended
+    candidates in accepted                           // Candidates must be among accepted students
+    selected in candidates                           // Selected student must be among candidates
+    interruptedBy != none implies selected in interruptedBy.students
+}
+
+// Enumeration for boolean values
+enum Boolean {True, False}
+
+// Represents a comment made by a user
+sig Comment {
+    wroteBy: one User,          // User who wrote the comment
+    complaint: one Boolean      // Indicates if the comment is a complaint
+} {
+    wroteBy & University = none // Universities cannot write comments
+    complaint = True implies wroteBy & Company = none // Complaints cannot come from companies
+}
+
+// Abstract signature representing generic feedback in the system
+abstract sig Feed {
+    submittedBy: one User       // User who submitted the feedback
+} {
+    submittedBy in User - University // Universities cannot submit feedback
+}
+
+// Feedback submitted by students and companies after the internship
+sig RatingFeedback extends Feed {
+    stars: one Int              // Rating value
+} {
+    stars >= 0 and stars <= 5   // Ratings must be between 0 and 5
+}
+
+// Enumeration for thumbs-up or thumbs-down feedback
+enum Thumb {Up, Down}
+
+// Feedback about recommendations given to students and companies
+sig ReccomendationFeedback extends Feed {
+    preference: one Thumb       // User's preference (Up/Down)
+}
+
+\end{lstlisting}
+
+// --- Facts --- //
+
 \section{Effort Spent}
 \subsection{Effort Spent per Unit}
 
