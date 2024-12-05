@@ -379,49 +379,49 @@ regarding ongoing Tournaments and Battles
 \subsubsection{Use Case Diagrams}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/UniversityLogin.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/UniversityLogin.drawio.png}
     \caption{UniversitySignUp}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/use_case_1-CompanyLogin.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/use_case_1-CompanyLogin.drawio.png}
     \caption{CompanySignUp}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/use_case_1-StudentLogin.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/use_case_1-StudentLogin.drawio.png}
     \caption{StudentSignUp}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/use_case_1-StudentLogin.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/use_case_1-StudentLogin.drawio.png}
     \caption{StudentLogin}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/Student.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/Student.drawio.png}
     \caption{Student}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.4]{figures/Company.drawio.png}
+    \includegraphics[scale = 0.4]{figures/UseCasesDiagrams/Company.drawio.png}
     \caption{Company}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/use_case_1-University.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/use_case_1-University.drawio.png}
     \caption{University}
     \centering
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/use_case_1-Student - Company.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesDiagrams/use_case_1-Student - Company.drawio.png}
     \caption{Internship}
     \centering
 \end{figure}
@@ -1167,8 +1167,8 @@ Consistency is ensured by verifying constraints on internship transitions and us
 
 On the other hand, facilitating scalability is equally important. The model ensures that the system remains robust even in scenarios with multiple internships and users interactions. In this way, we can avoid performance bottlenecks and ensure that the platform can scale efficiently without introducing errors.
 \subsection{Alloy Code}
-// --- Definition of actors, components and auxiliar entities --- //
 
+\subsubsection{Definition of actors, components and auxiliar entities}
 \begin{lstlisting}
 // Abstract signature representing a generic user in the system
 abstract sig User {}
@@ -1224,7 +1224,7 @@ sig Internship {
     accepted in reccomended                          // Accepted students must be recommended
     candidates in accepted                           // Candidates must be among accepted students
     selected in candidates                           // Selected student must be among candidates
-    interruptedBy != none implies selected in interruptedBy.students
+    interruptedBy != none implies (selected in interruptedBy.students and some c : comments | c.complaint = True)
 }
 
 // Enumeration for boolean values
@@ -1256,15 +1256,214 @@ sig RatingFeedback extends Feed {
 // Enumeration for thumbs-up or thumbs-down feedback
 enum Thumb {Up, Down}
 
-// Feedback about recommendations given to students and companies
-sig ReccomendationFeedback extends Feed {
-    preference: one Thumb       // User's preference (Up/Down)
+// Feedback about recommendations given by students and companies
+abstract sig ReccomendationFeedback extends Feed { preference: one Thumb }
+
+sig ReccomendationCompany extends ReccomendationFeedback {
+	relatedTo: one Student
+}{
+	submittedBy in Company
+	relatedTo in Internship.reccomended
 }
+
+sig ReccomendationStudent extends ReccomendationFeedback {} 
+{submittedBy in Student}
 
 \end{lstlisting}
 
-// --- Facts --- //
+\subsubsection{Facts}
 
+\begin{lstlisting}
+fact commentExistance {
+    all c : Comment |
+    one i : Internship | c in i.comments
+}
+
+fact commentConstring {
+    all i : Internship | 
+    all c : Comment |
+    c in i.comments iff
+    c.wroteBy in (i.selected + i.managedBy) and i.selected != none and 
+    i.status != Application and i.status != Selection
+}
+
+fact feedbackExistance {
+    all f : Feed |
+    one i : Internship | f in i.feedbacks
+}
+
+fact ratingConstraint {
+    all i : Internship |
+    all f : RatingFeedback |
+    f in i.feedbacks iff
+    f.submittedBy in (i.selected + i.managedBy) and (i.status = Feedback or i.status = Ended)
+}
+
+fact recommendationConstraint {
+    all disj f1, f2:  ReccomendationCompany | f1.submittedBy = f2.submittedBy implies f1.relatedTo != f2.relatedTo
+}
+
+fact companyRecommendationConstraint {
+	all i: Internship |
+	all f :ReccomendationFeedback |
+	f in i.feedbacks iff f.submittedBy in (i.reccomended + i.managedBy) 
+}
+
+fact feedbackLimit {
+    all i : Internship |
+    all disj f1, f2 : i.feedbacks & RatingFeedback |
+    f1.submittedBy != f2.submittedBy
+}
+
+// Ensures reciprocal recommendation between students and internships
+fact reciprocalReccomendation {
+    all s: Student | 
+    all i: Internship | 
+    i in s.reccomended iff s in i.reccomended
+}
+
+// Ensures mutual acceptance between students and internships
+fact mutualAcceptance {
+    all s: Student | 
+    all i: Internship | 
+    s in i.candidates iff
+    s in i.accepted and (i in s.accepts or i in s.appliesTo)
+}
+
+// Defines the application phase for internships
+fact applicationState {
+    all cd: CurrentDate |
+    all i: Internship |
+    i.status = Application iff (i.applicationDeadline.time > cd.time and no s : Student | i.selected = s)
+}
+
+// Defines the selection phase for internships
+fact selectionState {
+    all cd: CurrentDate |
+    all i: Internship |
+    i.status = Selection iff (i.applicationDeadline.time < cd.time and i.startingDate.time > cd.time and 
+                              no s: Student | i.selected = s)
+}
+
+// Defines the ongoing phase for internships
+fact ongoingState {
+    all cd: CurrentDate |
+    all i: Internship |
+    i.status = Ongoing iff 
+        (i.startingDate.time <= cd.time and i.endingDate.time >= cd.time and some s: Student | i.selected = s)
+}
+
+// A student cannot intern for two different companies at the same time
+fact ongoingInternships {
+    all disj i1, i2 : Internship |
+    no s : Student | 
+    i1.selected = s and i2.selected = s and i1.status = Ongoing and i2.status = Ongoing
+}
+
+// Defines the feedback phase for internships
+fact feedbackState {
+    all cd: CurrentDate |
+    all i: Internship |
+    i.status = Feedback iff (i.endingDate.time < cd.time and some s: Student | i.selected = s)
+}
+
+// Defines the ended state for internships
+fact endedState {
+    all cd: CurrentDate |
+    all i: Internship | 
+    i.status = Ended iff ((i.startingDate.time < cd.time and i.selected = none) or 
+                          (#(i.feedbacks & RatingFeedback) = 2))
+}
+
+// Defines the interrupted state for internships
+fact interrupptedState {
+    all i: Internship | 
+        i.status = Interrupted iff i.interruptedBy != none 
+}
+\end{lstlisting}
+
+
+\subsubsection{Predicates and Assertion}
+\begin{lstlisting}
+pred ApplicationState {
+    one i : Internship | all s: Student | i.status = Application and s in (i.reccomended)
+}
+run ApplicationState
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.42]{figures/alloy/app_state_1.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+pred SelectionState{
+    one i : Internship | some disj s1, s2:Student | i.status = Selection and s1 in (i.reccomended) and s2 in (i.candidates)  
+}
+run SelectionState
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.42]{figures/alloy/selects_2.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+pred OngoingState {
+    one i : Internship | i.status = Ongoing
+}
+run OngoingState
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.42]{figures/alloy/ongoing_state.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+pred FeedbackState {
+    one i : Internship | i.status = Feedback
+}
+run FeedbackState
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.42]{figures/alloy/feed_State.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+pred InterruptedState {
+    one i : Internship | i.status = Interrupted
+}
+run InterruptedState
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.42]{figures/alloy/interr_state.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+pred EndedState {
+    one i : Internship | i.status = Ended
+}
+run Ended
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/alloy/end_state.png}
+    \centering
+\end{figure}
+\begin{lstlisting}
+assert NoConcurrentInternships {
+    all disj i1, i2: Internship | 
+        no s: Student | 
+        i1.selected = s and i2.selected = s and 
+        i1.status = Ongoing and i2.status = Ongoing
+}
+check NoConcurrentInternships
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/alloy/assertion.png}
+    \centering
+\end{figure}
 \section{Effort Spent}
 \subsection{Effort Spent per Unit}
 
