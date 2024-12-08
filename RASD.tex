@@ -1,5 +1,6 @@
-% CONFIGURATIONS
 \documentclass{article}
+
+% CONFIGURATIONS
 \usepackage{array}
 \usepackage{parskip} % For paragraph layout
 \usepackage{setspace} % For using single or double spacing
@@ -11,6 +12,20 @@
 \setlength\parindent{0pt} % Indentation
 \raggedbottom  
 
+% PACKAGES FOR TITLES
+\usepackage{titlesec}
+% \titlespacing{\section}{left spacing}{before spacing}{after spacing}
+\titlespacing{\section}{0pt}{3.3ex}{2ex}
+\titlespacing{\subsection}{0pt}{3.3ex}{1.65ex}
+\titlespacing{\subsubsection}{0pt}{3.3ex}{1ex}
+\usepackage{color}
+
+% PACKAGES FOR LANGUAGE AND FONT
+\usepackage[english]{babel} % The document is in English  
+\usepackage[utf8]{inputenc} % UTF8 encoding
+\usepackage[T1]{fontenc} % Font encoding
+\usepackage[11pt]{moresize} % Big fonts
+
 % PACKAGES FOR IMAGES
 \usepackage{graphicx}
 \usepackage{transparent} % Enables transparent images
@@ -18,7 +33,6 @@
 \usepackage{subfig} % Numbered and caption subfigures using \subfloat.
 \usepackage{tikz} % A package for high-quality hand-made figures.
 \usetikzlibrary{}
-\graphicspath{{./Images/}} % Directory of the images
 \usepackage{caption} % Coloured captions
 \usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
 \usepackage{float}
@@ -490,31 +504,39 @@ regarding ongoing Tournaments and Battles
 \toprule
 \multicolumn{2}{|c|}{StudentsSignUp}\\
 \toprule
-Participating Actors & Student, EmailService, Students\&Companies\\ [1ex]
+Participating Actors & Student, Company, EmailService, Students\&Companies, UniversityLoginService, NotificationProvider \\ [1ex]
 \hline
 Entry Condition & True\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The Student opens the “Sign up” page
 		      \item 2. Students\&Companies shows the page to sign up
-		      \item 3. The Student fills the required informations and clicks “Sign Up” button
+		      \item 3. The Student fills the required information and clicks “Sign Up” button
 		      \item 4. Students\&Companies checks the information provided by the Student
-		      \item 5. Students\&Companies registers the Student
-                \item 6. Students\&Companies sends confirmation of signup and inform the Student to verify the account
-                \item 7. Students\&Companies sends a notification to verify the account through the EmailService
-                \item 8. The Student verifies the account
-                \item 9. Students\&Companies activates the Student’s account
-                \item 10. Students\&Companies sends to the home page 
+                \item 5. Students\&Companies shows the university login page through the UniversityLoginService
+                \item 6. The Student fills the required information and clicks “Login” button
+		      \item 7. UniversityLoginService checks the information provided by the Student
+                \item 8. UniversityLoginService confirms the student identity to Students\&Companies
+		      \item 9. Students\&Companies registers the Student
+                \item 10. Students\&Companies sends confirmation of signup and inform the Student to verify the account
+                \item 11. Students\&Companies sends a notification to verify the account through the EmailService
+                \item 12. The Student verifies the account
+                \item 13. Students\&Companies activates the Student’s account
+                \item 14. Students\&Companies might recommend the student to some internships based on the (new) CV.
+                \item 15. Students\&Companies sends to the home page. 
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The Student successfully signed up and activated his account\\ [1ex]
 \hline
-Exceptions & The Student was already registered\\ [1ex]
+Exceptions & \begin{itemize}
+    \item The Student was already registered
+    \item  The Student inserts the wrong login credentials
+\end{itemize}\\ [1ex]
 \hline
 \end{xltabular}
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSignUpSeqDiagram.png}\\
+    \hspace*{-2cm} % Adjust the value (-2cm) to shift left
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSignUpSD.drawio (3).png}\\
 \end{figure}
 
 \newpage
@@ -583,7 +605,181 @@ Exceptions & \begin{itemize}
 \end{xltabular}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/UseCasesSD/UniversitySignUp.drawio.png}\\
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UniversitySignUp.drawio.png}
+\end{figure}
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{UserLogsIn}\\
+\toprule
+Participating Actors & User, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & User has an account\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The User opens Students\&Companies
+		      \item 2. The User clicks the “Log in” button
+		      \item 3. Students\&Companies shows the form to log in
+		      \item 4. The User fills the required informations and clicks “Log in ” button
+		      \item 5. Students\&Companies verifies the credentials of the User
+                \item 6. Students\&Companies logs in the User 
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The User successfully logged in\\ [1ex]
+\hline
+Exceptions & The User filled wrong credentials\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UserLogsInSD.drawio.png}
+\end{figure}
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentUpdatesCV}\\
+\toprule
+Participating Actors & Student, Students\&Companies, Company , NotificationProvider\\ [1ex]
+\hline
+Entry Condition & The Student is logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Student navigates to the profile section
+		      \item 2. Students\&Companies displays information about the Student
+                \item 3. The Student clicks on the "ModifyCV" button
+                \item 4. Students\&Companies displays the "Upload Page"
+		      \item 3. The Student uploads a CV file in the provided field.
+		      \item 4. Students\&Companies validates the file format and saves the CV file.
+                \item 5. Students\&Companies might recommend the student to some internships based on the (new) CV.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Student's CV is successfully updated\\ [1ex]
+\hline
+Exceptions & File upload fails due to incorrect format or size\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentUpdatesCV.drawio.png}
+\end{figure}
+
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentChangesUniversity}\\
+\toprule
+Participating Actors & Student, Students\&Companies, UniversityLoginService, EmailService\\ [1ex]
+\hline
+Entry Condition & The Student is logged in and has an active account\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Student navigates to the “Profile” section
+		      \item 2. Students\&Companies displays information about the Student
+		      \item 3. The Student selects the mail field and overwrites the email with the one from the new from the other University
+                \item 4. Students\&Companies shows the university login page through the UniversityLoginService
+                \item 5. The Student fills the required information and clicks “Login” button
+		      \item 6. UniversityLoginService checks the information provided by the Student
+                \item 7. UniversityLoginService confirms the student identity to Students\&Companies
+                \item 8. Students\&Companies saves the new Student’s email
+                \item 9. Students\&Companies sends confirmation of signup and inform the Student to verify the email
+                \item 10. Students\&Companies sends a notification to verify the email through the EmailService
+                \item 11. The Student verifies the email
+		      \item 12. Students\&Companies validates the university information
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Student's university information is successfully updated\\ [1ex]
+\hline
+Exceptions & The Student inserts the wrong login credentials\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentChangesUniversitySD.drawio (1).png}
+\end{figure}
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanyPostsInternship}\\
+\toprule
+Participating Actors & Company, NotificationService, Student, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The Company is logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Company clicks on to the “Post Internship” button
+		      \item 2. Students\&Companies displays the internship creation form
+		      \item 3. The Company fills out the form with internship details and submits it
+		      \item 4. Students\&Companies validates the information and publishes the internship
+                \item 5. the NotificationService may notify certain students of this new internship through recommendation
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The internship is successfully posted and visible to Students\\ [1ex]
+\hline
+Exceptions & Incomplete internship details provided\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanyPostsInternshipSD.drawio.png}
+\end{figure}
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{UserReccomendationFeedback }\\
+\toprule
+Participating Actors & User (Student or Company), Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The User is logged into the platform\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Student navigates to the homepage. The Company selects one of its posted Internships.
+                \item 2. The User selects the "thumb-up" or the "thumb-down" button.
+		      \item 3. Students\&Companies registers the preference and updates the recommendation system.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The User feedback is taken into account for future recommendations.\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UserReccomendationFeedbackSD.drawio.png}
+\end{figure}
+
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{UserSelectsInternship}\\
+\toprule
+Participating Actors & User (Student, Company, or University), Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The User is logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The User access the homepage of the platform
+		      \item 2. Students\&Companies displays to the companies their posted internships, to the students the ones recommended by the system and to universities the ongoing ones in which their students are taking part. 
+		      \item 3. The User clicks on one of the shown internships from the list.
+		      \item 4. Students\&Companies displays all the information about the selected internship.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The user visualizes the current information about the internship\\ [1ex]
+\hline
+Exceptions & None\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UserSelectsIntenrshipSD.drawio.png}
 \end{figure}
 
 
@@ -744,77 +940,9 @@ Exit Condition & Feedback has been submitted by the company\\ [1ex]
 Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
-\newpage
 
 
 
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{StudentChangesUniversity}\\
-\toprule
-Participating Actors & Student, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Student is logged in and has an active account\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Student navigates to the “Profile” section
-		      \item 2. Students\&Companies displays information about the Student
-		      \item 3. The Student selects the mail field and overwrites the email with the one from the new from the other University
-		      \item 4. Students\&Companies validates and updates the university information
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The Student's university information is successfully updated\\ [1ex]
-\hline
-Exceptions & Invalid e-mail provided\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{StudentUploadsCV}\\
-\toprule
-Participating Actors & Student, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Student is logged in\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Student navigates to the profide section
-		      \item 2. Students\&Companies displays information about the Student
-		      \item 3. The Student uploads a CV file in the provided field.
-		      \item 4. Students\&Companies validates the file format and shows the CV file.
-                \item 5. The NotificationService might recommend the student of some internships based on the (new) CV.
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The Student's CV is successfully updated\\ [1ex]
-\hline
-Exceptions & File upload fails due to incorrect format or size\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{CompanyPostsInternship}\\
-\toprule
-Participating Actors & Company, NotificationService, Student, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Company is logged in\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Company navigates to the “Post Internship” section
-		      \item 2. Students\&Companies displays the internship creation form
-		      \item 3. The Company fills out the form with internship details and submits it
-		      \item 4. Students\&Companies validates the information and publishes the internship
-                \item 5. the NotificationService may notify certain students of this new internship through recommendation
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The internship is successfully posted and visible to Students\\ [1ex]
-\hline
-Exceptions & Invalid or incomplete internship details provided\\ [1ex]
-\hline
-\end{xltabular}
 \newpage
 
 \begin{xltabular}{\textwidth}{| l | X |}
@@ -859,26 +987,7 @@ Exceptions & The internship application deadline has passed (old page)\\ [1ex]
 \end{xltabular}
 \newpage
 
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{UserSelectsInternship}\\
-\toprule
-Participating Actors & User (Student, Company, or University), Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The User is logged in\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The User navigates to the "Internships" page
-		      \item 2. Students\&Companies displays on-going internships and completed ones.
-		      \item 3. The User selects an internship from the list
-		      \item 4. Students\&Companies displays all the information about the selected internship.
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The user visualizes the current information about the internship\\ [1ex]
-\hline
-Exceptions & None\\ [1ex]
-\hline
-\end{xltabular}
+
 \newpage
 
 \begin{xltabular}{\textwidth}{| l | X |}
