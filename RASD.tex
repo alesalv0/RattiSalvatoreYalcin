@@ -913,20 +913,48 @@ Exceptions & No available candidates or interview slots\\ [1ex]
 \toprule
 \multicolumn{2}{|c|}{CompanySelectsCandidate}\\
 \toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
+Participating Actors & Company, Students\&Companies, NottificationProvider, Student\\ [1ex]
 \hline
 Entry Condition & The Company is Logged in\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-                \item 1. The Company selects one of its posted internship. 
-		      \item 2. Students\&Companies displays the list of all the recommended and applicant students for that internship.
+                \item 1. The Company selects one of its posted internship with expired deadline. 
+		      \item 2. Students\&Companies displays the list of all the candidate students for that internship.
 		      \item 3. The Company selects one of the Student from the list. 
                 \item 4. Students\&Companies displays all the information regarding the Student.
-                \item 5. The Company clicks on the "Accept" button. 
-                \item 6. Students\&Companies registers the Company acceptance accordingly.
+                \item 5. The Company clicks on the "Select" button. 
+                \item 6. Students\&Companies registers the Company selection for that internship and waits for the student confirmation.
+                \item 7. The NotificationService notifies the selected Student of his selection.
+                \item 8. Students\&Companies changes the button changes the .
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The Company successfully accepted the Student for one of its posted internships.\\ [1ex]
+Exit Condition & The Company successfully selected the Student for one of its posted internships.\\ [1ex]
+\hline
+Exceptions & None \\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanySelectsCandidateSD.drawio (1).png}
+\end{figure}
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentconfirmsSelection}\\
+\toprule
+Participating Actors & Company, Students\&Companies, NottificationProvider, Student\\ [1ex]
+\hline
+Entry Condition & The Student is Logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+                \item 1. The Student clicks on the Internship that selected him. 
+                \item 2. Students\&Companies displays the selection confirmation form.
+                \item 3. The Student clicks on the "Confirm" or the "Reject" button accordingly to his will. 
+                \item 4. Students\&Companies registers the Student choice for that internship.
+                \item 5. The NotificationService notifies the providing Company about the selcetion choice.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Student successfully chooses if to confirm or reject his participation to the Intenrship. The providing company gets informed accordingly.\\ [1ex]
 \hline
 Exceptions & None \\ [1ex]
 \hline
