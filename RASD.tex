@@ -980,6 +980,10 @@ Exit Condition & The User views all comments for the selected internship\\ [1ex]
 Exceptions & No comments are available for the internship\\ [1ex]
 \hline
 \end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{figures/UseCasesSD/UserViewsCommentsSD.png}
+\end{figure}
 
 
 
@@ -1007,6 +1011,16 @@ Exceptions & The comment is invalid (e.g., empty or contains restricted content)
 \hline
 \end{xltabular}
 \newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.9]{figures/UseCasesSD/UserWritesObservationSD.png}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.75]{figures/UseCasesSD/UserWritesComplaintSD.png}
+\end{figure}
+
 
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -1014,13 +1028,12 @@ Exceptions & The comment is invalid (e.g., empty or contains restricted content)
 \toprule
 Participating Actors & University, NotificationService,  Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The University has logged in \\ [1ex]
+Entry Condition & The University has logged in and is in home page \\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The University navigates to the on-going internship section
-		      \item 2. Students\&Companies displays a list of ongoing internships
-		      \item 3. The University selects the internship that has received complaints and clicks the button to interrupt it
-		      \item 4. Students\&Companies interrupts the internship and notifies the Student and the Company
+		      \item 1. The University selects a flagged internship 
+                \item 2. the University clicks the button to interrupt the internship
+		      \item 3. Students\&Companies interrupts the internship and notifies the Student and the Company
                 \end{itemize} \\ [1ex]
 \hline
 Exit Condition & The internship is interrupted and both parties are notified\\ [1ex]
@@ -1028,6 +1041,11 @@ Exit Condition & The internship is interrupted and both parties are notified\\ [
 Exceptions & The University cannot interrupt an internship already completed\\ [1ex]
 \hline
 \end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.75]{figures/UseCasesSD/UniversityInterruptsInternshipSD.png}
+\end{figure}
+
 \newpage
 
 \begin{xltabular}{\textwidth}{| l | X |}
