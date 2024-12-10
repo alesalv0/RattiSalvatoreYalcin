@@ -755,6 +755,33 @@ Exit Condition & The User feedback is taken into account for future recommendati
     \includegraphics[scale = 0.45]{figures/UseCasesSD/UserReccomendationFeedbackSD.drawio.png}
 \end{figure}
 
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentAppliesToInternship}\\
+\toprule
+Participating Actors & Student, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The Student is logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Student types in the search bar the internship or the company that he would like to intern at.
+		      \item 2. Students\&Companies retrieves and displays matching available internships.
+                \item 3. The Student clicks on an Internship.
+                \item 4. Students\&Companies sh ows the Internship's profile details.
+                \item 5. The Student clicks on the "Apply" button.
+                \item 6. Students\&Companies performs the student application and adds the student to the list of applicants of the related company.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Student views a list of internships matching their criteria\\ [1ex]
+\hline
+Exceptions & No internships match the search criteria\\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentAppliesToIntershipSD.drawio (1).png}
+\end{figure}
 
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
@@ -767,7 +794,7 @@ Entry Condition & The User is logged in\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The User access the homepage of the platform
-		      \item 2. Students\&Companies displays to the companies their posted internships, to the students the ones recommended by the system and to universities the ongoing ones in which their students are taking part. 
+		      \item 2. Students\&Companies displays: to the companies their posted internships to the students the ones recommended by the system and to universities the ongoing ones in which their students are taking part. 
 		      \item 3. The User clicks on one of the shown internships from the list.
 		      \item 4. Students\&Companies displays all the information about the selected internship.
                 \end{itemize} \\ [1ex]
@@ -783,6 +810,127 @@ Exceptions & None\\ [1ex]
 \end{figure}
 
 
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentAcceptsCompany}\\
+\toprule
+Participating Actors & Student, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The Student is Logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+                \item 1. The Student selects one of the recommended internships.
+                \item 2. Students\&Companies displays all the information regarding the Internship.
+                \item 5. The Student clicks on the "Accept" button. 
+                \item 6. Students\&Companies registers the Student acceptance accordingly.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Company successfully accepted the Student for one of its posted internships.\\ [1ex]
+\hline
+Exceptions & None \\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentAcceptsReccomendationSD.drawio.png}
+\end{figure}
+
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanyAcceptsStudent}\\
+\toprule
+Participating Actors & Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The Company is Logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+                \item 1. The Company selects one of its posted internship. 
+		      \item 2. Students\&Companies displays the list of all the recommended and applicant students for that internship.
+		      \item 3. The Company selects one of the Student from the list. 
+                \item 4. Students\&Companies displays all the information regarding the Student.
+                \item 5. The Company clicks on the "Accept" button. 
+                \item 6. Students\&Companies registers the Company acceptance accordingly.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Company successfully accepted the Student for one of its posted internships.\\ [1ex]
+\hline
+Exceptions & None \\ [1ex]
+\hline
+\end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanyAcceptsStudentSD.drawio (1).png}
+\end{figure}
+\newpage
+
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanySchedulesInterview}\\
+\toprule
+Participating Actors & Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The deadline for internship applications has passed, and the Company has accepted applications\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Company navigates to the “Schedule Interview” section
+		      \item 2. Students\&Companies displays a list of accepted candidates
+		      \item 3. The Company selects a candidate and schedules the interview date
+		      \item 4. Students\&Companies sends an interview invitation to the selected candidate
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The interview is successfully scheduled and the candidate is notified\\ [1ex]
+\hline
+Exceptions & No available candidates or interview slots\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
+
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{StudentSchedulesInterview}\\
+\toprule
+Participating Actors & Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The deadline for internship applications has passed, and the Company has accepted applications\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The Company navigates to the “Schedule Interview” section
+		      \item 2. Students\&Companies displays a list of accepted candidates
+		      \item 3. The Company selects a candidate and schedules the interview date
+		      \item 4. Students\&Companies sends an interview invitation to the selected candidate
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The interview is successfully scheduled and the candidate is notified\\ [1ex]
+\hline
+Exceptions & No available candidates or interview slots\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{CompanySelectsCandidate}\\
+\toprule
+Participating Actors & Company, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The Company is Logged in\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+                \item 1. The Company selects one of its posted internship. 
+		      \item 2. Students\&Companies displays the list of all the recommended and applicant students for that internship.
+		      \item 3. The Company selects one of the Student from the list. 
+                \item 4. Students\&Companies displays all the information regarding the Student.
+                \item 5. The Company clicks on the "Accept" button. 
+                \item 6. Students\&Companies registers the Company acceptance accordingly.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The Company successfully accepted the Student for one of its posted internships.\\ [1ex]
+\hline
+Exceptions & None \\ [1ex]
+\hline
+\end{xltabular}
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -804,6 +952,8 @@ Exit Condition & The User views all comments for the selected internship\\ [1ex]
 Exceptions & No comments are available for the internship\\ [1ex]
 \hline
 \end{xltabular}
+
+
 
 
 \newpage
@@ -942,31 +1092,7 @@ Exceptions & None\\ [1ex]
 \end{xltabular}
 
 
-
 \newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{StudentSearchesForInternship}\\
-\toprule
-Participating Actors & Student, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Student is logged in\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Student navigates to the “Search Internship” section
-		      \item 2. Students\&Companies displays filters and search options
-		      \item 3. The Student enters criteria and performs a search
-		      \item 4. Students\&Companies retrieves and displays matching internships
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The Student views a list of internships matching their criteria\\ [1ex]
-\hline
-Exceptions & No internships match the search criteria\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
 \multicolumn{2}{|c|}{StudentAppliesToInternship}\\
@@ -1032,28 +1158,7 @@ Exit Condition & The application is accepted, and the Student is notified\\ [1ex
 Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
-\newpage
 
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{CompanySchedulesInterview}\\
-\toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The deadline for internship applications has passed, and the Company has accepted applications\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Company navigates to the “Schedule Interview” section
-		      \item 2. Students\&Companies displays a list of accepted candidates
-		      \item 3. The Company selects a candidate and schedules the interview date
-		      \item 4. Students\&Companies sends an interview invitation to the selected candidate
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The interview is successfully scheduled and the candidate is notified\\ [1ex]
-\hline
-Exceptions & No available candidates or interview slots\\ [1ex]
-\hline
-\end{xltabular}
 \newpage
 
 \subsubsection{Mapping}
