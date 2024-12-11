@@ -837,6 +837,7 @@ Exceptions & None \\ [1ex]
     \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentAcceptsReccomendationSD.drawio.png}
 \end{figure}
 
+
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -864,50 +865,62 @@ Exceptions & None \\ [1ex]
     \centering
     \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanyAcceptsStudentSD.drawio (1).png}
 \end{figure}
-\newpage
 
+
+\newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
 \multicolumn{2}{|c|}{CompanySchedulesInterview}\\
 \toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
+Participating Actors & Company, Students\&Companies, NotificationProvider, Student\\ [1ex]
 \hline
-Entry Condition & The deadline for internship applications has passed, and the Company has accepted applications\\ [1ex]
+Entry Condition & The company is logged in and has at least one internship whose application deadline is expired.\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Company navigates to the “Schedule Interview” section
-		      \item 2. Students\&Companies displays a list of accepted candidates
-		      \item 3. The Company selects a candidate and schedules the interview date
-		      \item 4. Students\&Companies sends an interview invitation to the selected candidate
+		      \item 1. The Company selects one of its posted internship whose application deadline is expired. 
+		      \item 2. Students\&Companies displays a time span form.
+		      \item 3. The Company fills the form in giving the dates and timings that it will use for interview.
+		      \item 4. Students\&Companies splits the given time span in slots of equal size according to the number of candidates.
+                \item 5. the NotificationService notifies all candidates of the interview time-slots availability.
+                \item 6. Students\&Companies shows to the company the list  of candidates and for each the associated time-slot preference if they have already chosen one.
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The interview is successfully scheduled and the candidate is notified\\ [1ex]
+Exit Condition & The company has successfully scheduled the interview periods.\\ [1ex]
 \hline
-Exceptions & No available candidates or interview slots\\ [1ex]
+Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
-\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/CompanySchedulesInterviewSD.drawio.png}
+\end{figure}
 
+\newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
 \multicolumn{2}{|c|}{StudentSchedulesInterview}\\
 \toprule
-Participating Actors & Company, Students\&Companies\\ [1ex]
+Participating Actors & Student, Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The deadline for internship applications has passed, and the Company has accepted applications\\ [1ex]
+Entry Condition & The Student is logged in, he is a candidate for an internship and has received a notification about the availability of time-slots for that internship.\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Company navigates to the “Schedule Interview” section
-		      \item 2. Students\&Companies displays a list of accepted candidates
-		      \item 3. The Company selects a candidate and schedules the interview date
-		      \item 4. Students\&Companies sends an interview invitation to the selected candidate
+		      \item 1. The Student selects the internship he has been informed of.
+		      \item 2. Students\&Companies a form showing the available time-slots to book for the interview with that internship.
+		      \item 3. The Student selects a time slot and submits the form.
+		      \item 4. Students\&Companies registers the choice.
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The interview is successfully scheduled and the candidate is notified\\ [1ex]
+Exit Condition & The Student has successfully booked a time slot for the internship interview.\\ [1ex]
 \hline
-Exceptions & No available candidates or interview slots\\ [1ex]
+Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSchedulesInterviewSD.drawio.png}
+\end{figure}
+
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -963,6 +976,8 @@ Exceptions & None \\ [1ex]
     \centering
     \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentconfirmsSelectionSD.drawio.png}
 \end{figure}
+
+
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
@@ -1050,165 +1065,32 @@ Exceptions & The University cannot interrupt an internship already completed\\ [
     \includegraphics[scale = 0.75]{figures/UseCasesSD/UniversityInterruptsInternshipSD.png}
 \end{figure}
 
-\newpage
 
+\newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
-\multicolumn{2}{|c|}{StudentSubmitsInitialFeedback}\\
+\multicolumn{2}{|c|}{UserSubmitsFeedback}\\
 \toprule
-Participating Actors & Student, Students\&Companies\\ [1ex]
+Participating Actors & User (Company or Student), Students\&Companies\\ [1ex]
 \hline
-Entry Condition & The Student is logged into the platform and hasn't sent feedback yet\\ [1ex]
+Entry Condition & The user is logged in and one of the internship he participated in has just finished.\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Student goes to a recommended internship
-                \item 2. Students \&Companies displays all the information about the internship, including a pop-up for reviewing.
-                \item 3. The Student clicks the "thumbs-up" or "thumbs-down" button
-		      \item 4. Students\&Companies saves the information about the feedback
-		      \item 5. Students\&Companies hides the pop-up after some seconds
+		      \item 1. The User opens the internship page
+		      \item 2. Students\&Companies displays a feedback form containing five possibilities.
+		      \item 3. The User chooses one of the five possibilities and submits the feedback.
+		      \item 4. Students\&Companies closes and archives the internship after both the company adn the student have submitted the feedback.
                 \end{itemize} \\ [1ex]
 \hline
-Exit Condition & The pop-up isn't in the page anymore\\ [1ex]
-\hline
-Exceptions & Feedback submission fails\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{CompanySubmitsInitialFeedback}\\
-\toprule
-Participating Actors &  Company, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & Company is logged into the platform\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Company selects an internship in open state
-                \item 2. Students \&Companies displays all the information about the internship
-                \item 3. The Company clicks the "thumbs-up" or "thumbs-down" button near a recommended student
-		      \item 4. Students\&Companies saves the information about the feedback
-		      \item 5. Students\&Companies highlights the pressed button and hides the other one after some seconds
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & Feedback has been saved by the platform\\ [1ex]
-\hline
-Exceptions & Feedback submission fails\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{StudentSubmitsFinalFeedback}\\
-\toprule
-Participating Actors &  Student, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & Student is logged into the platform and enters home page, last internship finished hasn't got feedback yet\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. Students \&Companies loads up a pop-up, showing a 5 star form to complete.
-                \item 2. The Student chooses the stars for the internship and presses submit.
-		      \item 4. Students\&Companies saves the information about the feedback
-		      \item 5. Students\&Companies hides the pop-up and normal home page is shown again
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & Feedback has been submitted by the student\\ [1ex]
+Exit Condition & The internship was archived successfully\\ [1ex]
 \hline
 Exceptions & None\\ [1ex]
 \hline
 \end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{CompanySubmitsFinalFeedback}\\
-\toprule
-Participating Actors &  Company, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & Company is logged into the platform and enters home page, there are finished internships without feedback \\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. Students \&Companies loads up a page with all the finished internships without feedback, showing a 5 star form to complete for everyone.
-                \item 2. The Company chooses the stars to review every student and presses submit.
-		      \item 4. Students\&Companies saves the information about the feedbacks.
-                \item 5. Students\&Companies sends the company back to home page.
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & Feedback has been submitted by the company\\ [1ex]
-\hline
-Exceptions & None\\ [1ex]
-\hline
-\end{xltabular}
-
-
-\newpage
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{StudentAppliesToInternship}\\
-\toprule
-Participating Actors & Student, Notification Service, Company, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Student is logged in and has searched for an internship\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Student presses the "Apply" button
-		      \item 2. Students\&Companies saves the application and notifies the Company
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The application is successfully submitted and the Company is notified\\ [1ex]
-\hline
-Exceptions & The internship application deadline has passed (old page)\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{UserAcceptsRecommendation}\\
-\toprule
-Participating Actors & User (Student or Company), Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The User has received a recommendation\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The User navigates to the “Recommendations” section
-		      \item 2. Students\&Companies displays recommended internships or candidates
-		      \item 3. The User reviews and accepts a recommendation
-		      \item 4. Students\&Companies saves the acceptance.
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The recommendation is accepted\\ [1ex]
-\hline
-Exceptions & The recommended internship or candidate is no longer available\\ [1ex]
-\hline
-\end{xltabular}
-\newpage
-
-\begin{xltabular}{\textwidth}{| l | X |}
-\toprule
-\multicolumn{2}{|c|}{CompanyAcceptsApplication}\\
-\toprule
-Participating Actors & Company, NotificationService, Students\&Companies\\ [1ex]
-\hline
-Entry Condition & The Company has received applications from Students\\ [1ex]
-\hline
-Flow of Events & \begin{itemize}
-		      \item 1. The Company opens the internship page
-		      \item 2. Students\&Companies displays all the candidates, both recommended and not.
-		      \item 3. The Company selects a Student from the not recommended and accepts the application
-		      \item 4. The NotificationService notifies the Student about the accepted application
-                \end{itemize} \\ [1ex]
-\hline
-Exit Condition & The application is accepted, and the Student is notified\\ [1ex]
-\hline
-Exceptions & None\\ [1ex]
-\hline
-\end{xltabular}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/UserSubmitsFeedbackSD.drawio.png}
+\end{figure}
 \newpage
 
 \subsubsection{Mapping}
