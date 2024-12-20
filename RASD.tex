@@ -36,6 +36,7 @@
 \usepackage{caption} % Coloured captions
 \usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
 \usepackage{float}
+\usepackage{url}
 
 % PACKAGES FOR TABLES
 \usepackage{tabularx}
@@ -82,7 +83,7 @@
 \newpage
 \tableofcontents
 
-% Sections (These are examples, replace with actual content as needed)
+% Sections
 \newpage
 \section{Introduction}
 \subsection{Purpose}
@@ -291,12 +292,8 @@ This section serves as a comprehensive overview of critical factors which must b
         \item D1 The User must have a working Internet connection.
         \item D2 Students are enrolled in a registered university as students of any kind.
         \item D3 The User registering is either a student, a university or a company.
-        \item D4 
-        \item D5 A university needs to be registered for its students to link their accounts and start applying for internships.
-        \item D6 
-        \item D7
-        \item D8 
-        
+        \item D4 A university needs to be registered for its students to link their accounts and start applying for internships.
+
     \end{itemize}
 \subsubsection{Dependencies}
 An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.\\ \\The system also wants to have some connection with the universities, so a service for that is needed.
@@ -466,8 +463,7 @@ An EmailService is needed, because in the registration process a verifcation ema
 
 \subsubsection{Communication Interfaces}
     The system requires a stable internet connection to work properly. This connection is used
-    to exchange data between the Users and the central database which contains the information
-regarding ongoing Tournaments and Battles
+    to exchange data between the Users and the central database which contains all the information that is needed for the application to work properly.
 \subsection{Functional Requirements}
 \subsubsection{Use Case Diagrams}
 \begin{figure}[H]
@@ -1347,13 +1343,31 @@ Exceptions & None\\ [1ex]
 
 
 \subsection{Performance Requirements}
+Due to the non-critical nature of the system, strict performance requirements are not needed. Nonetheless, for the best user experience these are the set requirements:
 \subsection{Design Constraints}
 \subsubsection{Standards compliance}
+Specifications described in this document must be respected by the system. The source code
+of the application must be commented on and documented adequately.
+The system should respect the guidelines described by the GDPR.
 \subsubsection{Hardware limitations}
+The system requires any device and a stable internet connection.
 \subsection{Software System Attributes}
+
 \subsubsection{Reliability and Availability}
+The system should guarantee an availability equal to 99.5 or more\%. In
+other words, the system will be inaccessible for less than two days every year. To achieve this
+goal, a high redundancy for the critical components will be ensured.
+Furthermore, in order to guarantee better reliability performances, all the scheduled mainte-
+nance actions on the system should be done during the night.
 \subsubsection{Security}
+The connection between the application and the server must be safe. To keep a good level of
+security, the system should use the Transport Layer Security protocol. For this purpose, it is
+needed an SSL/TSL certificate.
 \subsubsection{Maintainability}
+The source code must be commented on as well as possible and the correlated documentation
+must be kept updated during the whole life cycle of the system.
+Modularity and low coupling between components must be a focus during the designing and
+developing phases.
 \subsubsection{Portability}
 
 \section{Formal Analysis Using Alloy}
@@ -1685,9 +1699,45 @@ check NoConcurrentInternships
 \end{figure}
 \section{Effort Spent}
 \subsection{Effort Spent per Unit}
+This section shows the amount of time that each member has spent to produce the document. 
+
+\begin{center}
+    \begin{tabular}{|m{5cm}|m{5cm}|m{2cm}|}
+        \hline
+        \textbf{UNIT} & \textbf{MEMBERS} & \textbf{HOURS} \\ \hline
+        SetUp &  &  \\ \hline
+        Scenarios &  &  \\ \hline
+        Use Cases &   &  \\ \hline
+        Phenomena &   &  \\ \hline
+        Goals &   & \\ \hline
+        Domain Assumptions &  & \\ \hline
+        Requirements & & \\ \hline
+        Mapping &  & \\ \hline
+        Sequence Diagrams &  & \\ \hline
+        Class Diagram &  &  \\ \hline
+        Use Case Diagrams &  & \\ \hline
+        State Charts &  &  \\ \hline
+        UI Mockups &  &  \\ \hline
+        Alloy &  &  \\ \hline
+        Chapter 1 Redaction &  &  \\ \hline
+        Chapter 2 Redaction &  &  \\ \hline
+        Chapter 3 Redaction &  &  \\ \hline
+        Chapter 4 Redaction &  &  \\ \hline
+        Chapters 5 and 6 Redaction and Final Review & & \\ \hline
+    \end{tabular}
+\end{center}
 
 \section{References}
 \subsection{References and Tools}
+\begin{enumerate}
+    \item \textbf{The UI Mockups have been made with:} \url{https://www.figma.com}
+    \item \textbf{Alloy Language Reference:} \url{https://alloytools.org/download/alloy-language-reference.pdf}
+    \item \textbf{Alloy Tools:} \url{https://alloytools.org}
+    \item \textbf{Sequence Diagrams have been made with:} \url{https://sequencediagram.org}
+    \item \textbf{Use Case Diagrams have been made with:} \url{http://draw.io}
+    \item \textbf{Class Diagrams have been made with:} \url{http://draw.io}
+    \item \textbf{State Charts have been made with:} \url{http://draw.io}
+\end{enumerate}
 
 \maketitle
 
