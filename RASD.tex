@@ -92,17 +92,17 @@ Students\&Companies (S\&C) is a dynamic platform designed to connect university 
 The goals specify what the platform will allow users to achieve in the real world, everything else will not be allowed. 
 \\All the starred words will be defined in section 1.3 to avoid any ambiguity.
 \begin{itemize}
-  \item \textbf{G1} Allows registered companies* to post* and advertise* the available internships that they offer.
-  \item \textbf{G2} Allows registered students* to proactively and autonomously search and apply* to advertised internships.
+  \item \textbf{G1} Allows registered companies to post and advertise* the available internships that they offer.
+  \item \textbf{G2} Allows registered students to proactively and autonomously search and apply* to advertised internships.
   \item \textbf{G3} Helps registered students and registered companies by suggesting them appealing templates for their CVs and internship projects drafts.
-  \item \textbf{G4} Allows a registered student to be recommended a list of advertised internships that might be of interest to him/her with respect to: his/her uploaded CV, the internships projects* and users'* feedbacks.
-  \item \textbf{G5} Allows a registered company to be recommended a list of registered students who might be of interest for one of its advertised internships with respect to: their uploaded CVs, the internship project and users' feedbacks.
+  \item \textbf{G4} Allows a registered student to be recommended a list of advertised internships that might be of interest to him/her with respect to: his/her uploaded CV, the internships descriptions and users'* feedbacks.
+  \item \textbf{G5} Allows a registered company to be recommended a list of registered students who might be of interest for one of its advertised internships with respect to: their uploaded CVs, the internship description and users' feedbacks.
   \item \textbf{G6} Allows a registered company to view the list of all the students who applied to one of its advertised internships grouped by the internship they applied to.
-  \item \textbf{G7} Allows a company to get in contact* with the candidates* for one of its internships and, only after, manage their selection process*.
-  \item \textbf{G8} Allows registered companies and students that are taking part* in an ongoing internship to comment about it.
+  \item \textbf{G7} Allows a company to manage the selection process* of the candidates* to one of its internships.
+  \item \textbf{G8} Allows registered companies and students that are taking part in an ongoing internship to comment about it.
   \item \textbf{G9} Allows a registered university to view the comments about an ongoing internship, written either by its interning students or by the host company.
   \item \textbf{G10} Allows a registered university to interrupt an ongoing internship involving one its students.
-      \item \textbf{G11} Allows companies and students to provide feedback about a past internships only if they respectively offered it and took part in it.
+  \item \textbf{G11} Allows companies and students to provide feedback about a recommended or past internships accoding to thie likings.
 
 \end{itemize}
 \subsection{Scope}
@@ -112,9 +112,9 @@ The goals specify what the platform will allow users to achieve in the real worl
         \item \textbf{W2} A student wants to find an internship opportunity.
         \item \textbf{W3} A student wants to discover interesting companies.
         \item \textbf{W4} A company wants to interview the internship candidate and select them.
-        \item \textbf{W5} A student wants to evaluate an internship process
+        \item \textbf{W5} A student wants to evaluate an internship process.
         \item \textbf{W6} A company and a student want to improve the internship advertisement and the CV, respectively.
-        \item \textbf{W7} A University wants to follow an internship process
+        \item \textbf{W7} A University wants to follow an internship process.
     \end{itemize}
 \subsubsection{Shared Phenomena}
     \textit{Controlled by World}
@@ -134,7 +134,7 @@ The goals specify what the platform will allow users to achieve in the real worl
         \item \textbf{S5} A company creates interview request through the S\&C for the interview, after the match.
         \item \textbf{S6} A student and a company are able to provide feedback on their experiences, after the selection process.
         \item \textbf{S7} A company offers an internship position to the relevant student through the S\&C.
-        \item \textbf{S8} A student accepts or declines an internship position through the S\&C.
+        \item \textbf{S8} A student accepts an internship position through the S\&C.
         \item \textbf{S9} A student's university follows up on feedback about the internship process through the S\&C and is able to interrupt the internship if necessary.
         \item \textbf{S10} A student updates their resume based on the suggestions received from the S\&C.
         \item \textbf{S11} A student updates their advertisement based on the suggestions received from the S\&C.
@@ -158,13 +158,17 @@ The goals specify what the platform will allow users to achieve in the real worl
 
 \subsubsection{Definitions}
     \begin{itemize}
+        \item: User: with User we refer to an active individual that can be either a Student, a Comapny or a University.
+        \item Advertise: An Internship is advertised only if it has been posted and its application deadline is not yet expired.
         \item Recommendation: It's a platform feature that starts a matching between a company and a student. If both parties accept the recommendation, the student is taken for the selection process
+        \item Applying: a student applies for an internship if he/she manually searches for it and applies for it and the internship was not recommended to him/her.
         \item Accepting: The act of students or companies, who got recommended to each other, to confirm their interest. 
         \item Selection: It's the process that starts after the expiration date of applying for the internship. The company interviews every accepted student and picks the best one(s) for their needs. 
         \item Feedback: Refers to the comments and questionary that both parties are asked to fill in at the end of the internship contract, in order to improve the platform.
         \item Observation: Is anything written in the dedicated Observations section. Serves the student or the company currently engaged, to highlight something about the experience with each other. If that's a complaint from either, the University of the student will manage the situation.
         \item Complaint: It's a specific type of Observation, where the University of the student is called to act and manage the situation between the parties.
         \item Contact: The mutual acceptance of recommendation between student and company on the same internship.
+        \item: Candidate: a candidate is a Student that has passed to the selection phase of an internship.
     \end{itemize}
 \subsubsection{Acronyms}
     \begin{itemize}
@@ -179,6 +183,15 @@ The goals specify what the platform will allow users to achieve in the real worl
         \item Rn: n-th Requirement
     \end{itemize}
 \subsection{Revision history}
+\noindent
+\begin{tabularx}{\textwidth}{llX}
+    \toprule
+    Revised on & Version & Description \\
+    \midrule
+    22-Dec-2023 & 1.0 & Initial Release of the document \\
+    \bottomrule
+\end{tabularx}
+\vspace{0.33pt}
 \subsection{Reference Documents}
     \begin{itemize}
         \item Software Engineering 2 A.Y. 2024/2025 Slides (course material)
@@ -214,10 +227,9 @@ Universities, as stakeholders, can monitor the status of internships, addressing
         \item 2nd Scenario: Logging in. User John is in the opening page; he logs into the site using his credentials, and can now access to his possible operations.
         \item 3rd Scenario: Finalizing registration. The student John opens his profile page and uploads his CV document into the platform; he studies at Polime, so he connects his university mail with his account.
         \item 4th Scenario: Starting an offer. The company Emazon posts an internship offer on the platform, deciding the expiration date and the duration of it. Then Emazon lists the tasks the student will have to perform, the application domain and other relevant things regarding the internship.  
-        \item 5th Scenario: Platform recommendation. Upon CV uploading, the   platform analyzes John's CV and automatically suggests him all the current potential interesting internship offers. After Emazon has posted its internship offer, it gets notified to him too.
+        \item 5th Scenario: Platform recommendation. Upon CV uploading, the platform analyzes John's CV and automatically suggests him all the current potential interesting internship offers. After Emazon has posted its internship offer, it gets notified of him as well.
         \item 6th Scenario: Searching Internships. John opens the page of the available internships. He filters out the ones without benefits, and is left with few options. He applies for Guggl's offer.
-        \item 7th Scenario: Student accepts recommendation. John gets the
-        notification from Emazon and decides to accept it.
+        \item 7th Scenario: Student accepts recommendation. John gets them notification from Emazon and decides to accept it.
         \item 8th Scenario: Company accepts students. After Emazon posted the internship offer, it gets recommended some students by the platform, while some other students found the internship by manual searching. Emazon accepts John and some other students.
         \item 9th Scenario: Entering the selection. After the expiration date passes, the company starts the selection process. Emazon proposes the interviews dates and time schedules through the dedicated interface to all the contacted students.
         \item 10th Scenario: Student chooses interview day. Since John has established contact with Emazon, he selects the time and day of the interview through the dedicated interface.
