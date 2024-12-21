@@ -204,6 +204,10 @@ The goals specify what the platform will allow users to achieve in the real worl
 
 \section{Overall Description}
 \subsection{Product Perspective}
+The Students\&Companies (S\&C) platform is designed to streamline the process of connecting university students with companies offering internships. It facilitates the matchmaking process by analyzing students’ CVs, which detail their skills, experiences, and attitudes, and aligning them with the project descriptions and terms of internships offered by companies. In addition to this, the platform supports proactive search by students.
+
+On the other hand, S\&C aids in managing subsequent stages, including the selection process, interviews, and finalizing agreements. It also gathers feedback from both parties to refine its services. 
+Universities, as stakeholders, can monitor the status of internships, addressing complaints if needed. The platform aims to foster transparency, communication, and satisfaction for all participants while ensuring a smooth execution and monitoring of the internship lifecycle.
 \subsubsection{Scenarios}
     \begin{itemize}
         \item 1st Scenario: Signing up. User John has accessed the opening page; he registers into the site as a student, filling the required data and is sent back to the opening page.
@@ -598,6 +602,8 @@ An EmailService is needed, because in the registration process a verifcation ema
     The system requires a stable internet connection to work properly. This connection is used
     to exchange data between the Users and the central database which contains all the information that is needed for the application to work properly.
 \subsection{Functional Requirements}
+In this section, all the Use Cases are listed attached to their corresponding Use Case Diagram.
+Then, the mapping between Goals, Domain Assumptions and Requirements is provided.
 \subsubsection{Use Case Diagrams}
 \begin{figure}[H]
     \centering
@@ -1183,7 +1189,7 @@ Exceptions & The comment is invalid (e.g., empty or contains restricted content)
     \includegraphics[scale = 0.75]{figures/UseCasesSD/UserWritesComplaintSD.png}
 \end{figure}
 
-
+\newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
 \multicolumn{2}{|c|}{UniversityInterruptsInternship}\\
@@ -1477,6 +1483,19 @@ Exceptions & None\\ [1ex]
 
 \subsection{Performance Requirements}
 Due to the non-critical nature of the system, strict performance requirements are not needed. Nonetheless, for the best user experience these are the set requirements:
+\begin{itemize}
+    \item The system should let Companies create an Internship within 2 seconds.
+    \item The system should let Students upload their CV within 2 seconds.
+    \item The system should let Students accept an Internship recommendation within 2 seconds.
+    \item The system should let Companies accept a Student recommendation within 2 seconds.
+    \item The system should reload the Users recommendations within 5 seconds after a user feedback submission.
+    \item The system should let Companies fix the interview time slots accordingly within 2 seconds.
+    \item The system should let Students select their preferred interview time slot within 2 seconds. 
+    \item The system should let Companies select their preferred internship candidate within 2 seconds.
+    \item The system should let Companies and Students post comments within 2 seconds.
+    \item The system should let Universities interrupt internships within 5 seconds. \\
+\end{itemize}
+
 \subsection{Design Constraints}
 \subsubsection{Standards compliance}
 Specifications described in this document must be respected by the system. The source code
@@ -1501,7 +1520,6 @@ The source code must be commented on as well as possible and the correlated docu
 must be kept updated during the whole life cycle of the system.
 Modularity and low coupling between components must be a focus during the designing and
 developing phases.
-\subsubsection{Portability}
 
 \section{Formal Analysis Using Alloy}
 \subsection{Objectives of the Analysis}
