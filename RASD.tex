@@ -1,59 +1,87 @@
-\documentclass{article}
+\documentclass[a4paper,12pt]{article}
 
-% CONFIGURATIONS
-\usepackage{array}
-\usepackage{parskip} % For paragraph layout
-\usepackage{setspace} % For using single or double spacing
-\usepackage{emptypage} % To insert empty pages
-\renewcommand{\arraystretch}{1.5} % Spazio extra per centratura verticale
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
-\usepackage{multicol} % To write in multiple columns (executive summary)
-\setlength\columnsep{15pt} % Column separation in executive summary
-\setlength\parindent{0pt} % Indentation
-\raggedbottom  
 
-% PACKAGES FOR TITLES
-\usepackage{titlesec}
+%----------------------------------------------------------------------------
+%	PREAMBLE CONFIGURATIONS
+%----------------------------------------------------------------------------
+
+% GENERAL LAYOUT
+\usepackage{geometry} % To set uniform margins
+\geometry{
+  left=0.8in,
+  right=0.8in,
+  top=1in,
+  bottom=1in,
+  includehead,
+  includefoot
+}
+\usepackage{parskip} % For paragraph layout (removes indentation between paragraphs)
+\setlength\parindent{0pt} % Removes paragraph indentation
+\raggedbottom % Prevents extra vertical stretching of pages
+\usepackage{setspace} % For single or double spacing
+\usepackage{emptypage} % To handle empty pages gracefully
+
+% MULTI-COLUMN LAYOUT
+\usepackage{multicol} % For writing in multiple columns
+\setlength\columnsep{15pt} % Column separation in multi-column environments
+
+%----------------------------------------------------------------------------
+%	PACKAGES FOR TITLES AND SPACING
+%----------------------------------------------------------------------------
+\usepackage{titlesec} % Customizing title and section spacing
 % \titlespacing{\section}{left spacing}{before spacing}{after spacing}
 \titlespacing{\section}{0pt}{3.3ex}{2ex}
 \titlespacing{\subsection}{0pt}{3.3ex}{1.65ex}
 \titlespacing{\subsubsection}{0pt}{3.3ex}{1ex}
-\usepackage{color}
 
-% PACKAGES FOR LANGUAGE AND FONT
-\usepackage[english]{babel} % The document is in English  
-\usepackage[utf8]{inputenc} % UTF8 encoding
-\usepackage[T1]{fontenc} % Font encoding
-\usepackage[11pt]{moresize} % Big fonts
+%----------------------------------------------------------------------------
+%	LANGUAGE AND FONT
+%----------------------------------------------------------------------------
+\usepackage[english]{babel} % Sets the document language to English
+\usepackage[utf8]{inputenc} % UTF-8 encoding for input
+\usepackage[T1]{fontenc} % Font encoding for proper output
+\usepackage[11pt]{moresize} % Enables larger font sizes
 
-% PACKAGES FOR IMAGES
-\usepackage{graphicx}
+%----------------------------------------------------------------------------
+%	PACKAGES FOR IMAGES AND FIGURES
+%----------------------------------------------------------------------------
+\usepackage{graphicx} % For including images
+\graphicspath{{./Images/}} % Sets default directory for images
 \usepackage{transparent} % Enables transparent images
-\usepackage{eso-pic} % For the background picture on the title page
-\usepackage{subfig} % Numbered and caption subfigures using \subfloat.
-\usepackage{tikz} % A package for high-quality hand-made figures.
-\usetikzlibrary{}
-\usepackage{caption} % Coloured captions
-\usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
-\usepackage{float}
-\usepackage{url}
+\usepackage{eso-pic} % For adding background images
+\usepackage{subfig} % For creating subfigures
+\usepackage{tikz} % High-quality vector graphics
+\usetikzlibrary{} % Load TikZ libraries as needed
+\usepackage{caption} % Customizable captions for figures
+\usepackage{float} % For fixing figure/table positions
 
-% PACKAGES FOR TABLES
-\usepackage{tabularx}
-\usepackage{xltabular}
-\usepackage{booktabs}
-\usepackage{longtable} % Tables that can span several pages
-\usepackage{colortbl}
+%----------------------------------------------------------------------------
+%	MATHEMATICAL PACKAGES
+%----------------------------------------------------------------------------
+\usepackage{amsmath} % Standard math environments
+\usepackage{amsthm} % Theorem environments
+\usepackage{amssymb} % Additional math symbols
+\usepackage{amsfonts} % Additional fonts for math
+\usepackage{bm} % Bold math symbols
+\usepackage[overload]{empheq} % For systems of equations with braced-style notation
+\usepackage{fix-cm} % Overrides LaTeX restrictions on font sizes
 
-% OTHER PACKAGES
-\usepackage{pdfpages} % To include a pdf file
-\usepackage{afterpage}
-\usepackage{lipsum} % DUMMY PACKAGE
-\usepackage{fancyhdr} % For the headers
-\fancyhf{}
+%----------------------------------------------------------------------------
+%	PACKAGES FOR TABLES
+%----------------------------------------------------------------------------
+\usepackage{tabularx} % Tables with adjustable-width columns
+\usepackage{xltabular} % Extended functionality for tabularx
+\usepackage{booktabs} % Professional-quality tables
+\usepackage{longtable} % Tables that span multiple pages
+\usepackage{colortbl} % For colored tables
+\usepackage{array} % Extended table functionality
+\renewcommand{\arraystretch}{1.5} % Extra vertical spacing in tables
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}} % Centered column type
 
-% ALLOY
-\usepackage{listings}
+%----------------------------------------------------------------------------
+%	PACKAGES FOR LISTINGS AND ALGORITHMS
+%----------------------------------------------------------------------------
+\usepackage{listings} % Code listing environment
 \lstset{
   basicstyle=\ttfamily\footnotesize,
   keywordstyle=\color{blue}\bfseries,
@@ -70,6 +98,45 @@
   escapeinside={(*@}{@*)},
   tabsize=2
 }
+
+\usepackage{algorithm} % For pseudocode environments
+\usepackage{algorithmic} % Algorithmic commands for pseudocode
+
+%----------------------------------------------------------------------------
+%	REFERENCES AND BIBLIOGRAPHY
+%----------------------------------------------------------------------------
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            anchorcolor=black,
+            citecolor=black,
+            filecolor=black,
+            menucolor=black,
+            runcolor=black,
+            urlcolor=black]{hyperref} % Clickable links in references
+\usepackage{cleveref} % Enhanced referencing
+\usepackage[square, numbers, sort&compress]{natbib} % Citation styles
+\bibliographystyle{abbrvnat} % Bibliography style (choose one suited to your field)
+
+%----------------------------------------------------------------------------
+%	HEADERS AND FOOTERS
+%----------------------------------------------------------------------------
+\usepackage{fancyhdr} % Custom headers and footers
+\fancyhf{} % Clears default header and footer settings
+
+%----------------------------------------------------------------------------
+%	MISCELLANEOUS PACKAGES
+%----------------------------------------------------------------------------
+\usepackage{pdfpages} % For including PDF files
+\usepackage{afterpage} % Commands to be executed after a page break
+\usepackage{lipsum} % Dummy text for testing/documentation
+
+%----------------------------------------------------------------------------
+%	NEW COMMANDS
+%----------------------------------------------------------------------------
+\newcommand{\bea}{\begin{eqnarray}} % Shortcut for equation arrays
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\e}[1]{\times 10^{#1}} % Shortcut for scientific notation
+
 
 \begin{document}
 
@@ -358,7 +425,7 @@ This section serves as a comprehensive overview of critical factors which must b
 An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.
 \\A UniversityLoginService is needed for creating a connection between the university students' profiles and the university profile.
 \\A NotificationProvider is needed, either implemented or integrated.
-\\A NationalEducationDictionaryService is needed to check if the university registering actually exists or not.
+    \\A NationalEducationDictionaryService is needed to check if the university registering actually exists or not.
 
 \section{Specific Requirements}
 \subsection{External Interface Requirements}
@@ -727,7 +794,7 @@ Entry Condition & True\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The Student opens the “Sign up” page
-		      \item 2. Students\&Companies shows the page to sign up
+		      \item 2. Students\&Companies shows the page to sign up with the suggested CV template.
 		      \item 3. The Student fills the required information and clicks “Sign Up” button
 		      \item 4. Students\&Companies checks the information provided by the Student
                 \item 5. Students\&Companies shows the university login page through the UniversityLoginService
@@ -753,7 +820,7 @@ Exceptions & \begin{itemize}
 \end{xltabular}
 \begin{figure}[H]
     \hspace*{-2cm} % Adjust the value (-2cm) to shift left
-    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSignUpSD.drawio (3).png}\\
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSignUpSD.drawio.png}\\
 \end{figure}
 
 \newpage
@@ -868,7 +935,7 @@ Flow of Events & \begin{itemize}
 		      \item 1. The Student navigates to the profile section
 		      \item 2. Students\&Companies displays information about the Student
                 \item 3. The Student clicks on the "ModifyCV" button
-                \item 4. Students\&Companies displays the "Upload Page"
+                \item 4. Students\&Companies displays the "Upload Page" with the suggested template.
 		      \item 3. The Student uploads a CV file in the provided field.
 		      \item 4. Students\&Companies validates the file format and saves the CV file.
                 \item 5. Students\&Companies might recommend the student to some internships based on the (new) CV.
@@ -881,7 +948,7 @@ Exceptions & File upload fails due to incorrect format or size\\ [1ex]
 \end{xltabular}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentUpdatesCV.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentUpdatesCVSD.drawio.png}
 \end{figure}
 
 
@@ -932,7 +999,7 @@ Entry Condition & The Company is logged in\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
 		      \item 1. The Company clicks on to the “Post Internship” button
-		      \item 2. Students\&Companies displays the internship creation form
+		      \item 2. Students\&Companies displays the internship creation form with the suggested template. 
 		      \item 3. The Company fills out the form with internship details and submits it
 		      \item 4. Students\&Companies validates the information and publishes the internship
                 \item 5. the NotificationService may notify certain students of this new internship through recommendation
