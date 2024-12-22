@@ -155,17 +155,16 @@ The goals specify what the platform will allow users to achieve in the real worl
         \item Advertise: An Internship is advertised only if it has been posted and its application deadline is not yet expired.
         \item Recommendation: It's a platform feature that starts a matching between a company and a student. If both parties accept the recommendation, the student is taken for the selection process
         \item Applying: a student applies for an internship if he/she manually searches for it and applies for it and the internship was not recommended to him/her.
-        \item Accepting: The act of students or companies, who got recommended to each other, to confirm their interest. 
+        \item Accepting: The act of students or companies, who got recommended to each other, to confirm their interest.
+        \item Contact: The mutual acceptance of recommendation between student and company on the same internship.
         \item Selection: It's the process that starts after the expiration date of applying for the internship. The company interviews every accepted student and picks the best one(s) for their needs.
-        \item Selected student: It's the process that starts after the expiration date of applying for the internship. The company interviews every accepted student and picks the best one(s) for their needs.
-        \item: Candidate: a candidate is a Student that has passed to the selection phase of an internship.
+        \item Selected student: He is the student who has been chosen for the internship by the company.
+        \item Candidate: he is a Student that has passed to the selection phase of an internship.
         \item Feedback: Consists of two separate moments.
         The first round of feedback is when the users likes/dislikes the recommendation given by the system. The second type of feedback is submitted after the end of the internship, where students and companies rate the experience through a 5 star review form.
-        \item Commment: Is anything written in the dedicated Comments section. Serves the student or the company currently engaged, to highlight something about the experience with each other. If that's a complaint from either, the University of the student will manage the situation.
+        \item Comment: Is anything written in the dedicated Comments section. Serves the student or the company currently engaged, to highlight something about the experience with each other. If that's a complaint from either, the University of the student will manage the situation.
         \item Complaint: It's a specific type of Observation, where the University of the student can manage the situation between the parties.
-        \item Observation: It's a specific type of Comment, where the University of the student is called to act and manage the situation between the parties.
-        \item Contact: The mutual acceptance of recommendation between student and company on the same internship.
-
+        \item Observation: It's a type of comment that is not a complaint. It could just report some good or neutral facts about the experience.
     \end{itemize}
 \subsubsection{Acronyms}
     \begin{itemize}
@@ -185,7 +184,7 @@ The goals specify what the platform will allow users to achieve in the real worl
     \toprule
     Revised on & Version & Description \\
     \midrule
-    22-Dec-2023 & 1.0 & Initial Release of the document \\
+    22-Dec-2024 & 1.0 & Initial Release of the document \\
     \bottomrule
 \end{tabularx}
 \vspace{0.33pt}
@@ -220,20 +219,21 @@ On the other hand, S\&C aids in managing subsequent stages, including the select
 Universities, as stakeholders, can monitor the status of internships, addressing complaints if needed. The platform aims to foster transparency, communication, and satisfaction for all participants while ensuring a smooth execution and monitoring of the internship lifecycle.
 \subsubsection{Scenarios}
     \begin{itemize}
-        \item 1st Scenario: Signing up. User John has accessed the opening page; he registers into the site as a student, filling the required data and is sent back to the opening page.
+        \item 1st Scenario: Signing up. User John has accessed the opening page; he registers into the site as a student, filling the required data, like CV and university information, and is sent back to the opening page.
         \item 2nd Scenario: Logging in. User John is in the opening page; he logs into the site using his credentials, and can now access to his possible operations.
-        \item 3rd Scenario: Finalizing registration. The student John opens his profile page and uploads his CV document into the platform; he studies at Polime, so he connects his university mail with his account.
+        \item 3rd Scenario: CV Update. John is in the profile page, and he is suggested a proper template for creating a CV. He modifies his CV and updates the new file into the site.
         \item 4th Scenario: Starting an offer. The company Emazon posts an internship offer on the platform, deciding the expiration date and the duration of it. Then Emazon lists the tasks the student will have to perform, the application domain and other relevant things regarding the internship.  
-        \item 5th Scenario: Platform recommendation. Upon CV uploading, the platform analyzes John's CV and automatically suggests him all the current potential interesting internship offers. After Emazon has posted its internship offer, it gets notified of him as well.
-        \item 6th Scenario: Searching Internships. John opens the page of the available internships. He filters out the ones without benefits, and is left with few options. He applies for Guggl's offer.
-        \item 7th Scenario: Student accepts recommendation. John gets them notification from Emazon and decides to accept it.
-        \item 8th Scenario: Company accepts students. After Emazon posted the internship offer, it gets recommended some students by the platform, while some other students found the internship by manual searching. Emazon accepts John and some other students.
-        \item 9th Scenario: Entering the selection. After the expiration date passes, the company starts the selection process. Emazon proposes the interviews dates and time schedules through the dedicated interface to all the contacted students.
-        \item 10th Scenario: Student chooses interview day. Since John has established contact with Emazon, he selects the time and day of the interview through the dedicated interface.
-        \item 11th Scenario: Student joins the interview. When the scheduled day for the interview comes, John can meet the interviewer using the link posted by the company on the platform. After some time, the platform officially notifies him that he was selected.
-        \item 12th Scenario: Writing Observations. Emazon writes a complaint in the provided space about John's current behaviour.
-        \item 13th Scenario: University acts. The University Polime gets a complaint from Emazon about John's behaviour. Polime decides to interrupt his internship.
-        \item 14th Scenario: Giving Feedback. At the end of the internship, John and Emazon fill a questionnaire about their experience with the platform and give suggestions to it.
+        \item 5th Scenario: Platform recommendation. After registration, the platform analyzes John's CV and automatically suggests him all the current potential interesting internship offers. After Emazon has posted its internship offer, it gets notified to him as well.
+        \item 6th Scenario: Searching Internships. John opens the page of the available internships. He manually searches for the internships or the companies that could interest him. He applies for Guggl's offer.
+        \item 7th Scenario: Student evaluates recommendations. John gets recommended some internships, and he likes them all. He sends positive feedback using the thumbs up button.
+        \item 8th Scenario: Student accepts recommendation. John likes the Emazon internship the best. He decides to accept it.
+        \item 9th Scenario: Company accepts students. After Emazon posted the internship offer, it gets recommended some students by the platform, while some other students found the internship by manual searching. Emazon accepts John and some other students.
+        \item 10th Scenario: Entering the selection. After the expiration date passes, the company starts the selection process. Emazon proposes the interviews dates and time schedules through the dedicated interface to all the candidates.
+        \item 11th Scenario: Candidate chooses interview day. Since John has established contact with Emazon, he selects the time and day of the interview through the dedicated interface.
+        \item 12th Scenario: Student joins the interview. When the scheduled day for the interview comes, John can meet the interviewer using the link posted by the company on the platform. After some time, the platform officially notifies him that he was selected.
+        \item 13th Scenario: Writing Comments. Emazon writes a complaint in the provided space about John's current behaviour.
+        \item 14th Scenario: University acts. The University Polime gets a complaint from Emazon about John's behaviour. Polime decides to interrupt his internship.
+        \item 15th Scenario: Giving Feedback. At the end of the internship, John and Emazon submit a five star form about their experience.
     \end{itemize}
 \subsubsection{Class Diagram}
 The UML Class Diagram shown below provides a conceptual, high-level representation of the intended software. At this stage, it may include entities that will not necessarily be part of the final system. Additionally, this diagram intentionally omits methods and other detailed elements that will be addressed in the design phase.
@@ -250,7 +250,7 @@ The following section outlines the key component (Internship) of the Student\&Co
     \includegraphics[scale = 0.30]{figures/StateCharts.drawio.png}
     \centering
 \end{figure}
-The diagram in question outlines the potential phases of an Internship. Posted by a Company, the Internship promptly enters the "Application" state, allowing Students to apply and Companies/Students to accept recommendations. 
+The diagram in question outlines the potential phases of an Internship. Posted by a Company, the Internship promptly enters the "Application" state, allowing Students to apply and Companies/Students to accept recommendations; in this state the company and the recommended students can provide feedback about the recommendation.
 \\Following the closure of the application window, the system transitions the Internship to the "Selection" state, in which the Candidates are interviewed, selected and confirmed. 
 \\In case no Candidate is confirmed, the Internship is archived and transitioned to the "Ended" state. Otherwise, the selected Candidate starts the interning period and the Internship is changed into the "Ongoing" state. 
 \\While the Internship is "Ongoing" and the University responsible for the Student receives complaints, it may decide to terminate the Internship. In such cases, the Internship is moved to the "Interrupted" state and archived as is.
@@ -289,40 +289,37 @@ The platform \textbf{Students\&Companies} offers several key functions:
 
 \subsubsection{Requirements}
     \begin{itemize}
-        \item \textbf{Requirement} Students can share their CVs on the platform
+        \item \textbf{Requirement} 
         \item \textbf{R1} The system must allow a student who wants to register to sign up.
         \item \textbf{R2} The system must allow a company who wants to register to sign up.
         \item \textbf{R3} The system must allow a university who wants to register to sign up.
         \item \textbf{R4} The system must allow registered users to sign in using their credentials.
-        \item \textbf{R5} The system must allow registered users who wishes to reset their password to change it after completing various procedures and checks.
         \item \textbf{R6} The system must be able to send notifications to all users.
-        \item \textbf{R7} The system must allow registered students to enter information from their CV to complete their profiles.
+        \item \textbf{R7} The system must allow registered students to upload their CVs on the platform.
         \item \textbf{R8} The system must allow registered companies to post internship advertisements.
         \item \textbf{R9} The system must allow companies to review students' CVs and select candidates who meet their internship requirements.
         \item \textbf{R10} The system must allow students to review internship advertisements and select them if they wish to apply.
          \item \textbf{R11} The system must allow students to manually search for internship opportunities and save them to their favorites.
-         \item \textbf{R12} The system must notify students when there are updates regarding the internships at the companies in their favorites that they wish to apply for.
-        \item \textbf{R13} The system must match a student and a company that select each other and notify them afterward, but only if a match is done.
+         \item \textbf{R12} The system must notify students when there are updates regarding the internships they applied for or accepted.
+        \item \textbf{R13} The system must notify a student and a company that accept each other.
         \item \textbf{R14} The system must allow companies to choose a suitable date for the interview, but only after a match is done.
         \item \textbf{R15} The system must schedule an interview at the date and time specified by the company and notify the selected students.
-        \item \textbf{R16} The system must recommend a student and a company profile to each other and allow them to review whether the company has an active internship position and if the profiles could attract each other's interest.
+        \item \textbf{R16} The system must recommend a student and a internship to each other if the student's profile matches the needs of the company. 
         \item \textbf{R17} The system must allow companies to offer internship proposals to selected students after the interview process is completed.
-        \item \textbf{R18} The system must allow companies to evaluate students during the internship process and provide feedback on their CVs.
-        \item \textbf{R19} The system must allow students to give feedback on their internship experiences.
-        \item \textbf{R20} The system must provide suggestions to users for improving their profiles based on feedback.
+        \item \textbf{R18}The system must allow companies and students to give feedback at the end of the internship in which they took part.
+        \item \textbf{R19} The system must allow the student and company who got recommended to each other to give feedback about the recommendation.
+        \item \textbf{R20} The system must provide a suggested template to users for improving their CV or project description.
         \item \textbf{R21} The system must notify students when there are updates regarding the results of the internships they have applied for.
         \item \textbf{R22} The system must allow selected students to accept or decline internship proposal sent by companies.    
-         \item \textbf{R23} The system must notify students about deadlines for accepting internship offers.
-        \item \textbf{R24} The system must allow companies to view and manage applications for the internships they have posted, including the status of interviews and offers.  
-        \item \textbf{R25} The system must allow students to view all details about the internships they have applied for, such as completion status, rejections, and deadlines.
-        \item \textbf{R26} The system must send invitations to universities to follow their students' internship progress.
-        \item \textbf{R27} The system must allow universities to follow internship processes, handle complaints raised by students, and interrupt an internship if necessary, but only if the relevant student's university is signed in.
-        \item \textbf{R28} The system must allow registered students to search for internships and make them able to receive recommendations only if they have linked their university mail and uploaded their CV.
+        \item \textbf{R24} The system must allow companies to view and manage applications for the internships they have posted.
+        \item \textbf{R25} The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines.
+        \item \textbf{R27} The system must allow universities to follow internship processes, handle complaints raised by students, and interrupt an internship if necessary.
+        
         \end{itemize}
 \subsection{User characteristics}
      A User can be one of three types: Student, University, Company. Each role has access to distinct functionalities and is driven by different motivations.
      \begin{itemize}
-        \item Students: They are students of some university; they want to apply for internships, either helped by the recommendations from the platform or by looking for internship themselves. If they have something to say about their on-going internship, they can make observations in the platform.
+        \item Students: They are students of some university; they want to apply for internships, either helped by the recommendations from the platform or by looking for internship themselves. If they have something to say about their on-going internship, they can make observations or complaints in the platform.
         \item Companies: They want to recruit students for their internship projects. They are aided in the selection process from the platform. They might want to make observations or complaints about the hired student.
         \item Universities: They want to manage their students' on-going internship, handling their complaints or the ones coming from the company of the internship.     
      \end{itemize}
@@ -339,7 +336,10 @@ This section serves as a comprehensive overview of critical factors which must b
 
     \end{itemize}
 \subsubsection{Dependencies}
-An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.\\ \\The system also wants to have some connection with the universities, so a service for that is needed.
+An EmailService is needed, because in the registration process a verifcation email must be sent by the system to let Users successfully sign up.
+\\A UniversityLoginService is needed for creating a connection between the university students' profiles and the university profile.
+\\A NotificationProvider is needed, either implemented or integrated.
+\\A NationalEducationDictionaryService is needed to check if the university registering actually exists or not.
 
 \section{Specific Requirements}
 \subsection{External Interface Requirements}
@@ -1311,17 +1311,17 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
-    \centering R12 & The system must notify students when there are updates regarding the internships at the companies in their favorites that they wish to apply for. \\ 
+    \centering R12 & The system must notify students when there are updates regarding the internships they applied for or accepted. \\ 
     \hline
     \centering R16 & The system must recommend a student and a company profile to each other and allow them to review whether the company has an active internship position and if the profiles could attract each other's interest. \\ 
     \hline
     \centering R21 & The system must notify students when there are updates regarding the results of the internships they have applied for. \\ 
     \hline
-    \centering R23 & The system must notify students about deadlines for accepting internship offers. \\ 
+    \centering R24 & The system must allow companies to view and manage applications for the internships they have posted. \\ 
     \hline
-    \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, rejections, and deadlines. \\ 
+    \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1341,7 +1341,7 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R11 & The system must allow students to manually search for internship opportunities and apply for them. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1368,7 +1368,7 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R20 & The system must provide suggestions to users for improving their profiles based on feedback. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1393,7 +1393,7 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R8 & The system must allow registered companies to post internship advertisements. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1415,7 +1415,7 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R8 & The system must allow registered companies to post internship advertisements. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1425,7 +1425,7 @@ Exceptions & None\\ [1ex]
     \hline
     \multicolumn{2}{|c|}{\parbox{13cm}{G6: Allows a registered company to view the list of all the students who applied to one of its advertised internships grouped by the internship they applied to.}} \\
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1441,9 +1441,9 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
-    \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, rejections, and deadlines. \\ 
+    \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1461,7 +1461,7 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R16 & The system must recommend a student and a company profile to each other and allow them to review whether the company has an active internship position and if the profiles could attract each other's interest. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1477,9 +1477,9 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
-    \centering R12 & The system must notify students when there are updates regarding the internships at the companies in their favorites that they wish to apply for. \\ 
+    \centering R12 & The system must notify students when there are updates regarding the internships they applied for or accepted. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1497,7 +1497,9 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R15 & The system must allow companies to provide feedback to students regarding their application status. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering R27 & The system must allow universities to follow internship processes, handle complaints raised by students, and interrupt an internship if necessary. \\ 
+    \hline
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1513,11 +1515,11 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
-    \centering R12 & The system must notify students when there are updates regarding the internships at the companies in their favorites that they wish to apply for. \\ 
+    \centering R12 & The system must notify students when there are updates regarding the internships they applied for or accepted. \\ 
     \hline
     \centering R14 & The system must allow students to contact companies regarding the internships they applied for. \\ 
     \hline
-    \centering D5 & All universities are registered before their students. \\ 
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
     \hline
     \end{tabular}
 \end{center}
