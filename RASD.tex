@@ -97,7 +97,7 @@ The goals specify what the platform will allow users to achieve in the real worl
   \item \textbf{G3} Helps registered students and registered companies by suggesting them appealing templates for their CVs and internship projects drafts.
   \item \textbf{G4} Allows a registered student to be recommended a list of advertised internships that might be of interest to him/her with respect to: his/her uploaded CV, the internships descriptions and users'* feedbacks.
   \item \textbf{G5} Allows a registered company to be recommended a list of registered students who might be of interest for one of its advertised internships with respect to: their uploaded CVs, the internship description and users' feedbacks.
-  \item \textbf{G6} Allows a registered company to view the list of all the students who applied to one of its advertised internships grouped by the internship they applied to.
+  \item \textbf{G6} Allows a registered company to view the list of all the students who applied to one of its advertised internships.
   \item \textbf{G7} Allows a company to manage the selection process* of the candidates* to one of its internships.
   \item \textbf{G8} Allows registered companies and students that are taking part in an ongoing internship to comment about it.
   \item \textbf{G9} Allows a registered university to view the comments about an ongoing internship, written either by its interning students or by the host company.
@@ -1499,7 +1499,19 @@ Exceptions & None\\ [1ex]
 \begin{center}
     \begin{tabular}{|C{3cm}|p{10cm}|}
     \hline
-    \multicolumn{2}{|c|}{\parbox{13cm}{G6: Allows a registered company to view the list of all the students who applied to one of its advertised internships grouped by the internship they applied to.}} \\
+    \multicolumn{2}{|c|}{\parbox{13cm}{G6: Allows a registered company to view the list of all the students who applied to one of its advertised internships.}} \\
+    \hline
+    \centering R1 & The system must allow a student who wants to register to sign up. \\ 
+    \hline
+    \centering R2 & The system must allow a company who wants to register to sign up. \\
+    \hline
+    \centering R4 & The system must allow registered users to sign in using their credentials. \\ 
+    \hline
+    \centering R7 & The system must allow registered students to enter information from their CV to complete their profiles. \\ 
+    \hline
+    \centering R8 & The system must allow registered companies to post internship advertisements. \\ 
+    \hline
+    \centering R24 & The system must allow companies to view and manage applications for the internships they have posted. \\ 
     \hline
     \centering D1 & The User must have a working Internet connection. \\ 
     \hline
@@ -1524,7 +1536,12 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
+    \centering R13 &  The system must notify a student and a company that accept each other. \\ 
+    \hline
+   
     \centering R17 & The system must allow companies to offer internship proposals to selected students after the interview process is completed. \\ 
+    \hline
+    \centering R22 & The system must allow selected students to accept or decline internship proposal sent by companies.  \\ 
     \hline
     \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines. \\ 
     \hline
@@ -1569,16 +1586,17 @@ Exceptions & None\\ [1ex]
 \begin{center}
     \begin{tabular}{|C{3cm}|p{10cm}|}
     \hline
-    \multicolumn{2}{|c|}{\parbox{13cm}{G9: Allows a registered student to view a list of available internships sorted by company, internship description, deadline, and application status.}} \\
+    \multicolumn{2}{|c|}{\parbox{13cm}{G9: Allows a registered university to view the comments about an ongoing internship, written either by its interning students or by the host company.}} \\
+    \hline
+    \centering R3 & The system must allow a university who wants to register to sign up. \\ 
     \hline
     \centering R4 & The system must allow registered users to sign in using their credentials. \\ 
     \hline
-    \centering R7 & The system must allow registered students to enter information from their CV to complete their profiles. \\ 
+    \centering R7 & The system must allow registered students to enter information from their CV to complete their profiles. \\
     \hline
-    \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
+    \centering R27 & The system must allow universities to follow internship processes, handle complaints raised by students, and interrupt an internship if necessary. \\
     \hline
-    \centering R12 & The system must notify students when there are updates regarding the internships they applied for or accepted. \\ 
-    \hline
+    
     \centering D1 & The User must have a working Internet connection. \\ 
     \hline
     \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
@@ -1586,6 +1604,8 @@ Exceptions & None\\ [1ex]
     \centering D3 & The User registering is either a student, a university or a company. \\
     \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D5 & The university profiles are registered using the university email from the ones of the specialized staff (like career centers, internship coordinators, etc.) for the task. \\ 
+    \hline
     \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
