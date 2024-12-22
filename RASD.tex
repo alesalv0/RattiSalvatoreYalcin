@@ -610,7 +610,8 @@ In this section, the system aims to develop a user-friendly interface that align
 \subsubsection{Hardware Interfaces}
     The user, whether a student, university, or company, must use a suitable device to access the system, like a personal computer.
 \subsubsection{Software Interfaces}
-
+The system should integrate a NoticationService to keep up Users of any interesting event on
+the platform, an EmailService for the registration process, and a proper University Dictionary to assure the university existance.
 \subsubsection{Communication Interfaces}
     The system requires a stable internet connection to work properly. This connection is used
     to exchange data between the Users and the central database which contains all the information that is needed for the application to work properly.
@@ -1067,8 +1068,8 @@ Participating Actors & Student, Students\&Companies\\ [1ex]
 Entry Condition & The Student is logged in, he is a candidate for an internship and has received a notification about the availability of time-slots for that internship.\\ [1ex]
 \hline
 Flow of Events & \begin{itemize}
-		      \item 1. The Student selects the internship he has been informed of.
-		      \item 2. Students\&Companies a form showing the available time-slots to book for the interview with that internship.
+		      \item 1. The Student selects the internship he has been notified of.
+		      \item 2. Students\&Companies shows a form containing the available time-slots to book for the interview with that internship.
 		      \item 3. The Student selects a time slot and submits the form.
 		      \item 4. Students\&Companies registers the choice.
                 \end{itemize} \\ [1ex]
@@ -1080,7 +1081,7 @@ Exceptions & None\\ [1ex]
 \end{xltabular}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSchedulesInterviewSD.drawio.png}
+    \includegraphics[scale = 0.45]{figures/UseCasesSD/StudentSchedulesInterviewSD2.drawio.png}
 \end{figure}
 
 \newpage
