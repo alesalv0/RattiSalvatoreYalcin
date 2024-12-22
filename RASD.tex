@@ -323,7 +323,7 @@ The platform \textbf{Students\&Companies} offers several key functions:
         \item \textbf{R13} The system must notify a student and a company that accept each other.
         \item \textbf{R14} The system must allow companies to choose a suitable date for the interview, but only after a match is done.
         \item \textbf{R15} The system must schedule an interview at the date and time specified by the company and notify the selected students.
-        \item \textbf{R16} The system must recommend a student and a internship to each other if the student's profile matches the needs of the company. 
+        \item \textbf{R16} The system must recommend a student and an internship to each other if the student's profile matches the needs of the company. 
         \item \textbf{R17} The system must allow companies to offer internship proposals to selected students after the interview process is completed.
         \item \textbf{R18}The system must allow companies and students to give feedback at the end of the internship in which they took part.
         \item \textbf{R19} The system must allow the student and company who got recommended to each other to give feedback about the recommendation.
@@ -1227,7 +1227,7 @@ Exceptions & No comments are available for the internship\\ [1ex]
 \newpage
 \begin{xltabular}{\textwidth}{| l | X |}
 \toprule
-\multicolumn{2}{|c|}{UserWritesComment}\\
+\multicolumn{2}{|c|}{UserWritesObservation}\\
 \toprule
 Participating Actors & User (Student or Company), NotificationService, Students\&Companies\\ [1ex]
 \hline
@@ -1236,8 +1236,9 @@ Entry Condition & The User is logged into the platform\\ [1ex]
 Flow of Events & \begin{itemize}
 		      \item 1. The User navigates to the “Write Comment” section
 		      \item 2. Students\&Companies displays the comment input form
-		      \item 3. The User writes the comment and submits it
-		      \item 4. Students\&Companies validates the input and saves the comment
+                \item 3. The User chooses to write an observation
+		      \item 3. The User writes the observation and submits it
+		      \item 4. Students\&Companies validates the input and saves the complaint
 		      \item 5. Students\&Companies notifies the relevant User (Student or Company) of the new comment
                 \end{itemize} \\ [1ex]
 \hline
@@ -1251,7 +1252,31 @@ Exceptions & The comment is invalid (e.g., empty or contains restricted content)
     \centering
     \includegraphics[scale = 0.9]{figures/UseCasesSD/UserWritesObservationSD.png}
 \end{figure}
+\newpage
 
+\begin{xltabular}{\textwidth}{| l | X |}
+\toprule
+\multicolumn{2}{|c|}{UserWritesComment}\\
+\toprule
+Participating Actors & User (Student or Company), NotificationService, University, Students\&Companies\\ [1ex]
+\hline
+Entry Condition & The User is logged into the platform\\ [1ex]
+\hline
+Flow of Events & \begin{itemize}
+		      \item 1. The User navigates to the “Write Comment” section
+		      \item 2. Students\&Companies displays the comment input form
+                \item 3. The User chooses to write a complaint
+		      \item 3. The User writes the complaint and submits it
+		      \item 4. Students\&Companies validates the input and saves the complaint
+		      \item 5. Students\&Companies notifies the relevant User (Student or Company) of the new comment; the university of the student doing the internship is also notified of the new complaint.
+                \end{itemize} \\ [1ex]
+\hline
+Exit Condition & The comment is successfully saved and notified to the other party\\ [1ex]
+\hline
+Exceptions & The comment is invalid (e.g., empty or contains restricted content)\\ [1ex]
+\hline
+\end{xltabular}
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.75]{figures/UseCasesSD/UserWritesComplaintSD.png}
@@ -1340,7 +1365,9 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines. \\ 
     \hline
-    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D1 & The User must have a working Internet connection.  \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company.  \\ 
     \hline
     \end{tabular}
 \end{center}
@@ -1360,7 +1387,15 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R11 & The system must allow students to manually search for internship opportunities and apply for them. \\ 
     \hline
-    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
+    \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\
+    \hline
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1385,9 +1420,16 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R18 & The system must allow companies to evaluate students during the internship process and provide feedback on their CVs. \\ 
     \hline
-    \centering R20 & The system must provide suggestions to users for improving their profiles based on feedback. \\ 
+    \centering R20 & The system must provide a suggested template to users for improving their CV or project description. \\ 
+    \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
     \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1412,7 +1454,15 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R8 & The system must allow registered companies to post internship advertisements. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \hline
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1434,7 +1484,14 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R8 & The system must allow registered companies to post internship advertisements. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1444,7 +1501,14 @@ Exceptions & None\\ [1ex]
     \hline
     \multicolumn{2}{|c|}{\parbox{13cm}{G6: Allows a registered company to view the list of all the students who applied to one of its advertised internships grouped by the internship they applied to.}} \\
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1460,9 +1524,18 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R10 & The system must allow students to review internship advertisements and select them if they wish to apply. \\ 
     \hline
+    \centering R17 & The system must allow companies to offer internship proposals to selected students after the interview process is completed. \\ 
+    \hline
     \centering R25 & The system must allow students to view all details about the internships they have applied for, such as completion status, and deadlines. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1480,9 +1553,17 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R16 & The system must recommend a student and a company profile to each other and allow them to review whether the company has an active internship position and if the profiles could attract each other's interest. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
+
 \end{center}
 
 \begin{center}
@@ -1498,7 +1579,14 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R12 & The system must notify students when there are updates regarding the internships they applied for or accepted. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1518,7 +1606,14 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R27 & The system must allow universities to follow internship processes, handle complaints raised by students, and interrupt an internship if necessary. \\ 
     \hline
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1538,7 +1633,19 @@ Exceptions & None\\ [1ex]
     \hline
     \centering R14 & The system must allow students to contact companies regarding the internships they applied for. \\ 
     \hline
+    \centering R18 & The system must allow companies and students to give feedback at the end of the internship in which they took part. \\ 
+    \hline
+    \centering R19 & The system must allow the student and company who got recommended to each other to give feedback about the recommendation. \\ 
+    \hline
+
+    \centering D1 & The User must have a working Internet connection. \\ 
+    \hline
+    \centering D2 & Students are enrolled in a registered university as students of any kind. \\ 
+    \hline
+    \centering D3 & The User registering is either a student, a university or a company. \\
+    \hline
     \centering D4 & A university needs to be registered for its students to link their accounts and start applying for internships. \\ 
+    \centering D6 & The student registers using his university mail. \\
     \hline
     \end{tabular}
 \end{center}
@@ -1926,25 +2033,20 @@ This section shows the amount of time that each member has spent to produce the 
     \begin{tabular}{|m{5cm}|m{5cm}|m{2cm}|}
         \hline
         \textbf{UNIT} & \textbf{MEMBERS} & \textbf{HOURS} \\ \hline
-        SetUp &  &  \\ \hline
-        Scenarios &  &  \\ \hline
-        Use Cases &   &  \\ \hline
-        Phenomena &   &  \\ \hline
-        Goals &   & \\ \hline
-        Domain Assumptions &  & \\ \hline
-        Requirements & & \\ \hline
-        Mapping &  & \\ \hline
-        Sequence Diagrams &  & \\ \hline
-        Class Diagram &  &  \\ \hline
-        Use Case Diagrams &  & \\ \hline
-        State Charts &  &  \\ \hline
-        UI Mockups &  &  \\ \hline
-        Alloy &  &  \\ \hline
-        Chapter 1 Redaction &  &  \\ \hline
-        Chapter 2 Redaction &  &  \\ \hline
-        Chapter 3 Redaction &  &  \\ \hline
-        Chapter 4 Redaction &  &  \\ \hline
-        Chapters 5 and 6 Redaction and Final Review & & \\ \hline
+        SetUp & Ratti, Salvatore, Yalcin & 3 hours \\ \hline
+        Scenarios & Salvatore & 3 hours \\ \hline
+        Use Cases, Sequence Diagrams & Ratti, Salvatore & 15 hours \\ \hline
+        Phenomena & Salvatore, Yalcin  & 5 hours \\ \hline
+        Goals & Ratti, Salvatore, Yalcin & 4 hours \\ \hline
+        Domain Assumptions & Salvatore & 3 hours \\ \hline
+        Requirements & Yalcin & 4 hours \\ \hline
+        Mapping & Salvatore & 5 hours \\ \hline
+        Class Diagram & Ratti & 4 hours \\ \hline
+        Use Case Diagrams & Ratti & 6 hours \\ \hline
+        State Charts & Ratti & 6 hours \\ \hline
+        UI Mockups & Yalcin & 20 hours \\ \hline
+        Alloy & Ratti & 9 hours \\ \hline
+        Final Review & Ratti, Salvatore, Yalcin & 10 hours\\ \hline
     \end{tabular}
 \end{center}
 
@@ -1954,8 +2056,6 @@ This section shows the amount of time that each member has spent to produce the 
     \item \textbf{The UI Mockups have been made with:} \url{https://www.figma.com}
     \item \textbf{Pictures have been made with:} \url{https://deepai.org/machine-learning-model/text2img}
     \item \textbf{Logos have been made with:} \url{https://www.canva.com/}
-    \item \textbf{Alloy Language Reference:} \url{https://alloytools.org/download/alloy-language-reference.pdf}
-    \item \textbf{Alloy:} \url{https://alloytools.org}
     \item \textbf{Sequence Diagrams have been made with:} \url{http://draw.io}
     \item \textbf{Use Case Diagrams have been made with:} \url{http://draw.io}
     \item \textbf{Class Diagrams have been made with:} \url{http://draw.io}
@@ -1967,9 +2067,3 @@ This section shows the amount of time that each member has spent to produce the 
 
 
 \end{document}
-
-
-
-
-
-
