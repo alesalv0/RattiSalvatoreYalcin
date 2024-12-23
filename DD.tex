@@ -129,6 +129,19 @@
 \subsubsection{ckbSP}
 \subsubsection{Logical Description of Data}
 \subsection{Deployment View}
+We adopted a 3-tier architecture hosted on cloud infrastructure, designed to optimize performance and scalability while reducing costs.
+
+Let's explore more in detail:
+
+\begin{enumerate}
+    \item \textbf{Scalability and Flexibility} - the ability to add or remove resources such as virtual machines, performance cores, or memory as needed, in conjunction with the use of load balancing services, allows the servers to adapt to changes in traffic or workload.
+    \item \textbf{Security} - Firewalls help to protect the application server against data breaches and other security threats.
+    \item \textbf{Cost-efficiency} - the choice of using a cloud provider allows us to only pay for the resources that we are actually using, which can help to lower the overall costs, and in general reduces the waste of resources.
+\end{enumerate}
+
+The cloud provider is an ideal choice for hosting large, high-traffic applications. The chosen cloud provider will need to offer all of these features in order to meet our needs.
+
+The web server resides in the De Militarized Zone and is the primary interface for user interaction. The application server executes the core application logic, processing user requests and handling all the operations. Load balancers are implemented to evenly distribute incoming traffic across multiple instances of Web and Application Servers.
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.33]{figures/DD/SingleDiagrams/DeploymentView.png}
