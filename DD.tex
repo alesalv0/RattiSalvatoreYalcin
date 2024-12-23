@@ -31,7 +31,8 @@
 % PACKAGES FOR IMAGES
 \usepackage{graphicx}
 \usepackage{transparent} % Enables transparent images
-\usepackage{eso-pic} % For the background picture on the title page
+\usepackage{eso-pic} % For the background picture on the title 
+\usepackage{rotating}
 \usepackage{subfig} % Numbered and caption subfigures using \subfloat.
 \usepackage{tikz} % A package for high-quality hand-made figures.
 \usetikzlibrary{}
@@ -125,9 +126,25 @@
 \section{Overall Description}
 \subsection{Overview: High-level Components and Interaction}
 \subsection{Component View}
+In this section we show the components and their relationships. The following
+sections will explain the interaction between interfaces and details on each method of interfaces.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.50]{DD_images/GeneralComponentDiagram.drawio.png}\\
+\caption{Component Diagram of the Student\&Companies System}
+\end{figure}
+
 \subsubsection{Entity Manager}
-\subsubsection{ckbSP}
-\subsubsection{Logical Description of Data}
+This component is responsible for communication with a Database Management System (DBMS).
+It follows the Adapter design pattern, allowing other components to interact with the DBMS
+without needing to write any SQL code themselves.
+\subsubsection{S\&C-SP}
+The S\&CSP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
+\begin{sidewaysfigure} % Use sidewaysfigure instead of figure
+\centering
+\includegraphics[scale=0.50]{DD_images/S&C.drawio.png}\\
+\caption{Component Diagram of the S\&C-SP subsystem}
+\end{sidewaysfigure}
 \subsection{Deployment View}
 \subsection{Runtime View}
 \subsection{Component Interfaces}
