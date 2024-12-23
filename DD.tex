@@ -140,11 +140,33 @@ It follows the Adapter design pattern, allowing other components to interact wit
 without needing to write any SQL code themselves.
 \subsubsection{S\&C-SP}
 The S\&CSP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
-\begin{sidewaysfigure} % Use sidewaysfigure instead of figure
+\begin{sidewaysfigure}% Use sidewaysfigure instead of figure
 \centering
 \includegraphics[scale=0.50]{DD_images/S&C.drawio.png}\\
 \caption{Component Diagram of the S\&C-SP subsystem}
 \end{sidewaysfigure}
+\begin{enumerate}
+    \item {Dashboard Manager} :
+    \\It's used as an intermediary between the WebUI and the
+    other components of the server to provide the web application only the functionality
+    strictly necessary for it to work properly.
+    \item {Account Manager} :
+    \\This component handles the operations needed to manage each User's account, and to view the Users' profiles. It allows Users to login, using the Authentication Manager's interface.
+    \item {Authentication Manager} :
+    \\This component handles signup, login and logout operations.
+    \item {Internship Manager} :
+    \\This component handles the operations needed to manage an Internship, to view any information about it and to accept it.
+    \item {Comment Manager} :
+    \\This component handles the operations needed to view and write comments (complaints and observations.
+    \item {Recommendation Manager} :
+    \\This component is responsible for the recommendation mechanism for students and internships. It takes the input data from the user interactions with the system and reloads the associated recommendations.
+    \item {Interaction Manager} :
+    \\This component is responsible for registering feedbacks and interactions of the user with the web application, transforming this information into parameters, and passing it to the recommendation manager for elaboration.
+    \item {Notification Manager} :
+    \\This component is responsible for the dispatch of notifications.
+    \item {Model} :
+    \\This component facilitates the interaction with and representation of S\&C-SP data.
+\end{enumerate}
 \subsection{Deployment View}
 We adopted a 3-tier architecture hosted on cloud infrastructure, designed to optimize performance and scalability while reducing costs.
 
