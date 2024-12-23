@@ -127,14 +127,14 @@
 \subsection{Overview: High-level Components and Interaction}
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.40]{figures/DD/SingleDiagrams/overviewDiagram.png}
+\includegraphics[scale = 0.40]{DD_figures/SingleDiagrams/overviewDiagram.png}
 \end{figure}
 \subsection{Component View}
 In this section we show the components and their relationships. The following
 sections will explain the interaction between interfaces and details on each method of interfaces.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.50]{DD_images/GeneralComponentDiagram.drawio.png}\\
+\includegraphics[scale = 0.50]{DD_figures/GeneralComponentDiagram.drawio.png}\\
 \caption{Component Diagram of the Student\&Companies System}
 \end{figure}
 
@@ -146,7 +146,7 @@ without needing to write any SQL code themselves.
 The S\&CSP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
 \begin{sidewaysfigure}% Use sidewaysfigure instead of figure
 \centering
-\includegraphics[scale=0.50]{DD_images/S&C.drawio.png}\\
+\includegraphics[scale=0.50]{DD_figures/S&C.drawio.png}\\
 \caption{Component Diagram of the S\&C-SP subsystem}
 \end{sidewaysfigure}
 \begin{enumerate}
@@ -187,7 +187,7 @@ The cloud provider is an ideal choice for hosting large, high-traffic applicatio
 The web server resides in the De Militarized Zone and is the primary interface for user interaction. The application server executes the core application logic, processing user requests and handling all the operations. Load balancers are implemented to evenly distribute incoming traffic across multiple instances of Web and Application Servers.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.33]{figures/DD/SingleDiagrams/DeploymentView.png}
+    \includegraphics[scale = 0.33]{DD_figures/SingleDiagrams/DeploymentView.png}
     \caption{University Sign Up Page}
     \centering
 \end{figure}
