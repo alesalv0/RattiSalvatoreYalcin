@@ -125,6 +125,9 @@
 
 \section{Overall Description}
 \subsection{Overview: High-level Components and Interaction}
+The following diagram is designed to clearly demonstrate the high-level components required by the system and the relationships between them. 
+
+ The Presentation Layer interacts directly with users and is responsible for managing the front-end side. This layer provides the user interface and collaborates with the Load Balancer and Web Server to optimize system performance and functionality. User interactions within the interface are forwarded from the Presentation Layer to the back-end, enabling additional processing and functionality. Furthermore, to enhance the system’s security and mitigate potential threats from external networks, a Firewall component is incorporated into the architecture. The Business Logic Layer processes incoming requests from the Presentation Layer and facilitates access to the core system functionalities, such as internship applications and recommendation mechanisms, through the use of APIs and Services. In summary, the Business Logic Layer, which houses the Application Server designed in accordance with RESTful standards, ensures the seamless transfer of operations to the Data Layer, thus ensuring the system operates in an efficient, secure, and effective manner.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.40]{DD_figures/SingleDiagrams/overviewDiagram.png}
