@@ -206,7 +206,77 @@ The web server resides in the De Militarized Zone and is the primary interface f
     \caption{University Sign Up Page}
     \centering
 \end{figure}
+
+
 \subsection{Runtime View}
+
+\subsubsection*{Student Registers}
+The diagram represented below shows the process of a Student creating an account to the S\&C website. First, the Student compiles the sign up form with all the requested information. Immediately after, the University login service, related to the university that the Student inserted in the form, is shown. If the Student logs successfully in its university account then the form information is stored in the DB and a new account is generated. From there, the AuthenticationManager triggers the verification email through the EmailServiceProvider. Eventually, all the companies that advertise an internship that system recognizes valid to recommend are notified of the new student subscription to the platform.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.28]{DD_figures/RuntimeView/StudentRegistrationRV.drawio.png}\\
+\caption{Student registers to S\&C}
+\end{figure}
+
+\subsubsection*{Company Registers}
+The diagram represented down below shows the process of a Company creating an account to the S\&C website. First, the Company compiles the sign up form with all the requested information, then, as the request is submitted through the proper API call, the AuthenticationManager component handles the request, and, if the parameters of the request were valid, the AuthenticationManager
+triggers the verification email through the EmailServiceProvider.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.42]{DD_figures/RuntimeView/CompanyRegistersRV.drawio.png}\\
+\caption{Company registers to S\&C}
+\end{figure}
+
+\subsubsection*{University Registers}
+The diagram represented down below shows the process of a University creating an account to the S\&C website. First, the University compiles the sign up form with all the requested information. From there, the University information is checked using the National Education Dictionary. If the information results correct, then the information is stored in the DB and a new University account is generated. At last, the AuthenticationManager
+triggers the verification email through the EmailServiceProvider.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.30]{DD_figures/RuntimeView/StudentUpdatesCV_RV.drawio.png}\\
+\caption{university registers to S\&C}
+\end{figure}
+
+\subsubsection*{Student Updates CV}
+The student initiates the process by uploading their CV, which is handled by the WebApp and subsequently passed to the Dashboard Manager, Account Manager, and Model components for validation and processing. If the data is valid, the CV is updated in the database using a query managed by the DB Manager and DBMS. Upon successful update, the Recommendation Manager generates internship recommendations based on the updated CV, retrieving relevant internships and notifying associated employers. In case of an error (e.g., incorrect data), the system responds with an appropriate error message. Notifications are sent to employers via the Notification Provider, ensuring the flow of updates and recommendations.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.35]{DD_figures/RuntimeView/UniversityRegistrationRV.drawio.png}\\
+\caption{Student Updates CV}
+\end{figure}
+
+\subsubsection*{Student changes university}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.35]{DD_figures/RuntimeView/StudentChangesUniversityRV.drawio.png}\\
+\caption{Student changes university}
+\end{figure}
+
+\subsubsection*{Company sends interview form}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.30]{DD_figures/RuntimeView/CompanySendsInterviewFormRV.drawio.png}\\
+\caption{Company sends interview form}
+\end{figure}
+
+\subsubsection*{Student selects interview date}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.30]{DD_figures/RuntimeView/StudentSelectsInterviewDateRV.drawio.png}\\
+\caption{Student selects interview date}
+\end{figure}
+
+\subsubsection*{Company selects candidate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.30]{DD_figures/RuntimeView/CompanySelectsCandidateRV.drawio.png}\\
+\caption{Company selects candidate}
+\end{figure}
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.35]{DD_figures/SingleDiagrams/login.drawio.png}
@@ -220,6 +290,7 @@ The web server resides in the De Militarized Zone and is the primary interface f
     \caption{Company Create Internship}
     \centering
 \end{figure}
+
 \subsection{Component Interfaces}
 \subsubsection{API Endpoints}
 \subsection{Selected Architectural Styles and Patterns}
