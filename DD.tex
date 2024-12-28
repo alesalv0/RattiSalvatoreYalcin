@@ -290,6 +290,71 @@ The student initiates the process by uploading their CV, which is handled by the
     \caption{Company Create Internship}
     \centering
 \end{figure}
+\newpage
+
+\subsubsection*{User Views Relevant Internships}
+The diagram below shows the process of a user visualizing the list of internships he's interested in. \\
+In the case of a University, it retrieves all the interships the students from that university were selected for
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserViewsRelevantInternshipsRV.png}\\
+\caption{User Views Relevant Internships}
+\end{figure}
+\newpage
+
+\subsubsection*{User Accepts Recommendation}
+The diagram below shows the process of a User (either student or university) accepting a recommendation proposed by the platform algorithm. Both studentID and internshipID are needed for the operation.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserAcceptsRecommendationRV.png}\\
+\caption{User Accepts Recommendation}
+\end{figure}
+\newpage
+
+\subsubsection*{User Views Comments}
+The diagram below shows the process of a User visualizing comments of an internship. If the internshipID is not valid, the process is interrupted.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserViewsCommentsRV.png}\\
+\caption{User Views Comments}
+\end{figure}
+\newpage
+
+\subsubsection*{User Writes Observation}
+The diagram below shows the process of a User (either student or company) writing an observation about an on-going internship. In this case no notifications are sent, which component will be important for the complaint part.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserWritesObservationRV.png}\\
+\caption{User Writes Observation}
+\end{figure}
+\newpage
+
+\subsubsection*{User Writes Complaint}
+The diagram below shows the process of a User (either student or company) writing a complaint about an on-going internship. After the complaint has been posted successfully, the system will send a notification to the university of the student that is doing the internship, through the notification provider.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserWritesComplaintRV.png}\\
+\caption{User Writes Complaint}
+\end{figure}
+\newpage
+
+\subsubsection*{University Interrupts Internship}
+The diagram below shows the process of a University interrupting an on-going internship. If the internshipID is not valid, the process interrupts. The platform will send notifications to the company and the student relative to that internship.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.4]{DD_figures/RuntimeView/UniversityInterruptsInternshipRV.png}\\
+\caption{University Interrupts Internship}
+\end{figure}
+\newpage
+
+\subsubsection*{User Views Template}
+The diagram below shows the process of a User (either student or company) visualizing the suggested template by the platform.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.5]{DD_figures/RuntimeView/UserViewsTemplateRV.png}\\
+\caption{User Views Template}
+\end{figure}
+\newpage
 
 \subsection{Component Interfaces}
 \subsubsection{API Endpoints}
