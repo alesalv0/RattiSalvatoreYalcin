@@ -54,6 +54,9 @@
 \usepackage{tabularx}
 \usepackage{longtable} % Tables that can span several pages
 \usepackage{colortbl}
+\usepackage{multicol}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}} % Centered column type
+\setlength\columnsep{15pt}
 
 % PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
 \usepackage{algorithm}
@@ -129,11 +132,66 @@ A more detailed description of the system can be found in the RASD document, whi
 this document is provided a detailed description of the design of the system to implement
 the requirements and use cases described in the RASD document.
 \subsubsection{Definitions}
+    \begin{itemize}
+        \item \textbf{User}: with User we refer to an active individual that can be either a Student, a Comapny or a University.
+        \item \textbf{Advertise}: An Internship is advertised only if it has been posted and its application deadline is not yet expired.
+        \item \textbf{Recommendation}: It's a platform feature that starts a matching between a company and a student. If both parties accept the recommendation, the student is taken for the selection process
+        \item \textbf{Applying}: a student applies for an internship if he/she manually searches for it and applies for it and the internship was not recommended to him/her.
+        \item \textbf{Accepting}: The act of students or companies, who got recommended to each other, to confirm their interest.
+        \item \textbf{Contact}: The mutual acceptance of recommendation between student and company on the same internship.
+        \item \textbf{Selection}: It's the process that starts after the expiration date of applying for the internship. The company interviews every accepted student and picks the best one(s) for their needs.
+        \item \textbf{Selected student}: He is the student who has been chosen for the internship by the company.
+        \item \textbf{Candidate}: he is a Student that has passed to the selection phase of an internship.
+        \item \textbf{Feedback}: Consists of two separate moments.
+        The first round of feedback is when the users likes/dislikes the recommendation given by the system. The second type of feedback is submitted after the end of the internship, where students and companies rate the experience through a 5 star review form.
+        \item \textbf{Comment}: Is anything written in the dedicated Comments section. Serves the student or the company currently engaged, to highlight something about the experience with each other. If that's a complaint from either, the University of the student will manage the situation.
+        \item \textbf{Complaint}: It's a specific type of Observation, where the University of the student can manage the situation between the parties.
+        \item \textbf{Observation}: It's a type of comment that is not a complaint. It could just report some good or neutral facts about the experience.
+    \end{itemize}
 \subsubsection{Acronyms}
+    \begin{itemize}
+        \item S\&C: "Students\&Companies", the name of the platform
+    \end{itemize}
 \subsubsection{Abbreviations}
+    \begin{itemize}
+        \item \textbf{Wn}: n-th World Phenomena
+        \item \textbf{Sn}: n-th Shared Phenomena
+        \item \textbf{Gn}: n-th Goal
+        \item \textbf{Dn}: n-th Domain Assumption
+        \item \textbf{Rn}: n-th Requirement
+        \item \textbf{Cn}: n-th Component
+    \end{itemize}
 \subsection{Revision History}
+\noindent
+\begin{tabularx}{\textwidth}{llX}
+    \toprule
+    Revised on & Version & Description \\
+    \midrule
+    07-Jan-2025 & 1.0 & Initial Release of the document \\
+    \bottomrule
+\end{tabularx}
 \subsection{Reference Documents}
+    \begin{itemize}
+        \item The specification document of the project: \textbf{Assignment RDD AY 2024-2025}
+        \item The \textbf{RASD} document of the project
+
+    \end{itemize}
 \subsection{Document Structure}
+The document is divided into 6 sections:
+
+\begin{itemize}
+    \item \textbf{Introduction}: provides a brief description of the purpose and the scope of the system. Moreover, it contains the definitions, acronyms, and abbreviations used in the document and the reference documents.
+    
+    \item \textbf{Architectural Design}: this section provides a description of the architecture of the system, including the components and the interfaces between them. It also includes the runtime view of the most important operations of the system, the deployment view, and the architectural styles and patterns used in the system.
+    
+    \item \textbf{User Interface Design}: includes the mockups of the user interface of the system.
+    
+    \item \textbf{Requirements Traceability}: this section shows how the requirements described in the RASD document are satisfied by the design of the system.
+    
+    \item \textbf{Implementation, Integration and Test Plan}: this includes the step-by-step plan for the implementation and testing of the system.
+    
+    \item \textbf{Effort Spent}: this section highlights the effort spent by each member of the group to redact this document.
+\end{itemize}
 
 \section{Overall Description}
 \subsection{Overview: High-level Components and Interaction}
@@ -165,25 +223,25 @@ The S\&CSP subsystem implements S\&C's logic. It provides all the system's featu
 \caption{Component Diagram of the S\&C-SP subsystem}
 \end{sidewaysfigure}
 \begin{enumerate}
-    \item {Dashboard Manager} :
+    \item {C1 Dashboard Manager} :
     \\It's used as an intermediary between the WebUI and the
     other components of the server to provide the web application only the functionality
     strictly necessary for it to work properly.
-    \item {Account Manager} :
+    \item {C2 Account Manager} :
     \\This component handles the operations needed to manage each User's account, and to view the Users' profiles. It allows Users to login, using the Authentication Manager's interface.
-    \item {Authentication Manager} :
+    \item {C3 Authentication Manager} :
     \\This component handles signup, login and logout operations.
-    \item {Internship Manager} :
+    \item {C4 Internship Manager} :
     \\This component handles the operations needed to manage an Internship, to view any information about it and to accept it.
-    \item {Comment Manager} :
+    \item {C5 Comment Manager} :
     \\This component handles the operations needed to view and write comments (complaints and observations.
-    \item {Recommendation Manager} :
+    \item {C6 Recommendation Manager} :
     \\This component is responsible for the recommendation mechanism for students and internships. It takes the input data from the user interactions with the system and reloads the associated recommendations.
-    \item {Interaction Manager} :
+    \item {C7 Interaction Manager} :
     \\This component is responsible for registering feedbacks and interactions of the user with the web application, transforming this information into parameters, and passing it to the recommendation manager for elaboration.
-    \item {Notification Manager} :
+    \item {C8 Notification Manager} :
     \\This component is responsible for the dispatch of notifications.
-    \item {Model} :
+    \item {C9 Model} :
     \\This component facilitates the interaction with and representation of S\&C-SP data.
 \end{enumerate}
 \subsection{Deployment View}
@@ -357,6 +415,16 @@ The diagram below shows the process of a User (either student or company) visual
 \newpage
 
 \subsection{Component Interfaces}
+\subsubsection{Authentication Manager}
+\subsubsection*{AuthInterface}
+User login(username:String, password:String)\\
+bool register(info:UserInfo)
+
+\subsubsection{Authentication Manager}
+\subsubsection*{AuthInterface}
+User login(username:String, password:String)\\
+bool register(info:UserInfo)
+
 \subsubsection{API Endpoints}
 \subsection{Selected Architectural Styles and Patterns}
 \subsection{Other Design Decisions}
@@ -368,6 +436,29 @@ The diagram below shows the process of a User (either student or company) visual
 \section{User Interface Design}
 
 \section{Requirements Traceability}
+
+\begin{center}
+    \begin{tabular}{|C{3cm}|p{10cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\parbox{13cm}{R1: The system must allow a student who wants to register to sign up.}} \\
+    \hline
+    \centering C0 & DB Manager \\ 
+    \hline
+    \centering C3 & Authentication Manager \\ 
+    \hline
+    \centering C6 & Recommendation Manager \\ 
+    \hline
+    \centering C9 & Model \\ 
+    \hline
+    \centering C10 & Email Service Provider \\ 
+    \hline
+    \centering C11 & Notification Service \\ 
+    \hline
+    \centering C13 & University Login Service \\ 
+    \hline
+    \end{tabular}
+\end{center}
+
 
 \section{Implementation, Integration and Testing Plan}
 \subsection{Development Process and Approach}
