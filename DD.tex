@@ -348,6 +348,15 @@ The student initiates the process by uploading their CV, which is handled by the
     \caption{User Login}
 \end{figure}
 
+    \subsubsection*{ Student Decides Offer}
+    This diagram illustrates the process by which a student responds to a company’s internship offer within the system. The sequence begins when the student navigates to the "Matched Internship" page from the "My Internship" page. The system retrieves the list of matched internships using the studentId through the relevant managers through the database and displays the results on the interface. Error-handling mechanisms ensure that only valid matches are presented, and if no matches are found, an error message is displayed to the user.
+    Only and only if an internship offer requires a response which shows in the alt section in the diagram, the system records the student’s decision in the database within a controlled loop to prevent potential errors. Upon acceptance, the advertisement status is updated, the changes are saved, and a notification is sent to the relevant company using the companyId and advertisementId parameters from the internship class. In the event of rejection, the advertisement is removed from the student's "Applied Positions" page. After processing the response, the system updates the interface, allowing the student to view the revised information while also preparing the database for the other related pages.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
+    \caption{Student accepts or rejects internship}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.25]{DD_figures/SingleDiagrams/postInternship.drawio.png}
