@@ -354,7 +354,18 @@ The student initiates the process by uploading their CV, which is handled by the
     \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
-    \caption{Student accepts or rejects internship}
+    \caption{Student Accepts Or Rejects Internship}
+\end{figure}
+
+\subsubsection*{ User Gives Feedback About Recommendations}  
+
+The diagram demonstrates the process of feedback on recommendations, regardless of their user type. This attribute can be use onyly for student and company user types, so the diagram shows some conditions to handle error for unauthorized user types.
+
+The process begins with functions including the internship class (containing attributes such as companyId, advertisementId, or studentId) , userId and a boolean response data type. The updateRecommendationStatus function allows each user to provide feedback only once, and it records that in the database. In addition, the system analyzes the feedback collected to optimize the recommendation mechanism, allowing the system to offer more accurate and personalized suggestions over time.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/userGiveFeedbackRecomm.drawio.png}
+    \caption{User Recommendation Feedback}
 \end{figure}
 
 \begin{figure}[H]
