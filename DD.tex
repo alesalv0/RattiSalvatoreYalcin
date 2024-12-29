@@ -335,11 +335,17 @@ The student initiates the process by uploading their CV, which is handled by the
 \end{figure}
 
 
-\begin{figure}[H]
+    
+    \subsubsection*{ User Login}
+    This diagram illustrates the login process within the system, regardless of the user type. We assumed that the user identifies their own type through interfaces and navigates the event flow using specific tabs and buttons to ultimately reach the login page. 
+    
+    The system verifies the user's credentials by querying with the database through the Authentication Manager. If the provided credentials (email and password) are incorrect, the user encounters an error message with error handling mechanisms  as shown in the diagram. However, if the credentials are valid, the authorized managers retrieve the user's Id from the database and redirect to the user's home page by using that.
+    
+    In addition, the diagram includes a loop representation to prevent that the potential database errors do not affect the system's overall functionality.
+    \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.35]{DD_figures/SingleDiagrams/login.drawio.png}
-    \caption{Login}
-    \centering
+    \includegraphics[scale = 0.35]{DD_figures/RuntimeView/UserLogin.drawio.png}
+    \caption{User Login}
 \end{figure}
 
 \begin{figure}[H]
