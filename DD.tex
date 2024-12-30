@@ -192,6 +192,7 @@ The document is divided into 6 sections:
     
     \item \textbf{Effort Spent}: this section highlights the effort spent by each member of the group to redact this document.
 \end{itemize}
+\newpage
 
 \section{Overall Description}
 \subsection{Overview: High-level Components and Interaction}
@@ -461,13 +462,28 @@ bool register(info:UserInfo)
 
 \subsubsection{API Endpoints}
 \subsection{Selected Architectural Styles and Patterns}
+\begin{itemize}
+    \item \textbf{Three-Tier} The 3-tier architecture divides the system into three logical layers: presentation (Web Server), business logic (Application Server), and data storage (Database). It allows scalability, simplifies maintenance, and enhances control and security.
+
+    \item \textbf{RESTful APIs} RESTful APIs (Representational State Transfer) follow a design paradigm based on specific principles for creating web services. They use standard HTTP methods (GET, POST, PUT, DELETE) and are stateless, allowing easy data exchange between systems. It provides seamless integration with various platforms and systems, it is simple to implement and reduces server load.
+
+    \item \textbf{On-Cloud} The system is hosted on a cloud infrastructure, guaranteeing scalability and cost efficiency (all resources that are asked to the cloud provider are effectively used).
+\end{itemize}
+
 \subsection{Other Design Decisions}
-\subsubsection{Scale-out}
-\subsubsection{Relational Database}
-\subsubsection{Token-Based Authentication and Authorization}
+\subsubsection{Database}
+We decided to use a relational database to store the data of the application given its structure. In particular, we decided to use PostgreSQL, as it's one of the most used.
 \subsubsection{Distributed MVC Pattern}
+This pattern divides the application into three
+core components: Model, View, and Controller. The Model manages the data and business
+logic, the View presents the data to users, and the Controller processes user input and system responses. This division allows simultaneous development of distinct parts of the system. The
+distributed aspect of this pattern particularly aids in handling complex, scalable applications
+by facilitating efficient data processing and user interface management across different systems
+or networks.
+\newpage
 
 \section{User Interface Design}
+\newpage
 
 \section{Requirements Traceability}
 
@@ -943,8 +959,10 @@ bool register(info:UserInfo)
     \hline
     \end{tabular}
 \end{center}
+\newpage
 
 \section{Implementation, Integration and Testing Plan}
+This section will describe the implementation and integration plan of both sides of our system.
 \subsection{Development Process and Approach}
 \subsection{Implementation \& Integration Plan}
 \subsubsection{Server Side}
@@ -953,11 +971,42 @@ bool register(info:UserInfo)
 \subsection{Technologies}
 \subsubsection{Development Technologies}
 \subsubsection{Testing Technologies}
+\newpage
 
 \section{Effort Spent}
 \subsection{Effort Spent per Unit}
+This section shows the amount of time that each member has spent to produce the document. 
+
+\begin{center}
+    \begin{tabular}{|m{5cm}|m{5cm}|m{2cm}|}
+        \hline
+        \textbf{UNIT} & \textbf{MEMBERS} & \textbf{HOURS} \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+         & & \\ \hline
+    \end{tabular}
+\end{center}
+\newpage
 
 \section{References}
 \subsection{References and Tools}
+\begin{itemize}
+    \item \textbf{\href{https://www.overleaf.com/}{Overleaf}} to compile and format this document.
+    \item \textbf{\href{https://www.draw.io}{draw.io}} to do diagrams and to draw the component diagram and the deployment view.
+    \item \textbf{\href{https://github.com}{GitHub}} to share and collaborate on the project.
+    \item \textbf{\href{https://docs.google.com}{Google Docs}} to write notes for writing this document.
+    \item \textbf{\href{https://www.figma.com}{Figma}} to draw the mockups.
+\end{itemize}
 
 \end{document}
