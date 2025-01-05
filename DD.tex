@@ -410,6 +410,15 @@ This diagram represents the scenario in which companies view a list of advertise
 \end{figure}
 \newpage
 
+\subsubsection*{ Company Views The Student Details} 
+This diagram is presented as a continuation of the scenario shown in Figure 19. In summary, the company has accessed the advertisements they previously shared and navigated to the desired advertisement cell. In this scenario, it is assumed that the company selects a student's profile from the "All Candidates" list via the interface. The system retrieves data using the student class, which includes various parameters such as studentId and studentInfo, from the database. Then directs the company to the relevant page on the interface to display the student's profile.The next part of the scenario involves the company accepting the student for the internship. The system collects the student's information through the internship manager, matches the student with the advertisement. Thus,The system removes the student from the "All Candidates" list and prepares the student to be added to the "Approved Profiles" list. This process is designed to continue in a loop until the approval is finalized. Finally, the system displays the updated list on the company page, reflecting the changes with the revised list.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/companyViewStudentDetails.drawio.png}
+    \caption{Company Views The List of Student}
+    \centering
+\end{figure}
+\newpage
 
 \subsubsection*{User Views Relevant Internships}
 The diagram below shows the process of a user visualizing the list of internships he's interested in. \\
