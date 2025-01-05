@@ -296,15 +296,16 @@ triggers the verification email through the EmailServiceProvider.
 \end{figure}
 
 \subsubsection*{Student Updates CV}
-The student initiates the process by uploading their CV, which is handled by the WebApp and subsequently passed to the Dashboard Manager, Account Manager, and Model components for validation and processing. If the data is valid, the CV is updated in the database using a query managed by the DB Manager and DBMS. Upon successful update, the Recommendation Manager generates internship recommendations based on the updated CV, retrieving relevant internships and notifying associated employers. In case of an error (e.g., incorrect data), the system responds with an appropriate error message. Notifications are sent to employers via the Notification Provider, ensuring the flow of updates and recommendations.
+The student initiates the process by uploading their CV, which is handled by the WebApp and subsequently passed to the Dashboard Manager, Account Manager, and Model components for validation and processing. If the data are valid, the CV is updated in the database using a query managed by the DB Manager and the DBMS. Upon successful update, the Recommendation Manager generates internship recommendations based on the updated CV, retrieving relevant internships and notifying associated employers. In case of an error (e.g., incorrect data), the system responds with an appropriate error message. Notifications are sent to employers through the Notification Provider, ensuring the flow of updates and recommendations.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.35]{DD_figures/RuntimeView/UniversityRegistrationRV.drawio.png}\\
+\includegraphics[scale = 0.30]{DD_figures/RuntimeView/StudentUpdatesCV_RV.drawio.png}\\
 \caption{Student Updates CV}
 \end{figure}
 
 \subsubsection*{Student changes university}
-
+The student begins the process by submitting a form with their new email associated to their new university to the WebApp. The form data are forwarded to the Dashboard Manager and Account Manager for validation and processing. If the parameters are valid, the system interacts with the University Login Service to verify the student's credentials and confirm the university enrollment. Once confirmed, the Account Manager updates the student's university information in the database by sending a query to the DB Manager, which is executed by the DBMS. Upon successful update, the system sends a success response to the student.
+In case of errors, such as invalid parameters or incorrect credentials, the system returns an appropriate error message through the WebApp. This ensures clear communication with the student at every stage of the process.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.35]{DD_figures/RuntimeView/StudentChangesUniversityRV.drawio.png}\\
@@ -312,7 +313,7 @@ The student initiates the process by uploading their CV, which is handled by the
 \end{figure}
 
 \subsubsection*{Company sends interview form}
-
+The company initiates the process by submitting an interview form to the WebApp. The form data is forwarded to the Dashboard Manager, Internship Manager, and Model components for validation and processing. If the parameters are valid, the system builds an insert query and sends it to the DB Manager, which is then executed by the DBMS to save the interview time slots. Upon successful saving, the system retrieves the list of candidates for the interview from the database and sends them notifications about the available time slots. In case of errors, such as invalid parameters, the system returns an appropriate error message through the WebApp. This ensures clear communication and efficient execution of the interview scheduling process.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.30]{DD_figures/RuntimeView/CompanySendsInterviewFormRV.drawio.png}\\
@@ -320,7 +321,7 @@ The student initiates the process by uploading their CV, which is handled by the
 \end{figure}
 
 \subsubsection*{Student selects interview date}
-
+The student submits a time slot form via the WebApp, which is then handled by the Internship Manager. This manager interacts with a Model component to save the student's ID, internship ID, and the chosen time slot. A database insert query is built and executed by the DB Manager, interacting with the DBMS Manager. The process can result in either a 400 error (invalid parameters) or a 200 success message. Upon success, the Internship Manager retrieves the company information associated with the internship from the database. This information is used by the Notification Manager to notify the company through a notification provider.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.30]{DD_figures/RuntimeView/StudentSelectsInterviewDateRV.drawio.png}\\
@@ -328,7 +329,7 @@ The student initiates the process by uploading their CV, which is handled by the
 \end{figure}
 
 \subsubsection*{Company selects candidate}
-
+The company sends a request containing the candidate ID and internship ID via the WebApp, which is received by the Internship Manager. This manager then uses a Model component to handle the data. A database insertion query is constructed and executed by the DB Manager, interacting with the DBMS. The process can result in a 400 error (invalid parameters) or a 200 success message. Upon successful candidate selection, the Internship Manager triggers a notification process. The Notification Manager then notifies the selected candidate through a notification provider.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.30]{DD_figures/RuntimeView/CompanySelectsCandidateRV.drawio.png}\\
