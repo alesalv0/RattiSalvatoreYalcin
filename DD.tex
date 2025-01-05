@@ -196,7 +196,7 @@ The document is divided into 6 sections:
 
 \section{Overall Description}
 \subsection{Overview: High-level Components and Interaction}
-The following diagram is designed to clearly demonstrate the high-level components required by the system and the relationships between them. 
+The following diagram is designed to clearly demonstrate the high-level components required by the system and the relationships between them.
 
  The Presentation Layer interacts directly with users and is responsible for managing the front-end side. This layer provides the user interface and collaborates with the Load Balancer and Web Server to optimize system performance and functionality. User interactions within the interface are forwarded from the Presentation Layer to the back-end, enabling additional processing and functionality. Furthermore, to enhance the system’s security and mitigate potential threats from external networks, a Firewall component is incorporated into the architecture. The Business Logic Layer processes incoming requests from the Presentation Layer and facilitates access to the core system functionalities, such as internship applications and recommendation mechanisms, through the use of APIs and Services. In summary, the Business Logic Layer, which houses the Application Server designed in accordance with RESTful standards, ensures the seamless transfer of operations to the Data Layer, thus ensuring the system operates in an efficient, secure, and effective manner.
 \begin{figure}[H]
@@ -350,7 +350,7 @@ The company sends a request containing the candidate ID and internship ID via th
     \caption{User Login}
 \end{figure}
 
-\subsubsection*{ User Feedback About The Process}
+\subsubsection*{ User Feedback About The Experience}
 The diagram shows that users must navigate to the "Accepted Proposal" page to provide feedback on their internship experience. Error-handling mechanisms, as in previous diagrams, ensure system security by addressing scenarios such as empty lists or unauthorized access. Functions utilizing the UserId parameter connect to the database through authorized managers, retrieving lists of accepted proposals or associated companies for display on the user interface. The mechanism within ''alt'' is designed to operate exclusively for cases that require feedback.Submitted responses are stored in the database, lists are updated via authorized managers, and the Interaction Manager processes the feedback for analysis. This interaction improves recommendation mechanism and helps to make it more correctly to the users, and finally the user interface is refreshed to reflect the updated status.
     \begin{figure}[H]
     \centering
@@ -378,6 +378,9 @@ The process begins with functions including the internship class (containing att
     \caption{User Recommendation Feedback}
 \end{figure}
 
+\subsubsection*{ Company posts an internship advertisement}  
+This diagram illustrates the scenario of posting an internship advertisement through the system according to the company's needs. The process begins with the company navigating to the appropriate page via the system interfaces to initiate advertisement creation. We assumed that all required fields within the interface are completed. The system first receives the information and advertisement details filled out by the company user and save them into the DBMS through the relevant managers using the parameters adInfo(advertisementInfo) and companyId. Upon successful creation of the advertisement within the system, relevant student profiles are identified and recommended through the recommendation manager for the advertisement, and these suggested students are saved to the database. Furthermore, the system notifies the identified students of the newly created advertisement, which might align with their interests, through the notification manager and provider. The diagram also incorporates error-handling mechanisms to improve system security and efficiency.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.25]{DD_figures/SingleDiagrams/postInternship.drawio.png}
@@ -385,6 +388,28 @@ The process begins with functions including the internship class (containing att
     \centering
 \end{figure}
 \newpage
+
+\subsubsection*{ Student Views The Advertisement} 
+This diagram illustrates the scenario in which students utilize the system’s homepage interface to list general internship advertisements and view their details. The process begins with the student accessing the system’s homepage, where the system retrieves a list of previously shared advertisements from the Database Management System (DBMS) and presents it to the user.In the event that no advertisements have been shared by companies, an error-handling mechanism is triggered. If the list contains advertisements, we assumed that the student will proceed to view the details of a selected advertisement as part of the scenario. The system processes this action by sending a request, including the advertisementID of the selected advertisement, to the internship manager. The internship manager retrieves the corresponding advertisement details through the DB manager and redirects the student to the relevant page displaying the details. If the student decides to apply for the selected advertisement, the system processes the application by utilizing parameters such as studentId and internship class which includes companyId, studentId and etc. This application is then saved and updated in the database under the list of applied positions. We also assumed that this process will repeat in a loop until the list is successfully updated.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentViewInternship.drawio.png}
+    \caption{Student View Advertisements}
+    \centering
+\end{figure}
+\newpage
+
+
+\subsubsection*{ Company Views The Posted Internships} 
+This diagram represents the scenario in which companies view a list of advertisements previously shared through their own profiles. The company navigates to the "Manage Internship" page, and the system sends a request to the DBMS through the relevant managers using the companyId parameter. The system retrieves the list of advertisements and displays it on the interface. The diagram also incorporates a condition to check whether any advertisements exist. If the list is available, the scenario proceeds with the company selecting one of the advertisements. Using the adId of the selected advertisement, the system retrieves the complete list of candidates for that advertisement from the database and displays it on the corresponding page for the company.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/companyViewStudent.drawio.png}
+    \caption{Company Views The List of Advertisements}
+    \centering
+\end{figure}
+\newpage
+
 
 \subsubsection*{User Views Relevant Internships}
 The diagram below shows the process of a user visualizing the list of internships he's interested in. \\
