@@ -988,15 +988,50 @@ or networks.
 \newpage
 
 \section{Implementation, Integration and Testing Plan}
-This section will describe the implementation and integration plan of both sides of our system.
+
 \subsection{Development Process and Approach}
+The system will be implemented, integrated, and tested using a bottom-up approach, taking
+into account the dependencies between components of the system. This strategy will be used
+for both the server and client sides, which will be developed and tested at the same time.
+Incremental integration testing will be applied to try to find and fix bugs as soon as possible
+during the development cycle. Since Entity Manager and external services are assumed to be
+reliable, they don't need unit testing.
 \subsection{Implementation \& Integration Plan}
+Since the application is mostly server-side, we will only describe the implementation of
+the server components. The client-side, which is actually a presentation layer, will be
+implemented and tested in parallel with the server-side.
 \subsubsection{Server Side}
-\subsubsection{Client Side}
-\subsubsection{Final Integration Test}
-\subsection{Technologies}
-\subsubsection{Development Technologies}
-\subsubsection{Testing Technologies}
+In the first step, the Model and the DB Manager will be implemented and unit tested using a Driver, which will substitute components that have not been implemented yet.
+++
+%image
+\newpage
+
+In the second step, the Notification Manager will be implemented and tested with a Driver, substituting all the components that uses it. The Notification Provider and the Email Service Provider will be implemented using Stubs.
+
+%image
+\newpage
+
+In the third step, the Recommendation Manager and the Comment Manager will be implemented and and unit tested using a Driver.
+
+%image
+\newpage
+
+In the fourth step, the Authentication Manager, Interaction Manager, Account Manager and Internship Manager will be implemented and tested in parallel, a Driver will
+substitute the Dashboard Manager. The implementation of the external services used by the Authentication Manager is done through stubs.
+
+%image
+\newpage
+
+In the fifth step, the implementation of the S\&C server will be finished, with the completion of the Dashboard Manager. A driver will substitute the S\&C Web UI for the unit test.
+
+%image
+\newpage
+
+Once all the components have been implemented and unit tested, full integration tests with
+Drivers and Stubs for external services are done. As the last step, integration tests with the
+real services take place.
+
+%image
 \newpage
 
 \section{Effort Spent}
