@@ -378,7 +378,7 @@ The process begins with functions including the internship class (containing att
     \caption{User Recommendation Feedback}
 \end{figure}
 
-\subsubsection*{ Company posts an internship advertisement  Gives Feedback About Recommendations}  
+\subsubsection*{ Company posts an internship advertisement}  
 This diagram illustrates the scenario of posting an internship advertisement through the system according to the company's needs. The process begins with the company navigating to the appropriate page via the system interfaces to initiate advertisement creation. We assumed that all required fields within the interface are completed. The system first receives the information and advertisement details filled out by the company user and save them into the DBMS through the relevant managers using the parameters adInfo(advertisementInfo) and companyId. Upon successful creation of the advertisement within the system, relevant student profiles are identified and recommended through the recommendation manager for the advertisement, and these suggested students are saved to the database. Furthermore, the system notifies the identified students of the newly created advertisement, which might align with their interests, through the notification manager and provider. The diagram also incorporates error-handling mechanisms to improve system security and efficiency.
 
 \begin{figure}[H]
@@ -388,6 +388,19 @@ This diagram illustrates the scenario of posting an internship advertisement thr
     \centering
 \end{figure}
 \newpage
+
+\subsubsection*{ Student Views The Advertisement} 
+This diagram illustrates the scenario in which students utilize the system’s homepage interface to list general internship advertisements and view their details. The process begins with the student accessing the system’s homepage, where the system retrieves a list of previously shared advertisements from the Database Management System (DBMS) and presents it to the user.In the event that no advertisements have been shared by companies, an error-handling mechanism is triggered. If the list contains advertisements, we assumed that the student will proceed to view the details of a selected advertisement as part of the scenario. The system processes this action by sending a request, including the advertisementID of the selected advertisement, to the internship manager. The internship manager retrieves the corresponding advertisement details through the DB manager and redirects the student to the relevant page displaying the details. If the student decides to apply for the selected advertisement, the system processes the application by utilizing parameters such as studentId and internship class which includes companyId, studentId and etc. This application is then saved and updated in the database under the list of applied positions. We also assumed that this process will repeat in a loop until the list is successfully updated.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentViewInternship.drawio.png}
+    \caption{Student View Advertisements}
+    \centering
+\end{figure}
+\newpage
+
+
+
 
 \subsubsection*{User Views Relevant Internships}
 The diagram below shows the process of a user visualizing the list of internships he's interested in. \\
