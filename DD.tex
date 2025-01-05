@@ -292,7 +292,7 @@ triggers the verification email through the EmailServiceProvider.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.30]{DD_figures/RuntimeView/StudentUpdatesCV_RV.drawio.png}\\
-\caption{university registers to S\&C}
+\caption{University registers to S\&C}
 \end{figure}
 
 \subsubsection*{Student Updates CV}
@@ -350,7 +350,7 @@ The company sends a request containing the candidate ID and internship ID via th
     \caption{User Login}
 \end{figure}
 
-\subsubsection*{ User Feedback About The Process}
+\subsubsection*{ User Feedback About The Experience}
 The diagram shows that users must navigate to the "Accepted Proposal" page to provide feedback on their internship experience. Error-handling mechanisms, as in previous diagrams, ensure system security by addressing scenarios such as empty lists or unauthorized access. Functions utilizing the UserId parameter connect to the database through authorized managers, retrieving lists of accepted proposals or associated companies for display on the user interface. The mechanism within ''alt'' is designed to operate exclusively for cases that require feedback.Submitted responses are stored in the database, lists are updated via authorized managers, and the Interaction Manager processes the feedback for analysis. This interaction improves recommendation mechanism and helps to make it more correctly to the users, and finally the user interface is refreshed to reflect the updated status.
     \begin{figure}[H]
     \centering
@@ -377,6 +377,9 @@ The process begins with functions including the internship class (containing att
     \includegraphics[scale = 0.25]{DD_figures/RuntimeView/userGiveFeedbackRecomm.drawio.png}
     \caption{User Recommendation Feedback}
 \end{figure}
+
+\subsubsection*{ Company posts an internship advertisement  Gives Feedback About Recommendations}  
+This diagram illustrates the scenario of posting an internship advertisement through the system according to the company's needs. The process begins with the company navigating to the appropriate page via the system interfaces to initiate advertisement creation. We assumed that all required fields within the interface are completed. The system first receives the information and advertisement details filled out by the company user and save them into the DBMS through the relevant managers using the parameters adInfo(advertisementInfo) and companyId. Upon successful creation of the advertisement within the system, relevant student profiles are identified and recommended through the recommendation manager for the advertisement, and these suggested students are saved to the database. Furthermore, the system notifies the identified students of the newly created advertisement, which might align with their interests, through the notification manager and provider. The diagram also incorporates error-handling mechanisms to improve system security and efficiency.
 
 \begin{figure}[H]
     \centering
