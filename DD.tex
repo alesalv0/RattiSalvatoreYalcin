@@ -220,7 +220,7 @@ without needing to write any SQL code themselves.
 The S\&CSP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
 \begin{sidewaysfigure}% Use sidewaysfigure instead of figure
 \centering
-\includegraphics[scale=0.50]{DD_figures/S&C.drawio.png}\\
+\includegraphics[scale=0.50]{DD_figures/ComponentDiagram2-S&C.drawio.png}\\
 \caption{Component Diagram of the S\&C-SP subsystem}
 \end{sidewaysfigure}
 \begin{enumerate}
@@ -268,7 +268,10 @@ The web server resides in the De Militarized Zone and is the primary interface f
 
 
 \subsection{Runtime View}
-
+This section contains the sequence diagrams of the most important operations of the
+system. The diagrams include the component that we have already described in the
+previous section and the external components that are involved in the operations.
+Moreover, we avoided explicitly including the authentication mechanism for each user at the beginning of each operation. We assume, the authentication and authorization will be implemented using a token-based process. These tokens are sent to the users each time they log in and they must be included with each request that requires authentication or authorization.
 \subsubsection*{Student Registers}
 The diagram represented below shows the process of a Student creating an account to the S\&C website. First, the Student compiles the sign up form with all the requested information. Immediately after, the University login service, related to the university that the Student inserted in the form, is shown. If the Student logs successfully in its university account then the form information is stored in the DB and a new account is generated. From there, the AuthenticationManager triggers the verification email through the EmailServiceProvider. Eventually, all the companies that advertise an internship that system recognizes valid to recommend are notified of the new student subscription to the platform.
 \begin{figure}[H]
@@ -482,27 +485,36 @@ The diagram below shows the process of a User (either student or company) visual
 \includegraphics[scale = 0.5]{DD_figures/RuntimeView/UserViewsTemplateRV.png}\\
 \caption{User Views Template}
 \end{figure}
+
+
 \newpage
-
-\subsection{Component Interfaces}
+\section{Component Interfaces}
 In this section, we use a class diagram to illustrate the component interfaces. The methods are presented as clearly as possible, and we expect their functionality to be easily understandable.
-\begin{figure}[H]
+\begin{sidewaysfigure}
 \centering
-\includegraphics[angle=90, scale = 0.5]{DD_figures/ComponentInterfaces.drawio.png}\\
-\caption{Class diagram with interfaces of the S/&C System}
-\end{figure}
+\includegraphics[scale = 0.3]{DD_figures/ComponentInterfaces.drawio.png}\\
+\caption{Class diagram with interfaces of the S\&C System}
+\end{sidewaysfigure}
 
-\subsubsection{Authentication Manager}
-\subsubsection*{AuthInterface}
-User login(username:String, password:String)\\
-bool register(info:UserInfo)
+\subsection{API Endpoints}
+In this section the API endpoints are presented. The focus is on the method used, on the parameters required and on the response.
 
-\subsubsection{Authentication Manager}
-\subsubsection*{AuthInterface}
-User login(username:String, password:String)\\
-bool register(info:UserInfo)
+\subsubsection{POST api/user/register}
+\begin{description}
+    \item[Request Body:] User: Object
+    \item[201 Response:] Created
+    \item[400 Response:] validationError : Object
+\end{description}
 
-\subsubsection{API Endpoints}
+\begin{description}
+    \item[Request Body:] User: Object 
+    \item[200 Response:] Username, token : Object
+    \item[400 Response:] validationError : Object 
+    \item[401 Response:] loginError : Object
+\end{description}
+
+
+\newpage
 \subsection{Selected Architectural Styles and Patterns}
 \begin{itemize}
     \item \textbf{Three-Tier} The 3-tier architecture divides the system into three logical layers: presentation (Web Server), business logic (Application Server), and data storage (Database). It allows scalability, simplifies maintenance, and enhances control and security.
@@ -514,7 +526,7 @@ bool register(info:UserInfo)
 
 \subsection{Other Design Decisions}
 \subsubsection{Database}
-We decided to use a relational database to store the data of the application given its structure. In particular, we decided to use PostgreSQL, as it's one of the most used.
+We selected a relational database for our system design because it is effective at storing structured data, enforcing data integrity, and providing fast query performance. In particular, we decided to use PostgreSQL, because it is open source and it is one of the most used relational databases.
 \subsubsection{Distributed MVC Pattern}
 This pattern divides the application into three
 core components: Model, View, and Controller. The Model manages the data and business
@@ -522,6 +534,8 @@ logic, the View presents the data to users, and the Controller processes user in
 distributed aspect of this pattern particularly aids in handling complex, scalable applications
 by facilitating efficient data processing and user interface management across different systems
 or networks.
+\subsubsection{Interaction Manager}
+We decided to implement a separate manager to take care of each interaction of the user with the system. In this first version the interaction are limited to feedback given by the users. However, if the recommendation mechanism needs to be modified in order to consider also other interactions of the users (e.g. logging viewing time and mouse movements), this is going to be possible through adaptation of the Interaction Manager.
 \newpage
 
 \section{User Interface Design}
