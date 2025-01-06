@@ -1319,35 +1319,52 @@ implemented and tested in parallel with the server-side.
 \subsubsection{Server Side}
 In the first step, the Model and the DB Manager will be implemented and unit tested using a Driver, which will substitute components that have not been implemented yet.
 
-%image
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.9]{DD_figures/ImplementationDiagrams/FirstStep.png}\\
+\caption{First step of Implementation}
+\end{figure}
 \newpage
 
 In the second step, the Notification Manager will be implemented and tested with a Driver, substituting all the components that uses it. The Notification Provider and the Email Service Provider will be implemented using Stubs.
 
-%image
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.7]{DD_figures/ImplementationDiagrams/SecondStep.png}\\
+\caption{Second step of Implementation}
+\end{figure}
 \newpage
 
 In the third step, the Recommendation Manager and the Comment Manager will be implemented and and unit tested using a Driver.
 
-%image
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.7]{DD_figures/ImplementationDiagrams/ThirdStep.png}\\
+\caption{Third step of Implementation}
+\end{figure}
 \newpage
 
 In the fourth step, the Authentication Manager, Interaction Manager, Account Manager and Internship Manager will be implemented and tested in parallel, a Driver will
 substitute the Dashboard Manager. The implementation of the external services used by the Authentication Manager is done through stubs.
 
-%image
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.7]{DD_figures/ImplementationDiagrams/FourthStep.png}\\
+\caption{Fourth step of Implementation}
+\end{figure}
 \newpage
 
 In the fifth step, the implementation of the S\&C server will be finished, with the completion of the Dashboard Manager. A driver will substitute the S\&C Web UI for the unit test.
 
-%image
-\newpage
-
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.7]{DD_figures/ImplementationDiagrams/FifthStep.png}\\
+\caption{Fifth step of Implementation}
+\end{figure}
+\\ \\
 Once all the components have been implemented and unit tested, full integration tests with
 Drivers and Stubs for external services are done. As the last step, integration tests with the
 real services take place.
-
-%image
 \newpage
 
 \section{Effort Spent}
