@@ -514,6 +514,85 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[401 Response:] loginError : Object
 \end{description}
 
+\subsubsection{POST api/internships/{internshipId}/acceptRecommendation}
+\begin{description}
+    \item[Request Body:]  universityId: int, studentId: int
+    \item[200 Response:] comments: Array of Object 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection{POST api/internships/{internshipId}/acceptRecommendation}
+\begin{description}
+    \item[Request Body:]  universityId: int, studentId: int
+    \item[200 Response:] comments: Array of Object 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+
+\subsubsection{GET api/internships}
+\begin{description}
+    \item[Request Body:]  userId: int
+    \item[200 Response:] internships: Array of Object
+    \item[400 Response:] error : String("Empty List")
+\end{description}
+
+\subsubsection{GET api/internships/{internshipId}}
+\begin{description}
+    \item[200 Response:] internship: Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection{GET api/internships/{internshipId}/apply}
+\begin{description}
+    \item[Request Body:]  userId: int
+    \item[200 Response:] message: String("Success")
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection{GET api/internships/{internshipId}/allCandidates}
+\begin{description}
+    \item[Request Body:]  companyId: int, adId: int
+    \item[200 Response:] allCandidates: Array of Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection{GET api/students/{studentId}}
+\begin{description}
+    \item[200 Response:] studentProfile: Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection{GET api/internships/{internshipId}/comments}
+\begin{description}
+    \item[Request Body:]  userId: int
+    \item[200 Response:] comments: Array of Object 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+\subsubsection{POST api/internships/{internshipId}/observation}
+\begin{description}
+    \item[Request Body:] observations: String, userId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection{POST api/internships/{internshipId}/complaint}
+\begin{description}
+    \item[Request Body:] complaints: String, userId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection{PUT api/internships/{internshipId}/interrupt}
+\begin{description}
+    \item[Request Body:] companyId: int, studentId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+\subsubsection{GET api/user/{userId}/template}
+\begin{description}
+    \item[200 Response:] template: Object 
+    \item[400 Response:] error : String("Invalid userId")
+\end{description}
 
 \newpage
 \subsection{Selected Architectural Styles and Patterns}
