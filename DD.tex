@@ -489,7 +489,7 @@ The diagram below shows the process of a User (either student or company) visual
 
 
 \newpage
-\section{Component Interfaces}
+\subsection{Component Interfaces}
 In this section, we use a class diagram to illustrate the component interfaces. The methods are presented as clearly as possible, and we expect their functionality to be easily understandable.
 \begin{sidewaysfigure}
 \centering
@@ -497,21 +497,86 @@ In this section, we use a class diagram to illustrate the component interfaces. 
 \caption{Class diagram with interfaces of the S\&C System}
 \end{sidewaysfigure}
 
-\subsection{API Endpoints}
+\newpage
+\subsubsection{API Endpoints}
 In this section the API endpoints are presented. The focus is on the method used, on the parameters required and on the response.
 
-\subsubsection{POST api/user/register}
+
+\subsubsection*{POST /api/users/register}
 \begin{description}
-    \item[Request Body:] User: Object
-    \item[201 Response:] Created
-    \item[400 Response:] validationError : Object
+    \item[Request Body:]  User: Object
+    \item[200 Response:] message: String("User successfully registered") 
+    \item[400 Response:] error : String("Invalid request data")
 \end{description}
 
+\subsubsection*{POST /api/users/login}
 \begin{description}
-    \item[Request Body:] User: Object 
-    \item[200 Response:] Username, token : Object
-    \item[400 Response:] validationError : Object 
-    \item[401 Response:] loginError : Object
+    \item[Request Body:]  User: Object
+    \item[200 Response:] message: String("User successfully logged in") 
+    \item[400 Response:] error : String("Invalid request data")
+\end{description}
+
+\subsubsection*{PUT /api/student/{studentId}/uploadCV}
+\begin{description}
+    \item[Request Body:]  CVfile: Object, studentID: int
+    \item[200 Response:] message: String("CV successfully uploaded") 
+    \item[400 Response:] error : String("Invalid request data")
+\end{description}
+
+\subsubsection*{PUT /api/student/{studentId}/changeUni}
+\begin{description}
+    \item[Request Body:]  changeUni: emailUniForm, studentID: int
+    \item[200 Response:] message: String("Student successfully changed university") 
+    \item[400 Response:] error : String("Invalid parameters")
+\end{description}
+
+\subsubsection*{POST api/internship/{companyID}/interviews}
+\begin{description}
+    \item[Request Body:] interview: interviewForm, companyID: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid parameters")
+\end{description}
+
+\subsubsection*{POST api/internship/{studentID}/timeSlot}
+\begin{description}
+    \item[Request Body:] timeSlot: time, studentID: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid parameters")
+\end{description}
+
+\subsubsection*{POST api/internship/{companyID}/selectedStudent}
+\begin{description}
+    \item[Request Body:] selectedStudent: studentID, companyID: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid parameters")
+\end{description}
+
+\subsubsection*{POST api/internship/{userdID}/feedback}
+\begin{description}
+    \item[Request Body:] feeback: respondeObj, userID: int
+    \item[200 Response:] message: String("Success") 
+    \item[500 Response:] error : String("Server side error")
+\end{description}
+
+\subsubsection*{POST api/student/{studentID}/response}
+\begin{description}
+    \item[Request Body:] internship: internshipID, userID: int, response: Boolean
+    \item[200 Response:] message: String("Success") 
+    \item[500 Response:] error : String("Server side error")
+\end{description}
+
+\subsubsection*{POST api/internship/{userdID}/feedback}
+\begin{description}
+    \item[Request Body:] feeback: respondeObj, userID: int
+    \item[200 Response:] message: String("Success") 
+    \item[500 Response:] error : String("Unauthorized")
+\end{description}
+
+\subsubsection*{POST api/internship/{companyID}/adInfo}
+\begin{description}
+    \item[Request Body:] adInfo: internshipForm, companyID: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
 
@@ -1383,9 +1448,7 @@ In the fifth step, the implementation of the S\&C server will be finished, with 
 \includegraphics[scale = 0.7]{DD_figures/ImplementationDiagrams/FifthStep.png}\\
 \caption{Fifth step of Implementation}
 \end{figure}
-\\ \\
-Once all the components have been implemented and unit tested, full integration tests with
-Drivers and Stubs for external services are done. As the last step, integration tests with the
+Once all the components have been implemented and unit tested, full integration tests with Drivers and Stubs for external services are done. As the last step, integration tests with the
 real services take place.
 \newpage
 
