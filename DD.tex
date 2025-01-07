@@ -617,24 +617,6 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection*{DELETE api/internship/removeFromAllCandidates}
-\begin{description}
-    \item[Request Body:] internship: Object, student: Object
-    \item[200 Response:] message: String("Success")
-\end{description}
-
-\subsubsection*{DELETE api/internship/removeFromMatchedInternships}
-\begin{description}
-    \item[Request Body:] internship: Object, student: Object
-    \item[200 Response:] message: String("Success")
-\end{description}
-
-\subsubsection*{DELETE api/internship/removeFromApprovedProfiles}
-\begin{description}
-    \item[Request Body:] internship: Object, student: Object
-    \item[200 Response:] message: String("Success")
-\end{description}
-
 \subsubsection*{PUT api/company/approvedProfile}
 \begin{description}
     \item[Request Body:] internship: Object, student: Object
@@ -767,7 +749,6 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[200 Response:] template: Object 
     \item[400 Response:] error : String("Invalid userId")
 \end{description}
-
 
 \newpage
 \subsection{Selected Architectural Styles and Patterns}
