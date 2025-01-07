@@ -203,6 +203,8 @@ The following diagram is designed to clearly demonstrate the high-level componen
 \centering
 \includegraphics[scale = 0.40]{DD_figures/SingleDiagrams/overviewDiagram.png}
 \end{figure}
+
+\newpage
 \subsection{Component View}
 In this section we show the components and their relationships. The following
 sections will explain the interaction between interfaces and details on each method of interfaces.
@@ -281,6 +283,7 @@ The diagram represented below shows the process of a Student creating an account
 \caption{Student registers to S\&C}
 \end{figure}
 
+\newpage
 \subsubsection*{Company Registers}
 The diagram represented down below shows the process of a Company creating an account to the S\&C website. First, the Company compiles the sign up form with all the requested information, then, as the request is submitted through the proper API call, the AuthenticationManager component handles the request, and, if the parameters of the request were valid, the AuthenticationManager
 triggers the verification email through the EmailServiceProvider.
@@ -290,6 +293,7 @@ triggers the verification email through the EmailServiceProvider.
 \caption{Company registers to S\&C}
 \end{figure}
 
+\newpage
 \subsubsection*{University Registers}
 The diagram represented down below shows the process of a University creating an account to the S\&C website. First, the University compiles the sign up form with all the requested information. From there, the University information is checked using the National Education Dictionary. If the information results correct, then the information is stored in the DB and a new University account is generated. At last, the AuthenticationManager
 triggers the verification email through the EmailServiceProvider.
@@ -299,6 +303,7 @@ triggers the verification email through the EmailServiceProvider.
 \caption{university registers to S\&C}
 \end{figure}
 
+\newpage
 \subsubsection*{Student Updates CV}
 The student initiates the process by uploading their CV, which is handled by the WebApp and subsequently passed to the Dashboard Manager, Account Manager, and Model components for validation and processing. If the data are valid, the CV is updated in the database using a query managed by the DB Manager and the DBMS. Upon successful update, the Recommendation Manager generates internship recommendations based on the updated CV, retrieving relevant internships and notifying associated employers. In case of an error (e.g., incorrect data), the system responds with an appropriate error message. Notifications are sent to employers through the Notification Provider, ensuring the flow of updates and recommendations.
 \begin{figure}[H]
@@ -361,13 +366,13 @@ The diagram shows that users must navigate to the "Accepted Proposal" page to pr
     \includegraphics[scale = 0.25]{DD_figures/RuntimeView/userGivesFeedback.drawio.png}
     \caption{User Feedback}
 \end{figure}
-
+\newpage
     \subsubsection*{ Student Decides Offer}
     This diagram illustrates the process by which a student responds to a company’s internship offer within the system. The sequence begins when the student navigates to the "Matched Internship" page from the "My Internship" page. The system retrieves the list of matched internships using the studentId through the relevant managers through the database and displays the results on the interface. Error-handling mechanisms ensure that only valid matches are presented, and if no matches are found, an error message is displayed to the user.
     Only and only if an internship offer requires a response which shows in the alt section in the diagram, the system records the student’s decision in the database within a controlled loop to prevent potential errors. Upon acceptance, the advertisement status is updated, the changes are saved, and a notification is sent to the relevant company using the companyId and advertisementId parameters from the internship class. In the event of rejection, the advertisement is removed from the student's "Applied Positions" page. After processing the response, the system updates the interface, allowing the student to view the revised information while also preparing the database for the other related pages.
     \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
+    \includegraphics[scale = 0.20]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
     \caption{Student Accepts Or Rejects Internship}
 \end{figure}
 
@@ -394,7 +399,7 @@ This diagram illustrates the scenario of posting an internship advertisement thr
 \newpage
 
 \subsubsection*{ Student Views The Advertisement} 
-This diagram illustrates the scenario in which students utilize the system’s homepage interface to list general internship advertisements and view their details. The process begins with the student accessing the system’s homepage, where the system retrieves a list of previously shared advertisements from the Database Management System (DBMS) and presents it to the user.In the event that no advertisements have been shared by companies, an error-handling mechanism is triggered. If the list contains advertisements, we assumed that the student will proceed to view the details of a selected advertisement as part of the scenario. The system processes this action by sending a request, including the advertisementID of the selected advertisement, to the internship manager. The internship manager retrieves the corresponding advertisement details through the DB manager and redirects the student to the relevant page displaying the details. If the student decides to apply for the selected advertisement, the system processes the application by utilizing parameters such as studentId and internship class which includes companyId, studentId and etc. This application is then saved and updated in the database under the list of applied positions. We also assumed that this process will repeat in a loop until the list is successfully updated.
+This diagram illustrates the scenario in which students utilize the system’s homepage interface to list general internship advertisements and view their details. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentViewInternship.drawio.png}
@@ -544,20 +549,20 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{internshipId\}/selectsStudent}
+\subsubsection*{POST api/internship/\{internshipId\}/selectsStudent}
 \begin{description}
     \item[Request Body:] studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{GET api/user/\{userId\}/acceptedProposals}
+\subsubsection*{GET api/users/\{userId\}/acceptedProposals}
 \begin{description}
     \item[200 Response:] acceptedProposals: Array of Objects 
     \item[400 Response:] error : String("Unauthorized")
 \end{description}
 
-\subsubsection*{GET api/user/\{userId\}/matchedInternships}
+\subsubsection*{GET api/users/\{userId\}/matchedInternships}
 \begin{description}
     \item[200 Response:] matchedInternships: Array of Objects 
     \item[400 Response:] error : String("Empty List")
@@ -591,99 +596,99 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Invalid process")
 \end{description}
 
-\subsubsection{GET api/internship}
+\subsubsection*{GET api/internship}
 \begin{description}
     \item[Request Body:]  userId: int
     \item[200 Response:] internships: Array of Object
     \item[400 Response:] error : String("Empty List")
 \end{description}
 
-\subsubsection{GET api/internship/\{internshipId\}}
+\subsubsection*{GET api/internship/\{internshipId\}}
 \begin{description}
     \item[200 Response:] internship: Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{POST api/internship/\{internshipId\}/apply}
+\subsubsection*{POST api/internship/\{internshipId\}/apply}
 \begin{description}
     \item[Request Body:]  userId: int
     \item[200 Response:] message: String("Success")
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{PUT api/internship/allCandidates}
+\subsubsection*{PUT api/internship/allCandidates}
 \begin{description}
     \item[Request Body:] internship: Object, student: Object
     \item[200 Response:] message: String("Success")
 \end{description}
 
-\subsubsection{PUT api/company/approvedProfile}
+\subsubsection*{PUT api/company/approvedProfile}
 \begin{description}
     \item[Request Body:] internship: Object, student: Object
     \item[200 Response:] message: String("Success")
 \end{description}
 
-\subsubsection{PUT api/student/\{studentId\}/appliedPosition}
+\subsubsection*{PUT api/student/\{studentId\}/appliedPosition}
 \begin{description}
     \item[Request Body:] internship: Object
     \item[200 Response:] message: String("Success")
 \end{description}
 
-\subsubsection{GET api/internship/created}
+\subsubsection*{GET api/internship/created}
 \begin{description}
     \item[Request Body:]  companyId: int
     \item[200 Response:] internships: Array of Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/internship/allCandidates}
+\subsubsection*{GET api/internship/allCandidates}
 \begin{description}
     \item[Request Body:]  companyId: int, adId: int
     \item[200 Response:] allCandidates: Array of Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{POST api/internships/\{internshipId\}/acceptRecommendation}
+\subsubsection*{POST api/internship/\{internshipId\}/acceptRecommendation}
 \begin{description}
     \item[Request Body:] studentId: int, isStudent: boolean
     \item[200 Response:] comments: Array of Object 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{GET api/internship/\{internshipId\}/studentProfile}
+\subsubsection*{GET api/internship/\{internshipId\}/studentProfile}
 \begin{description}
     \item[200 Response:] studentProfile: Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/user/\{userId\}/comments}
+\subsubsection*{GET api/users/\{userId\}/comments}
 \begin{description}
     \item[Request Body:]  internshipId: int
     \item[200 Response:] comments: Array of Object 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
-\subsubsection{POST api/user/\{userId\}/observation}
+\subsubsection*{POST api/users/\{userId\}/observation}
 \begin{description}
     \item[Request Body:] observations: Array of Object, internshipId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{POST api/user/\{userId\}/complaint}
+\subsubsection*{POST api/users/\{userId\}/complaint}
 \begin{description}
     \item[Request Body:] complaints: Array of Object, internshipId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{PUT api/internships/\{internshipId\}/interrupt}
+\subsubsection*{PUT api/internship/\{internshipId\}/interrupt}
 \begin{description}
     \item[Request Body:] companyId: int, studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{GET api/user/\{userId\}/template}
+\subsubsection*{GET api/users/\{userId\}/template}
 \begin{description}
     \item[200 Response:] template: Object 
     \item[400 Response:] error : String("Invalid userId")
