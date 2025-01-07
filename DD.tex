@@ -217,32 +217,32 @@ This component is responsible for communication with a Database Management Syste
 It follows the Adapter design pattern, allowing other components to interact with the DBMS
 without needing to write any SQL code themselves.
 \subsubsection{S\&C-SP}
-The S\&CSP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
+The S\&C-SP subsystem implements S\&C's logic. It provides all the system's features, including the recommendation system.
 \begin{sidewaysfigure}% Use sidewaysfigure instead of figure
 \centering
 \includegraphics[scale=0.50]{DD_figures/ComponentDiagram2-S&C.drawio.png}\\
 \caption{Component Diagram of the S\&C-SP subsystem}
 \end{sidewaysfigure}
 \begin{enumerate}
-    \item {C1 Dashboard Manager} :
+    \item {C1 - Dashboard Manager} :
     \\It's used as an intermediary between the WebUI and the
     other components of the server to provide the web application only the functionality
     strictly necessary for it to work properly.
-    \item {C2 Account Manager} :
+    \item {C2 - Account Manager} :
     \\This component handles the operations needed to manage each User's account, and to view the Users' profiles. It allows Users to login, using the Authentication Manager's interface.
-    \item {C3 Authentication Manager} :
+    \item {C3 -Authentication Manager} :
     \\This component handles signup, login and logout operations.
-    \item {C4 Internship Manager} :
+    \item {C4 -Internship Manager} :
     \\This component handles the operations needed to manage an Internship, to view any information about it and to accept it.
-    \item {C5 Comment Manager} :
-    \\This component handles the operations needed to view and write comments (complaints and observations.
-    \item {C6 Recommendation Manager} :
+    \item {C5 - Comment Manager} :
+    \\This component handles the operations needed to view and write comments (complaints and observations).
+    \item {C6 -Recommendation Manager} :
     \\This component is responsible for the recommendation mechanism for students and internships. It takes the input data from the user interactions with the system and reloads the associated recommendations.
-    \item {C7 Interaction Manager} :
+    \item {C7 -Interaction Manager} :
     \\This component is responsible for registering feedbacks and interactions of the user with the web application, transforming this information into parameters, and passing it to the recommendation manager for elaboration.
-    \item {C8 Notification Manager} :
+    \item {C8 -Notification Manager} :
     \\This component is responsible for the dispatch of notifications.
-    \item {C9 Model} :
+    \item {C9 - Model} :
     \\This component facilitates the interaction with and representation of S\&C-SP data.
 \end{enumerate}
 \subsection{Deployment View}
@@ -269,12 +269,14 @@ The web server resides in the De Militarized Zone and is the primary interface f
 
 \subsection{Runtime View}
 This section contains the sequence diagrams of the most important operations of the
-system. The diagrams include the component that we have already described in the
-previous section and the external components that are involved in the operations.
+system. The diagrams include the components that we have already described in the
+previous section and the external ones that are involved in the operations.
 
-Moreover, we avoided explicitly including the authentication mechanism for each user at the beginning of each operation. We assume the authentication and authorization will be implemented using a token-based process. These tokens are sent to the users each time they log in and they must be included with each request that requires authentication or authorization.
+Moreover, the authentication mechanism for each user at the beginning of each operation is not explicitly included. It's assumed that the authentication and authorization will be implemented using a token-based process. These tokens are sent to the users each time they log in. They must be included with each request that requires authentication or authorization.
+
 \subsubsection*{Student Registers}
-The diagram represented below shows the process of a Student creating an account to the S\&C website. First, the Student compiles the sign up form with all the requested information. Immediately after, the University login service, related to the university that the Student inserted in the form, is shown. If the Student logs successfully in its university account then the form information is stored in the DB and a new account is generated. From there, the AuthenticationManager triggers the verification email through the EmailServiceProvider. Eventually, all the companies that advertise an internship that system recognizes valid to recommend are notified of the new student subscription to the platform.
+The diagram represented below shows the process of a Student creating an account to the S\&C website. First, the student compiles the sign-up form with all the requested information. After that, the form information is checked and if the parameter result is valid, it is stored in the DB and a new account is generated. From there, the University login service, related to the university that the Student inserted in the form, is shown. If the Student logs successfully in its university account the AuthenticationManager triggers the verification email through the EmailServiceProvider. 
+\\Eventually, all the companies that advertise an internship that the system recognizes valid to recommend are notified of the new student subscription to the platform.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.28]{DD_figures/RuntimeView/StudentRegistrationRV.drawio.png}\\
@@ -299,6 +301,7 @@ triggers the verification email through the EmailServiceProvider.
 \caption{university registers to S\&C}
 \end{figure}
 
+
 \subsubsection*{Student Updates CV}
 The student initiates the process by uploading their CV, which is handled by the WebApp and subsequently passed to the Dashboard Manager, Account Manager, and Model components for validation and processing. If the data are valid, the CV is updated in the database using a query managed by the DB Manager and the DBMS. Upon successful update, the Recommendation Manager generates internship recommendations based on the updated CV, retrieving relevant internships and notifying associated employers. In case of an error (e.g., incorrect data), the system responds with an appropriate error message. Notifications are sent to employers through the Notification Provider, ensuring the flow of updates and recommendations.
 \begin{figure}[H]
@@ -308,8 +311,8 @@ The student initiates the process by uploading their CV, which is handled by the
 \end{figure}
 
 \subsubsection*{Student changes university}
-The student begins the process by submitting a form with their new email associated to their new university to the WebApp. The form data are forwarded to the Dashboard Manager and Account Manager for validation and processing. If the parameters are valid, the system interacts with the University Login Service to verify the student's credentials and confirm the university enrollment. Once confirmed, the Account Manager updates the student's university information in the database by sending a query to the DB Manager, which is executed by the DBMS. Upon successful update, the system sends a success response to the student.
-In case of errors, such as invalid parameters or incorrect credentials, the system returns an appropriate error message through the WebApp. This ensures clear communication with the student at every stage of the process.
+The student begins the process by submitting a form with their new email associated to their new university to the WebApp. The form data are forwarded to the Dashboard Manager and Authentication Manager for validation and processing with the hel of the National Education Dictionary. If the parameters are valid, the system interacts with the University Login Service to verify the student's credentials and confirm the university enrollment. Once confirmed, the Authentication Manager updates the student's university information in the database by sending a query to the DB Manager, which is executed by the DBMS. Upon successful update, the system sends a success response to the student.
+In case of errors, such as invalid parameters or incorrect credentials, the system returns an appropriate error message through the WebApp.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.35]{DD_figures/RuntimeView/StudentChangesUniversityRV.drawio.png}\\
@@ -341,18 +344,18 @@ The company sends a request containing the candidate ID and internship ID via th
 \end{figure}
 
 
-    
-    \subsubsection*{ User Login}
-    This diagram illustrates the login process within the system, regardless of the user type. We assumed that the user identifies their own type through interfaces and navigates the event flow using specific tabs and buttons to ultimately reach the login page. 
-    
-    The system verifies the user's credentials by querying with the database through the Authentication Manager. If the provided credentials (email and password) are incorrect, the user encounters an error message with error handling mechanisms  as shown in the diagram. However, if the credentials are valid, the authorized managers retrieve the user's Id from the database and redirect to the user's home page by using that.
-    
-    In addition, the diagram includes a loop representation to prevent that the potential database errors do not affect the system's overall functionality.
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.35]{DD_figures/RuntimeView/UserLogin.drawio.png}
-    \caption{User Login}
+\subsubsection*{ User Login}
+This diagram illustrates the login process within the system, regardless of the user type. We assumed that the user identifies their own type through interfaces and navigates the event flow using specific tabs and buttons to ultimately reach the login page. 
+
+The system verifies the user's credentials by querying with the database through the Authentication Manager. If the provided credentials (email and password) are incorrect, the user encounters an error message with error handling mechanisms  as shown in the diagram. However, if the credentials are valid, the authorized managers retrieve the user's Id from the database and redirect to the user's home page by using that.
+
+In addition, the diagram includes a loop representation to prevent that the potential database errors do not affect the system's overall functionality.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.35]{DD_figures/RuntimeView/UserLogin.drawio.png}
+\caption{User Login}
 \end{figure}
+
 
 \subsubsection*{ User Feedback About The Experience}
 The diagram shows that users must navigate to the "Accepted Proposal" page to provide feedback on their internship experience. Error-handling mechanisms, as in previous diagrams, ensure system security by addressing scenarios such as empty lists or unauthorized access. Functions utilizing the UserId parameter connect to the database through authorized managers, retrieving lists of accepted proposals or associated companies for display on the user interface. The mechanism within ''alt'' is designed to operate exclusively for cases that require feedback.Submitted responses are stored in the database, lists are updated via authorized managers, and the Interaction Manager processes the feedback for analysis. This interaction improves recommendation mechanism and helps to make it more correctly to the users, and finally the user interface is refreshed to reflect the updated status.
@@ -362,14 +365,15 @@ The diagram shows that users must navigate to the "Accepted Proposal" page to pr
     \caption{User Feedback}
 \end{figure}
 
-    \subsubsection*{ Student Decides Offer}
-    This diagram illustrates the process by which a student responds to a company’s internship offer within the system. The sequence begins when the student navigates to the "Matched Internship" page from the "My Internship" page. The system retrieves the list of matched internships using the studentId through the relevant managers through the database and displays the results on the interface. Error-handling mechanisms ensure that only valid matches are presented, and if no matches are found, an error message is displayed to the user.
-    Only and only if an internship offer requires a response which shows in the alt section in the diagram, the system records the student’s decision in the database within a controlled loop to prevent potential errors. Upon acceptance, the advertisement status is updated, the changes are saved, and a notification is sent to the relevant company using the companyId and advertisementId parameters from the internship class. In the event of rejection, the advertisement is removed from the student's "Applied Positions" page. After processing the response, the system updates the interface, allowing the student to view the revised information while also preparing the database for the other related pages.
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
-    \caption{Student Accepts Or Rejects Internship}
+\subsubsection*{ Student Decides Offer}
+This diagram illustrates the process by which a student responds to a company’s internship offer within the system. The sequence begins when the student navigates to the "Matched Internship" page from the "My Internship" page. The system retrieves the list of matched internships using the studentId through the relevant managers through the database and displays the results on the interface. Error-handling mechanisms ensure that only valid matches are presented, and if no matches are found, an error message is displayed to the user.
+Only and only if an internship offer requires a response which shows in the alt section in the diagram, the system records the student’s decision in the database within a controlled loop to prevent potential errors. Upon acceptance, the advertisement status is updated, the changes are saved, and a notification is sent to the relevant company using the companyId and advertisementId parameters from the internship class. In the event of rejection, the advertisement is removed from the student's "Applied Positions" page. After processing the response, the system updates the interface, allowing the student to view the revised information while also preparing the database for the other related pages.
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.25]{DD_figures/RuntimeView/studentConfirmCompany.drawio.png}
+\caption{Student Accepts Or Rejects Internship}
 \end{figure}
+
 
 \subsubsection*{ User Gives Feedback About Recommendations}  
 
@@ -382,6 +386,7 @@ The process begins with functions including the internship class (containing att
     \caption{User Recommendation Feedback}
 \end{figure}
 
+
 \subsubsection*{ Company posts an internship advertisement}  
 This diagram illustrates the scenario of posting an internship advertisement through the system according to the company's needs. The process begins with the company navigating to the appropriate page via the system interfaces to initiate advertisement creation. We assumed that all required fields within the interface are completed. The system first receives the information and advertisement details filled out by the company user and save them into the DBMS through the relevant managers using the parameters adInfo(advertisementInfo) and companyId. Upon successful creation of the advertisement within the system, relevant student profiles are identified and recommended through the recommendation manager for the advertisement, and these suggested students are saved to the database. Furthermore, the system notifies the identified students of the newly created advertisement, which might align with their interests, through the notification manager and provider. The diagram also incorporates error-handling mechanisms to improve system security and efficiency.
 
@@ -391,7 +396,7 @@ This diagram illustrates the scenario of posting an internship advertisement thr
     \caption{Company Create Internship}
     \centering
 \end{figure}
-\newpage
+
 
 \subsubsection*{ Student Views The Advertisement} 
 This diagram illustrates the scenario in which students utilize the system’s homepage interface to list general internship advertisements and view their details. The process begins with the student accessing the system’s homepage, where the system retrieves a list of previously shared advertisements from the Database Management System (DBMS) and presents it to the user.In the event that no advertisements have been shared by companies, an error-handling mechanism is triggered. If the list contains advertisements, we assumed that the student will proceed to view the details of a selected advertisement as part of the scenario. The system processes this action by sending a request, including the advertisementID of the selected advertisement, to the internship manager. The internship manager retrieves the corresponding advertisement details through the DB manager and redirects the student to the relevant page displaying the details. If the student decides to apply for the selected advertisement, the system processes the application by utilizing parameters such as studentId and internship class which includes companyId, studentId and etc. This application is then saved and updated in the database under the list of applied positions. We also assumed that this process will repeat in a loop until the list is successfully updated.
@@ -401,7 +406,6 @@ This diagram illustrates the scenario in which students utilize the system’s h
     \caption{Student View Advertisements}
     \centering
 \end{figure}
-\newpage
 
 
 \subsubsection*{ Company Views The Posted Internships} 
@@ -412,7 +416,7 @@ This diagram represents the scenario in which companies view a list of advertise
     \caption{Company Views The List of Advertisements}
     \centering
 \end{figure}
-\newpage
+
 
 \subsubsection*{ Company Views The Student Details} 
 This diagram is presented as a continuation of the scenario shown in Figure 19. In summary, the company has accessed the advertisements they previously shared and navigated to the desired advertisement cell. In this scenario, it is assumed that the company selects a student's profile from the "All Candidates" list via the interface. The system retrieves data using the student class, which includes various parameters such as studentId and studentInfo, from the database. Then directs the company to the relevant page on the interface to display the student's profile.The next part of the scenario involves the company accepting the student for the internship. The system collects the student's information through the internship manager, matches the student with the advertisement. Thus,The system removes the student from the "All Candidates" list and prepares the student to be added to the "Approved Profiles" list. This process is designed to continue in a loop until the approval is finalized. Finally, the system displays the updated list on the company page, reflecting the changes with the revised list.
@@ -422,7 +426,7 @@ This diagram is presented as a continuation of the scenario shown in Figure 19. 
     \caption{Company Views The List of Student}
     \centering
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Views Relevant Internships}
 The diagram below shows the process of a user visualizing the list of internships he's interested in. \\
@@ -432,7 +436,7 @@ In the case of a University, it retrieves all the interships the students from t
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserViewsRelevantInternshipsRV.png}\\
 \caption{User Views Relevant Internships}
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Accepts Recommendation}
 The diagram below shows the process of a User (either student or university) accepting a recommendation proposed by the platform algorithm. Both studentID and internshipID are needed for the operation.
@@ -441,7 +445,7 @@ The diagram below shows the process of a User (either student or university) acc
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserAcceptsRecommendationRV.png}\\
 \caption{User Accepts Recommendation}
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Views Comments}
 The diagram below shows the process of a User visualizing comments of an internship. If the internshipID is not valid, the process is interrupted.
@@ -450,7 +454,7 @@ The diagram below shows the process of a User visualizing comments of an interns
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserViewsCommentsRV.png}\\
 \caption{User Views Comments}
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Writes Observation}
 The diagram below shows the process of a User (either student or company) writing an observation about an on-going internship. In this case no notifications are sent, which component will be important for the complaint part.
@@ -459,7 +463,7 @@ The diagram below shows the process of a User (either student or company) writin
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserWritesObservationRV.png}\\
 \caption{User Writes Observation}
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Writes Complaint}
 The diagram below shows the process of a User (either student or company) writing a complaint about an on-going internship. After the complaint has been posted successfully, the system will send a notification to the university of the student that is doing the internship, through the notification provider.
@@ -468,7 +472,7 @@ The diagram below shows the process of a User (either student or company) writin
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UserWritesComplaintRV.png}\\
 \caption{User Writes Complaint}
 \end{figure}
-\newpage
+
 
 \subsubsection*{University Interrupts Internship}
 The diagram below shows the process of a University interrupting an on-going internship. If the internshipID is not valid, the process interrupts. The platform will send notifications to the company and the student relative to that internship.
@@ -477,7 +481,7 @@ The diagram below shows the process of a University interrupting an on-going int
 \includegraphics[scale = 0.4]{DD_figures/RuntimeView/UniversityInterruptsInternshipRV.png}\\
 \caption{University Interrupts Internship}
 \end{figure}
-\newpage
+
 
 \subsubsection*{User Views Template}
 The diagram below shows the process of a User (either student or company) visualizing the suggested template by the platform.
@@ -488,12 +492,11 @@ The diagram below shows the process of a User (either student or company) visual
 \end{figure}
 
 
-\newpage
 \subsection{Component Interfaces}
 In this section, we use a class diagram to illustrate the component interfaces. The methods are presented as clearly as possible, and we expect their functionality to be easily understandable.
 \begin{sidewaysfigure}
 \centering
-\includegraphics[scale = 0.3]{DD_figures/ComponentInterfaces.drawio.png}\\
+\includegraphics[scale = 0.30]{DD_figures/ComponentInterfaces.drawio.png}\\
 \caption{Class diagram with interfaces of the S\&C System}
 \end{sidewaysfigure}
 
@@ -544,7 +547,7 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{internshipId\}/selectsStudent}
+\subsubsection*{POST api/internship/\{internshipId\}/selectsStudent}
 \begin{description}
     \item[Request Body:] studentId: int
     \item[200 Response:] message: String("Success") 
