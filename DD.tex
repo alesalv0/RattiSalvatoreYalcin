@@ -541,7 +541,7 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Invalid request data")
 \end{description}
 
-\subsubsection*{POST api/student/\{studentId\}/uploadCV}
+\subsubsection*{PUT api/student/\{studentId\}/updateCV}
 \begin{description}
     \item[Request Body:]  CVfile: Object, studentId: int
     \item[200 Response:] message: String("CV successfully uploaded") 
@@ -553,6 +553,110 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[Request Body:]  changeUni: emailUniForm, studentId: int
     \item[200 Response:] message: String("Student successfully changed university") 
     \item[400 Response:] error : String("Invalid parameters")
+\end{description}
+
+\subsubsection*{POST api/internship/create}
+\begin{description}
+    \item[Request Body:] adInfo: Object, companyId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid process")
+\end{description}
+
+\subsubsection*{GET api/internship}
+\begin{description}
+    \item[Request Body:]  userId: int
+    \item[200 Response:] internships: Array of Object
+    \item[400 Response:] error : String("Empty List")
+\end{description}
+
+\subsubsection*{GET api/internship/\{internshipId\}}
+\begin{description}
+    \item[200 Response:] internship: Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection*{POST api/internship/\{internshipId\}/apply}
+\begin{description}
+    \item[Request Body:] studentId: int
+    \item[200 Response:] message: String("Success")
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection*{PUT api/student/\{studentId\}/appliedPosition}
+\begin{description}
+    \item[Request Body:] internship: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{GET api/internship/created}
+\begin{description}
+    \item[Request Body:]  companyId: int
+    \item[200 Response:] internships: Array of Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection*{GET api/internship/allCandidates}
+\begin{description}
+    \item[Request Body:]  companyId: int, adId: int
+    \item[200 Response:] allCandidates: Array of Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection*{PUT api/internship/allCandidates}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{GET api/internship/studentProfile}
+\begin{description}
+    \item[Request Body:]  student: Object, internship: Object
+    \item[200 Response:] studentProfile: Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection*{DELETE api/internship/removeFromAllCandidates}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{DELETE api/internship/removeFromMatchedInternships}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{DELETE api/internship/removeFromApprovedProfiles}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{PUT api/company/approvedProfile}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection*{POST api/user/acceptRecommendation}
+\begin{description}
+    \item[Request Body:] userId: int, internshipId: int
+    \item[200 Response:] message: String("Success")
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection*{POST api/user/recommendationFeedback}
+\begin{description}
+    \item[Request Body:] feedback: Object, userId: int, internshipId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Unauthorized")
+\end{description}
+
+\subsubsection*{PUT api/user/recommendations}
+\begin{description}
+    \item[Request Body:]  userId: int, internshipId: int
+    \item[200 Response:] message: String("Success") 
 \end{description}
 
 \subsubsection*{POST api/internship/\{internshipId\}/interviews}
@@ -588,129 +692,64 @@ In this section the API endpoints are presented. The focus is on the method used
     \item[400 Response:] error : String("Empty List")
 \end{description}
 
-\subsubsection*{POST api/internship/\{internshipId\}/feedback}
+\subsubsection*{POST api/student/\{studentId\}/response}
 \begin{description}
-    \item[Request Body:] response: boolean, userId: int
+    \item[Request Body:] internship: Object, response: boolean
     \item[200 Response:] message: String("Success") 
     \item[500 Response:] error : String("Server side error")
 \end{description}
 
-\subsubsection*{POST api/internship/\{internshipId\}/response}
-\begin{description}
-    \item[Request Body:] student: Object, response: boolean
-    \item[200 Response:] message: String("Success") 
-    \item[500 Response:] error : String("Server side error")
-\end{description}
-
-\subsubsection*{POST api/internship/\{internshipId\}/recommendationFeedback}
-\begin{description}
-    \item[Request Body:] feedback: Object, userId: int
-    \item[200 Response:] message: String("Success") 
-    \item[500 Response:] error : String("Unauthorized")
-\end{description}
-
-\subsubsection*{POST api/internship/create}
-\begin{description}
-    \item[Request Body:] adInfo: Object, companyId: int
-    \item[200 Response:] message: String("Success") 
-    \item[400 Response:] error : String("Invalid process")
-\end{description}
-
-\subsubsection*{GET api/internship}
-\begin{description}
-    \item[Request Body:]  userId: int
-    \item[200 Response:] internships: Array of Object
-    \item[400 Response:] error : String("Empty List")
-\end{description}
-
-\subsubsection*{GET api/internship/\{internshipId\}}
-\begin{description}
-    \item[200 Response:] internship: Object
-    \item[400 Response:] error : String("Invalid data")
-\end{description}
-
-\subsubsection*{POST api/internship/\{internshipId\}/apply}
-\begin{description}
-    \item[Request Body:]  userId: int
-    \item[200 Response:] message: String("Success")
-    \item[400 Response:] error : String("Invalid data")
-\end{description}
-
-\subsubsection*{PUT api/internship/allCandidates}
-\begin{description}
-    \item[Request Body:] internship: Object, student: Object
-    \item[200 Response:] message: String("Success")
-\end{description}
-
-\subsubsection*{PUT api/company/approvedProfile}
-\begin{description}
-    \item[Request Body:] internship: Object, student: Object
-    \item[200 Response:] message: String("Success")
-\end{description}
-
-\subsubsection*{PUT api/student/\{studentId\}/appliedPosition}
+\subsubsection*{PUT api/student/\{studentId\}/acceptedProposals}
 \begin{description}
     \item[Request Body:] internship: Object
     \item[200 Response:] message: String("Success")
 \end{description}
 
-\subsubsection*{GET api/internship/created}
+\subsubsection*{POST api/internship/\{internshipId\}/feedback}
 \begin{description}
-    \item[Request Body:]  companyId: int
-    \item[200 Response:] internships: Array of Object
-    \item[400 Response:] error : String("Invalid data")
+    \item[Request Body:] userId: int, response: boolean
+    \item[200 Response:] message: String("Success") 
+    \item[500 Response:] error : String("Server side error")
 \end{description}
 
-\subsubsection*{GET api/internship/allCandidates}
+\subsubsection*{GET api/internship/\{internshipId\}/comments}
 \begin{description}
-    \item[Request Body:]  companyId: int, adId: int
-    \item[200 Response:] allCandidates: Array of Object
-    \item[400 Response:] error : String("Invalid data")
-\end{description}
-
-\subsubsection*{POST api/internships/\{internshipId\}/acceptRecommendation}
-\begin{description}
-    \item[Request Body:] studentId: int, isStudent: boolean
+    \item[Request Body:]  userId: int
     \item[200 Response:] comments: Array of Object 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection*{GET api/internship/\{internshipId\}/studentProfile}
+\subsubsection*{POST api/internship/\{internshipId\}/comments}
 \begin{description}
-    \item[200 Response:] studentProfile: Object
-    \item[400 Response:] error : String("Invalid data")
-\end{description}
-
-\subsubsection*{GET api/user/\{userId\}/comments}
-\begin{description}
-    \item[Request Body:]  internshipId: int
-    \item[200 Response:] comments: Array of Object 
-    \item[400 Response:] error : String("Invalid internshipId")
-\end{description}
-\subsubsection*{POST api/user/\{userId\}/observation}
-\begin{description}
-    \item[Request Body:] observation: Object, internshipId: int
+    \item[Request Body:]  userId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection*{POST api/user/\{userId\}/complaint}
+\subsubsection*{POST api/internship/\{internshipId\}/observation}
+\begin{description}
+    \item[Request Body:] observation: Object, userId: int
+    \item[200 Response:] message: String("Success") 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection*{GET api/internship/\{internshipId\}/observations}
+\begin{description}
+    \item[Request Body:] userId: int
+    \item[200 Response:] observations: Array of Object 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection*{POST api/internship/\{internshipId\}/complaint}
 \begin{description}
     \item[Request Body:] complaint: Object, internshipId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
-\subsubsection*{GET api/user/\{userId\}/complaints}
+\subsubsection*{GET api/internship/\{internshipId\}/complaints}
 \begin{description}
-    \item[Request Body:] complaints: Array of Object, internshipId: int
-    \item[200 Response:] message: String("Success") 
-    \item[400 Response:] error : String("Invalid internshipId")
-\end{description}
-
-\subsubsection*{GET api/user/\{userId\}/observations}
-\begin{description}
-    \item[Request Body:] observations: Array of Object, internshipId: int
-    \item[200 Response:] message: String("Success") 
+    \item[Request Body:] userId: int
+    \item[200 Response:] complaints: Array of Object
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
