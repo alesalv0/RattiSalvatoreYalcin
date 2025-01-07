@@ -505,7 +505,7 @@ The diagram below shows the process of a University interrupting an on-going int
 
 \newpage
 
-\subsubsection*{ User Gives Feedback About The Experience}
+\subsubsection*{User Gives Feedback About The Experience}
 The diagram shows that users must navigate to the "Accepted Proposal" page to provide feedback on their internship experience. Error-handling mechanisms, as in previous diagrams, ensure system security by addressing scenarios such as empty lists or unauthorized access. Functions utilizing the UserId parameter connect to the database through authorized managers, retrieving lists of accepted proposals or associated companies for display on the user interface. The mechanism within ''alt'' is designed to operate exclusively for cases that require feedback.Submitted responses are stored in the database, lists are updated via authorized managers, and the Interaction Manager processes the feedback for analysis. This interaction improves recommendation mechanism and helps to make it more correctly to the users, and finally the user interface is refreshed to reflect the updated status.
     \begin{figure}[H]
     \centering
@@ -1589,7 +1589,7 @@ The system will be implemented, integrated, and tested using a bottom-up approac
 into account the dependencies between components of the system. This strategy will be used
 for both the server and client sides, which will be developed and tested at the same time.
 Incremental integration testing will be applied to try to find and fix bugs as soon as possible
-during the development cycle. Since Entity Manager and external services are assumed to be
+during the development cycle. Since DB Manager and external services are assumed to be
 reliable, they don't need unit testing.
 \subsection{Implementation \& Integration Plan}
 Since the application is mostly server-side, we will only describe the implementation of
@@ -1663,7 +1663,7 @@ This section shows the amount of time that each member has spent to produce the 
         Runtime View Diagrams & Ratti, Salvatore, Yalcin & 18 hours \\ \hline
         Chapter 4: Requirements Traceability & Salvatore & 3 hours \\ \hline
         Chapter 5: Implementation, Integration and Testing Plan  & Salvatore & 6 hours\\ \hline
-        Chapter 6: Effort Spent and final review & Ratti, Salvatore, Yalcin & 3 hours\\ \hline
+        Chapter 6: Effort Spent and final review & Ratti, Salvatore, Yalcin & 6 hours\\ \hline
     \end{tabular}
 \end{center}
 \newpage
