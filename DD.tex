@@ -502,163 +502,192 @@ In this section, we use a class diagram to illustrate the component interfaces. 
 In this section the API endpoints are presented. The focus is on the method used, on the parameters required and on the response.
 
 
-\subsubsection*{POST /api/users/register}
+\subsubsection*{POST api/users/register}
 \begin{description}
     \item[Request Body:]  User: Object
     \item[200 Response:] message: String("User successfully registered") 
     \item[400 Response:] error : String("Invalid request data")
 \end{description}
 
-\subsubsection*{POST /api/users/login}
+\subsubsection*{POST api/users/login}
 \begin{description}
     \item[Request Body:]  User: Object
     \item[200 Response:] message: String("User successfully logged in") 
     \item[400 Response:] error : String("Invalid request data")
 \end{description}
 
-\subsubsection*{PUT /api/student/{studentId}/uploadCV}
+\subsubsection*{POST api/student/\{studentId\}/uploadCV}
 \begin{description}
-    \item[Request Body:]  CVfile: Object, studentID: int
+    \item[Request Body:]  CVfile: Object, studentId: int
     \item[200 Response:] message: String("CV successfully uploaded") 
     \item[400 Response:] error : String("Invalid request data")
 \end{description}
 
-\subsubsection*{PUT /api/student/{studentId}/changeUni}
+\subsubsection*{PUT api/student/\{studentId\}/changeUni}
 \begin{description}
-    \item[Request Body:]  changeUni: emailUniForm, studentID: int
+    \item[Request Body:]  changeUni: emailUniForm, studentId: int
     \item[200 Response:] message: String("Student successfully changed university") 
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{companyID}/interviews}
+\subsubsection*{POST api/internship/\{internshipId\}/interviews}
 \begin{description}
-    \item[Request Body:] interview: interviewForm, companyID: int
+    \item[Request Body:] interview: Object, studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{studentID}/timeSlot}
+\subsubsection*{POST api/internship/\{internshipId\}/timeSlot}
 \begin{description}
-    \item[Request Body:] timeSlot: time, studentID: int
+    \item[Request Body:] timeSlot: time, studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{companyID}/selectedStudent}
+\subsubsection*{POST api/internship/{internshipId\}/selectsStudent}
 \begin{description}
-    \item[Request Body:] selectedStudent: studentID, companyID: int
+    \item[Request Body:] studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid parameters")
 \end{description}
 
-\subsubsection*{POST api/internship/{userdID}/feedback}
+\subsubsection*{GET api/user/\{userId\}/acceptedProposals}
 \begin{description}
-    \item[Request Body:] feeback: respondeObj, userID: int
+    \item[200 Response:] acceptedProposals: Array of Objects 
+    \item[400 Response:] error : String("Unauthorized")
+\end{description}
+
+\subsubsection*{GET api/user/\{userId\}/matchedInternships}
+\begin{description}
+    \item[200 Response:] matchedInternships: Array of Objects 
+    \item[400 Response:] error : String("Empty List")
+\end{description}
+
+\subsubsection*{POST api/internship/\{internshipId\}/feedback}
+\begin{description}
+    \item[Request Body:] response: boolean, userId: int
     \item[200 Response:] message: String("Success") 
     \item[500 Response:] error : String("Server side error")
 \end{description}
 
-\subsubsection*{POST api/student/{studentID}/response}
+\subsubsection*{POST api/internship/\{internshipId\}/response}
 \begin{description}
-    \item[Request Body:] internship: internshipID, userID: int, response: Boolean
+    \item[Request Body:] student: Object, response: boolean
     \item[200 Response:] message: String("Success") 
     \item[500 Response:] error : String("Server side error")
 \end{description}
 
-\subsubsection*{POST api/internship/{userdID}/feedback}
+\subsubsection*{POST api/internship/\{internshipId\}/recommendationFeedback}
 \begin{description}
-    \item[Request Body:] feeback: respondeObj, userID: int
+    \item[Request Body:] feedback: Object, userId: int
     \item[200 Response:] message: String("Success") 
     \item[500 Response:] error : String("Unauthorized")
 \end{description}
 
-\subsubsection*{POST api/internship/{companyID}/adInfo}
+\subsubsection*{POST api/internship/create}
 \begin{description}
-    \item[Request Body:] adInfo: internshipForm, companyID: int
+    \item[Request Body:] adInfo: Object, companyId: int
     \item[200 Response:] message: String("Success") 
-    \item[400 Response:] error : String("Invalid parameters")
+    \item[400 Response:] error : String("Invalid process")
 \end{description}
 
-\subsubsection{POST api/internships/{internshipId}/acceptRecommendation}
-\begin{description}
-    \item[Request Body:]  universityId: int, studentId: int
-    \item[200 Response:] comments: Array of Object 
-    \item[400 Response:] error : String("Invalid internshipId")
-\end{description}
-
-\subsubsection{POST api/internships/{internshipId}/acceptRecommendation}
-\begin{description}
-    \item[Request Body:]  universityId: int, studentId: int
-    \item[200 Response:] comments: Array of Object 
-    \item[400 Response:] error : String("Invalid internshipId")
-\end{description}
-
-
-\subsubsection{GET api/internships}
+\subsubsection{GET api/internship}
 \begin{description}
     \item[Request Body:]  userId: int
     \item[200 Response:] internships: Array of Object
     \item[400 Response:] error : String("Empty List")
 \end{description}
 
-\subsubsection{GET api/internships/{internshipId}}
+\subsubsection{GET api/internship/\{internshipId\}}
 \begin{description}
     \item[200 Response:] internship: Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/internships/{internshipId}/apply}
+\subsubsection{POST api/internship/\{internshipId\}/apply}
 \begin{description}
     \item[Request Body:]  userId: int
     \item[200 Response:] message: String("Success")
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/internships/{internshipId}/allCandidates}
+\subsubsection{PUT api/internship/allCandidates}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection{PUT api/company/approvedProfile}
+\begin{description}
+    \item[Request Body:] internship: Object, student: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection{PUT api/student/\{studentId\}/appliedPosition}
+\begin{description}
+    \item[Request Body:] internship: Object
+    \item[200 Response:] message: String("Success")
+\end{description}
+
+\subsubsection{GET api/internship/created}
+\begin{description}
+    \item[Request Body:]  companyId: int
+    \item[200 Response:] internships: Array of Object
+    \item[400 Response:] error : String("Invalid data")
+\end{description}
+
+\subsubsection{GET api/internship/allCandidates}
 \begin{description}
     \item[Request Body:]  companyId: int, adId: int
     \item[200 Response:] allCandidates: Array of Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/students/{studentId}}
+\subsubsection{POST api/internships/\{internshipId\}/acceptRecommendation}
+\begin{description}
+    \item[Request Body:] studentId: int, isStudent: boolean
+    \item[200 Response:] comments: Array of Object 
+    \item[400 Response:] error : String("Invalid internshipId")
+\end{description}
+
+\subsubsection{GET api/internship/\{internshipId\}/studentProfile}
 \begin{description}
     \item[200 Response:] studentProfile: Object
     \item[400 Response:] error : String("Invalid data")
 \end{description}
 
-\subsubsection{GET api/internships/{internshipId}/comments}
+\subsubsection{GET api/user/\{userId\}/comments}
 \begin{description}
-    \item[Request Body:]  userId: int
+    \item[Request Body:]  internshipId: int
     \item[200 Response:] comments: Array of Object 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
-\subsubsection{POST api/internships/{internshipId}/observation}
+\subsubsection{POST api/user/\{userId\}/observation}
 \begin{description}
-    \item[Request Body:] observations: String, userId: int
+    \item[Request Body:] observations: Array of Object, internshipId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{POST api/internships/{internshipId}/complaint}
+\subsubsection{POST api/user/\{userId\}/complaint}
 \begin{description}
-    \item[Request Body:] complaints: String, userId: int
+    \item[Request Body:] complaints: Array of Object, internshipId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
 
-\subsubsection{PUT api/internships/{internshipId}/interrupt}
+\subsubsection{PUT api/internships/\{internshipId\}/interrupt}
 \begin{description}
     \item[Request Body:] companyId: int, studentId: int
     \item[200 Response:] message: String("Success") 
     \item[400 Response:] error : String("Invalid internshipId")
 \end{description}
-\subsubsection{GET api/user/{userId}/template}
+
+\subsubsection{GET api/user/\{userId\}/template}
 \begin{description}
     \item[200 Response:] template: Object 
     \item[400 Response:] error : String("Invalid userId")
 \end{description}
-
 \newpage
 \subsection{Selected Architectural Styles and Patterns}
 \begin{itemize}
